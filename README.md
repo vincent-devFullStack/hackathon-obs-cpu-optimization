@@ -21,7 +21,7 @@ Afin de garantir la reproductibilité et d’éviter tout conflit avec le Python
 ### 1. Cloner le dépôt
 
 ```bash
-git clone <https://github.com/vincent-devFullStack/hackathon-obs-cpu-optimization.git>
+git clone https://github.com/vincent-devFullStack/hackathon-obs-cpu-optimization.git
 cd hackathon-obs-cpu-optimization
 ```
 
