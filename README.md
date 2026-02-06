@@ -78,6 +78,20 @@ La sortie affiche :
 
 Les résultats bruts sont également sauvegardés dans bench/results.csv.
 
+## 6. Visualisation des résultats
+
+Le script de benchmark génère des résultats bruts dans `bench/results.csv`.
+
+Une figure de synthèse (temps médians et speedup) peut être générée avec la commande suivante :
+
+```bash
+python bench/make_figures.py
+```
+
+La figure est enregistrée dans le dossier figures/.
+
+--- 
+
 ## Notes importantes
 
 - Le benchmark est volontairement **mono-cœur** et **mono-thread BLAS** afin de garantir des mesures stables et comparables.
