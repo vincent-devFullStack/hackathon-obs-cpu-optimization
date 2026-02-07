@@ -1,0 +1,14 @@
+{
+  "A_file": "A.f64",
+  "D": 96,
+  "E_file": "E.f64",
+  "M": 15,
+  "N": 2000,
+  "dtype": "float64-le",
+  "format": "cosine-benchmark-v1",
+  "seed": 42,
+  "sha256": {
+    "A_f64": "4d5f67f04809dcf919d3b33ac619511bac510343a41fd8698ad709ee184533e3",
+    "E_f64": "ec9dbaa47f2b5ad0a443fadaa169c8d651d4bfb80c1de0d57ddec90f16d08ee2"
+  }
+}

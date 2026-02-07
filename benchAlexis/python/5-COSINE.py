@@ -1,11 +1,13 @@
 import json
 import csv
+from pathlib import Path
 import numpy as np
 
-# Chemins des fichiers
-embeddings_file = r"c:\Hackathon\ProjetPCA\OrangeIA\vectors-OrangeIA.json"
-axis_file = r"c:\Hackathon\ProjetPCA\OrangeIA\axis-vectors-OrangeIA.json"
-output_csv = r"c:\Hackathon\ProjetPCA\OrangeIA\CosineCompute-OrangeIA.csv"
+# Chemins des fichiers (relatifs au dossier du script)
+BASE_DIR = Path(__file__).resolve().parent
+embeddings_file = BASE_DIR / "vectors-OrangeIA.json"
+axis_file = BASE_DIR / "axis-vectors-OrangeIA.json"
+output_csv = BASE_DIR / "CosineCompute-OrangeIA.csv"
 
 def cosine_similarity(vec1, vec2):
     v1 = np.array(vec1)

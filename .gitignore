@@ -205,3 +205,9 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Benchmark build artifacts
+c/benchmark_c
+cpp/benchmark_cpp
+go/benchmark_go
+java/*.class

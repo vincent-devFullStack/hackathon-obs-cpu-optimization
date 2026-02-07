@@ -16,7 +16,7 @@ REPEAT = 50  # augmente la charge CPU si nécessaire
 # -----------------------
 # Données synthétiques
 # -----------------------
-def generate_data(N=560, M=15, D=96, seed=42):
+def generate_data(N=500000, M=15, D=96, seed=42):
     rng = np.random.default_rng(seed)
     E = rng.random((N, D))
     A = rng.random((M, D))

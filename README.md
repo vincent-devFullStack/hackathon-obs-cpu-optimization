@@ -1,99 +1,95 @@
 # hackathon-obs-cpu-optimization
 
-Benchmark CPU – implémentation naïve vs vectorisée d’un calcul de cosine similarity.
+Suite de benchmark multi-langages pour un calcul de similarite cosinus (all-pairs) avec controle de reproductibilite et metriques systeme.
 
-Ce projet de hackathon (Sujet 3 – Optimisation CPU) vise à démontrer qu’un même calcul, exécuté sur les mêmes données et la même machine, peut présenter des performances très différentes selon l’implémentation.  
-L’objectif est de mesurer et d’interpréter l’impact de ces choix d’implémentation sur la performance CPU et un proxy énergie, à l’aide d’une méthodologie reproductible.
+## Prerequis (Linux)
 
-## Installation et exécution
-
-Ce projet utilise Python 3 et dépend uniquement de **NumPy**.  
-Afin de garantir la reproductibilité et d’éviter tout conflit avec le Python système, l’exécution se fait dans un **environnement virtuel**.
-
-### Prérequis
-
-- Linux / WSL / Ubuntu
-- Python ≥ 3.10
-- Accès aux droits `sudo` (pour installer les paquets système si nécessaire)
-
----
-
-### 1. Cloner le dépôt
-
-```bash
-git clone https://github.com/vincent-devFullStack/hackathon-obs-cpu-optimization.git
-cd hackathon-obs-cpu-optimization
-```
-
----
-
-### 2. Installer le support des environnements virtuels (une seule fois)
-
-Sur Debian / Ubuntu :
+Installer les outils systeme :
 
 ```bash
 sudo apt update
-sudo apt install -y python3-venv python3-pip
+sudo apt install -y \
+  python3 python3-venv python3-pip \
+  make gcc g++ \
+  openjdk-21-jdk \
+  golang-go \
+  rustc cargo \
+  util-linux
 ```
 
----
+Optionnel (metriques `perf stat`) :
 
-### 3. Créer et activer l’environnement virtuel
+```bash
+sudo apt install -y linux-tools-common linux-tools-generic
+```
 
-À la racine du dépôt :
+## Installation Python (venv obligatoire)
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
 ```
 
-Vérification (optionnelle) :
+## Generer le dataset
 
 ```bash
-python --version
+python3 data/generate_data.py \
+  --output-dir data \
+  --metadata metadata.json \
+  --N 2000 --M 15 --D 96 \
+  --seed 42 --force
 ```
 
----
+Le script ecrit `data/metadata.json`, `data/E.f64`, `data/A.f64`.
 
-### 4. Installer les dépendances Python
+## Lancer tous les tests
+
+Commande de reference :
 
 ```bash
-pip install --upgrade pip
-pip install -r requirements.txt
+python runner/run_all.py \
+  --metadata data/metadata.json \
+  --warmup 5 --runs 30 --repeat 50 \
+  --stability-enable --stability-mode wait --stability-timeout-sec 60 \
+  --cpu-util-max 20 --disk-io-mbps-max 5 --mem-available-min-mb 2048 \
+  --enforce-single-thread --cpu-affinity 2 \
+  --impls c-naive,cpp-naive,rust-naive,go-naive,java-naive,python-naive,python-numpy
 ```
 
----
+Sorties :
+- `results/results.csv`
+- `results/summary.json`
 
-### 5. Lancer le benchmark
+## Java: options JVM robustes
+
+Le runner valide les options JVM avant execution (`java -version` en dry-check).
+
+- Si `--java-opts` est invalide, fallback automatique :
+1. `strict_single_core`
+2. `relaxed_single_core`
+- Option explicitement bloquee : `-XX:CICompilerCount=1`
+
+Exemple Java uniquement :
 
 ```bash
-cd bench
-OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 taskset -c 2 python bench.py
+python runner/run_all.py \
+  --metadata data/metadata.json \
+  --warmup 5 --runs 30 --repeat 50 \
+  --stability-enable --stability-mode wait --stability-timeout-sec 60 \
+  --cpu-util-max 20 --disk-io-mbps-max 5 --mem-available-min-mb 2048 \
+  --enforce-single-thread --cpu-affinity 2 \
+  --impls java-naive \
+  --java-opts=-XX:CICompilerCount=1
 ```
 
-La sortie affiche :
+Le fallback effectif est trace dans `results/summary.json` (`java_control`).
 
-- les temps médians (`wall_time`, `cpu_time`)
-- le speedup entre l’implémentation naïve et la version optimisée
+## Nettoyage rapide
 
-Les résultats bruts sont également sauvegardés dans bench/results.csv.
-
-## 6. Visualisation des résultats
-
-Le script de benchmark génère des résultats bruts dans `bench/results.csv`.
-
-Une figure de synthèse (temps médians et speedup) peut être générée avec la commande suivante :
+Pour supprimer les artefacts de build :
 
 ```bash
-python bench/make_figures.py
+rm -f c/benchmark_c cpp/benchmark_cpp go/benchmark_go java/*.class
 ```
-
-La figure est enregistrée dans le dossier figures/.
-
---- 
-
-## Notes importantes
-
-- Le benchmark est volontairement **mono-cœur** et **mono-thread BLAS** afin de garantir des mesures stables et comparables.
-- Le benchmark mesure uniquement le **noyau de calcul CPU** ; le chargement des données et toute écriture disque sont volontairement exclus afin d’éviter les biais liés à l’I/O.
-- Le **CPU time** est utilisé comme proxy énergie : à charge identique, une réduction du temps CPU actif implique une réduction de l’énergie dynamique consommée.
