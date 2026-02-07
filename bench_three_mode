@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$ROOT_DIR"
+
+CPU_CORE="${1:-2}"
+THREADS="${2:-$(nproc)}"
+METADATA="${3:-data/metadata.json}"
+CPU_SET_MULTI="${4:-0-$((THREADS-1))}"
+
+if ! [[ "$THREADS" =~ ^[0-9]+$ ]]; then
+  echo "[FAIL] THREADS must be an integer >= 2" >&2
+  exit 1
+fi
+if (( THREADS < 2 )); then
+  echo "[FAIL] THREADS must be >= 2 for multi-core run" >&2
+  exit 1
+fi
+
+echo "[INFO] ===== Benchmark both modes ====="
+echo "[INFO] single-core: cpu=$CPU_CORE metadata=$METADATA"
+./run_single_core.sh "$CPU_CORE" "$METADATA"
+
+echo "[INFO] multi-core: threads=$THREADS cpu-set=$CPU_SET_MULTI metadata=$METADATA"
+./run_multi_core.sh "$THREADS" "$METADATA" "$CPU_SET_MULTI"
+
+echo "[INFO] Done. Outputs:"
+echo "[INFO] - results/results_single_core.csv"
+echo "[INFO] - results/summary_single_core.json"
+echo "[INFO] - results/results_multi_core.csv"
+echo "[INFO] - results/summary_multi_core.json"
+echo "[INFO] - results/results_multi_core_scalable.csv"
+echo "[INFO] - results/summary_multi_core_scalable.json"

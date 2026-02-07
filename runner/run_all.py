@@ -57,6 +57,17 @@ JAVA_STABLE_REQUIRED_OPTS = {
 }
 RUNNER_ENV_KEYS = [*THREAD_ENV_VARS, "GOMAXPROCS", "RAYON_NUM_THREADS"]
 
+KNOWN_SINGLE_THREAD_IMPLS = {
+    "c-naive",
+    "c-simd-portable",
+    "c-simd-native",
+    "cpp-naive",
+    "cpp-simd-portable",
+    "cpp-simd-native",
+    "rust-naive",
+    "rust-simd",
+}
+
 
 @dataclass
 class Implementation:
@@ -448,6 +459,58 @@ def resolve_java_opts(
     }
 
 
+def resolve_java_opts_multicore(
+    requested_opts: Sequence[str],
+    env: Dict[str, str],
+    warnings: List[str],
+) -> Dict[str, object]:
+    if shutil.which("java") is None:
+        raise RuntimeError("java command not found in PATH")
+
+    base_probe = java_version_probe([], env)
+    if not bool(base_probe.get("ok")):
+        raise RuntimeError(f"java -version failed: {tail_lines(str(base_probe.get('stderr', '')), 20)}")
+
+    runtime_info = parse_java_runtime_info(str(base_probe.get("stderr", "")) or str(base_probe.get("stdout", "")))
+    requested = list(requested_opts)
+    blocked = [opt for opt in requested if opt in BLOCKED_JAVA_OPTS]
+    attempts: List[Dict[str, object]] = []
+    fallback_reason: Optional[str] = None
+    profile_used = "default"
+    effective: List[str] = []
+
+    if blocked:
+        raise RuntimeError(f"blocked JVM option(s) in multi-core mode: {', '.join(blocked)}")
+
+    if requested:
+        probe = java_version_probe(requested, env)
+        attempts.append(
+            {
+                "name": "requested",
+                "opts": requested,
+                "ok": bool(probe.get("ok")),
+                "returncode": int(probe.get("returncode", -1)),
+                "stderr_tail": tail_lines(str(probe.get("stderr", "")), 20),
+            }
+        )
+        if bool(probe.get("ok")):
+            effective = requested
+            profile_used = "requested"
+        else:
+            fallback_reason = f"requested JVM options failed (exit={probe.get('returncode')}), using JVM defaults"
+            warn("Java JVM opts rejected in multi-core mode, falling back to JVM defaults", warnings)
+
+    return {
+        "requested_opts": list(requested_opts),
+        "effective_opts": effective,
+        "fallback_reason": fallback_reason,
+        "profile_used": profile_used,
+        "jvm_runtime": runtime_info,
+        "blocked_options": blocked,
+        "attempts": attempts,
+    }
+
+
 def make_implementations(
     repo_root: Path,
     metadata_path: Path,
@@ -746,6 +809,151 @@ def stability_brief(report: Dict[str, object]) -> str:
     )
 
 
+def affinity_cpu_count(spec: Optional[str]) -> Optional[int]:
+    if spec is None:
+        return None
+    cpus = set()
+    for chunk in spec.split(","):
+        chunk = chunk.strip()
+        if not chunk:
+            continue
+        if "-" in chunk:
+            parts = chunk.split("-", 1)
+            if len(parts) != 2:
+                return None
+            try:
+                start = int(parts[0])
+                end = int(parts[1])
+            except ValueError:
+                return None
+            if end < start:
+                return None
+            for cpu in range(start, end + 1):
+                cpus.add(cpu)
+        else:
+            try:
+                cpus.add(int(chunk))
+            except ValueError:
+                return None
+    return len(cpus)
+
+
+def mode_banner(run_mode: str, multicore_scope: str = "all") -> str:
+    if run_mode == "single-core":
+        return "MODE: single-core (comparative baseline)"
+    if run_mode == "multi-core":
+        if multicore_scope == "scalable-only":
+            return "MODE: multi-core scalable-only (throughput), excluding single-thread impls"
+        return "MODE: multi-core (throughput / scalability)"
+    return "MODE: custom"
+
+
+def replace_or_append_cli_arg(cmd: Sequence[str], flag: str, value: str) -> List[str]:
+    out = list(cmd)
+    if flag in out:
+        idx = out.index(flag)
+        if idx + 1 < len(out):
+            out[idx + 1] = value
+        else:
+            out.append(value)
+        return out
+    out.extend([flag, value])
+    return out
+
+
+def make_probe_command(cmd: Sequence[str], dataset_sha: str) -> List[str]:
+    out = list(cmd)
+    out = replace_or_append_cli_arg(out, "--warmup", "0")
+    out = replace_or_append_cli_arg(out, "--runs", "1")
+    out = replace_or_append_cli_arg(out, "--repeat", "1")
+    out = replace_or_append_cli_arg(out, "--expected-dataset-sha", dataset_sha)
+    return out
+
+
+def probe_impl_threads(
+    repo_root: Path,
+    env: Dict[str, str],
+    impl: Implementation,
+    dataset_sha: str,
+    cpu_affinity: Optional[str],
+    nice: Optional[int],
+    timeout_s: Optional[int],
+) -> Dict[str, object]:
+    cmd = make_probe_command(impl.command, dataset_sha)
+    try:
+        timed = run_with_metrics(
+            command=cmd,
+            cwd=str(repo_root),
+            env=env,
+            cpu_affinity=cpu_affinity,
+            nice=nice,
+            timeout_s=timeout_s,
+        )
+    except Exception as exc:
+        return {
+            "ok": False,
+            "impl_id": impl.impl_id,
+            "reason": f"probe execution error: {exc}",
+            "max_threads": None,
+        }
+
+    if bool(timed.get("timed_out", False)):
+        return {
+            "ok": False,
+            "impl_id": impl.impl_id,
+            "reason": "probe timeout",
+            "max_threads": timed.get("max_threads"),
+        }
+
+    if int(timed.get("returncode", -1)) != 0:
+        return {
+            "ok": False,
+            "impl_id": impl.impl_id,
+            "reason": f"probe non-zero exit ({timed.get('returncode')})",
+            "stdout_tail": tail_lines(str(timed.get("stdout", "")), 20),
+            "stderr_tail": tail_lines(str(timed.get("stderr", "")), 20),
+            "max_threads": timed.get("max_threads"),
+        }
+
+    try:
+        _, run_lines = parse_output_strict(str(timed.get("stdout", "")), impl.impl_id)
+    except Exception as exc:
+        return {
+            "ok": False,
+            "impl_id": impl.impl_id,
+            "reason": f"probe output parse failed: {exc}",
+            "stdout_tail": tail_lines(str(timed.get("stdout", "")), 20),
+            "stderr_tail": tail_lines(str(timed.get("stderr", "")), 20),
+            "max_threads": timed.get("max_threads"),
+        }
+
+    observed = []
+    if timed.get("max_threads") is not None:
+        try:
+            observed.append(int(timed.get("max_threads")))
+        except Exception:
+            pass
+
+    for run_obj in run_lines:
+        v = run_obj.get("max_threads")
+        if v is None:
+            continue
+        try:
+            observed.append(int(v))
+        except Exception:
+            continue
+
+    max_threads = max(observed) if observed else None
+    scalable = bool(max_threads is not None and max_threads >= 2)
+    return {
+        "ok": True,
+        "impl_id": impl.impl_id,
+        "max_threads": max_threads,
+        "scalable": scalable,
+        "command": shell_join(cmd),
+    }
+
+
 def main() -> int:
     repo_root = Path(__file__).resolve().parents[1]
 
@@ -754,11 +962,14 @@ def main() -> int:
     parser.add_argument("--warmup", type=int, default=5)
     parser.add_argument("--runs", type=int, default=30)
     parser.add_argument("--repeat", type=int, default=50)
+    parser.add_argument("--run-mode", choices=["single-core", "multi-core"], default=None)
+    parser.add_argument("--threads", type=int, default=None, help="Target runtime thread count for --run-mode multi-core")
+    parser.add_argument("--multicore-scope", choices=["all", "scalable-only"], default="all")
 
     parser.add_argument("--enforce-single-thread", action="store_true")
     parser.add_argument("--cpu-affinity", default=None, help="CPU affinity list, e.g. '2' or '2,3'")
     parser.add_argument("--pin-affinity", default=None, help="Alias of --cpu-affinity")
-    parser.add_argument("--cpu-set", default=None, help="Deprecated alias for --cpu-affinity")
+    parser.add_argument("--cpu-set", default=None, help="Alias of --cpu-affinity, e.g. '0-7'")
     parser.add_argument("--nice", type=int, default=None)
 
     parser.add_argument("--stability-enable", action=argparse.BooleanOptionalAction, default=True)
@@ -801,14 +1012,56 @@ def main() -> int:
     args = parser.parse_args()
 
     cpu_affinity = args.cpu_affinity or args.pin_affinity or args.cpu_set
+    run_mode = args.run_mode if args.run_mode else "custom"
+    multicore_scope = args.multicore_scope
 
     if args.warmup < 0 or args.runs <= 0 or args.repeat <= 0:
         raise SystemExit("warmup must be >= 0, runs and repeat must be > 0")
+
+    affinity_count = affinity_cpu_count(cpu_affinity)
+    if cpu_affinity is not None and affinity_count is None:
+        print(f"[WARN] unable to parse CPU affinity spec for validation: '{cpu_affinity}'", file=sys.stderr)
+
+    if run_mode == "single-core":
+        if not args.enforce_single_thread:
+            raise SystemExit("[FAIL] run-mode single-core requires --enforce-single-thread")
+        if cpu_affinity is None:
+            raise SystemExit("[FAIL] run-mode single-core requires --cpu-affinity with a single core")
+        if affinity_count is not None and affinity_count != 1:
+            raise SystemExit(
+                f"[FAIL] run-mode single-core requires mono-core affinity; got '{cpu_affinity}' ({affinity_count} cores)"
+            )
+        if args.profile != "portable":
+            raise SystemExit("[FAIL] run-mode single-core requires --profile portable")
+
+    if run_mode == "multi-core":
+        if args.enforce_single_thread:
+            raise SystemExit("[FAIL] run-mode multi-core forbids --enforce-single-thread")
+        if cpu_affinity is not None and affinity_count == 1:
+            raise SystemExit(
+                f"[FAIL] run-mode multi-core forbids mono-core affinity; got '{cpu_affinity}'"
+            )
+        if args.threads is None:
+            raise SystemExit("[FAIL] run-mode multi-core requires --threads T")
+        if args.threads < 2:
+            raise SystemExit("[FAIL] run-mode multi-core requires --threads >= 2")
+        if args.profile != "native":
+            raise SystemExit("[FAIL] run-mode multi-core requires --profile native")
+
+    if run_mode != "multi-core" and args.threads is not None:
+        print("[WARN] --threads is only used with --run-mode multi-core", file=sys.stderr)
+    if run_mode != "multi-core" and multicore_scope != "all":
+        print("[WARN] --multicore-scope is only used with --run-mode multi-core", file=sys.stderr)
 
     warnings: List[str] = []
     critical_errors: List[Dict[str, object]] = []
     stability_reports: Dict[str, Dict[str, object]] = {}
     build_info_by_lang: Dict[str, Dict[str, object]] = {}
+    multicore_scope_exclusions: List[Dict[str, object]] = []
+    multicore_scope_probes: Dict[str, Dict[str, object]] = {}
+    expected_scalable_impls: set[str] = set()
+
+    print(mode_banner(run_mode, multicore_scope))
 
     metadata_path = Path(args.metadata).resolve()
     try:
@@ -826,7 +1079,16 @@ def main() -> int:
     env = os.environ.copy()
     thread_env_before = {k: env.get(k) for k in RUNNER_ENV_KEYS}
 
-    if args.enforce_single_thread:
+    configured_threads: Optional[int] = None
+
+    if run_mode == "multi-core":
+        configured_threads = int(args.threads)
+        thread_value = str(configured_threads)
+        for k in THREAD_ENV_VARS:
+            env[k] = thread_value
+        env["GOMAXPROCS"] = thread_value
+        env["RAYON_NUM_THREADS"] = thread_value
+    elif args.enforce_single_thread:
         for k in THREAD_ENV_VARS:
             env[k] = "1"
         # Go runtime may otherwise schedule work on multiple OS threads.
@@ -895,6 +1157,7 @@ def main() -> int:
         include_python_vectorized=include_python_vectorized,
         build_profile=args.profile,
     )
+    impl_catalog = list(impls)
 
     if args.variants.strip():
         wanted_variants = {x.strip() for x in args.variants.split(",") if x.strip()}
@@ -908,13 +1171,22 @@ def main() -> int:
         wanted = {x.strip() for x in args.impls.split(",") if x.strip()}
         impls = [i for i in impls if i.impl_id in wanted]
 
+    baseline_impl = next((i for i in impl_catalog if i.impl_id == args.baseline), None)
+    baseline_forced_added = False
+    if baseline_impl is not None and all(i.impl_id != args.baseline for i in impls):
+        impls.append(baseline_impl)
+        baseline_forced_added = True
+
     if not impls:
         raise SystemExit("no implementation selected")
 
     java_selected = any(i.language == "java" for i in impls)
     if java_selected:
         try:
-            java_resolution = resolve_java_opts(requested_java_opts, env, warnings)
+            if run_mode == "multi-core":
+                java_resolution = resolve_java_opts_multicore(requested_java_opts, env, warnings)
+            else:
+                java_resolution = resolve_java_opts(requested_java_opts, env, warnings)
         except Exception as exc:
             print(f"[FAIL] JVM options validation failed: {exc}", file=sys.stderr)
             return 1
@@ -949,6 +1221,73 @@ def main() -> int:
     for s in skipped_runtime:
         warn(f"{s['impl_id']}: {s['error']}", warnings)
 
+    if run_mode == "multi-core" and multicore_scope == "scalable-only":
+        filtered_impls: List[Implementation] = []
+        scalable_count = 0
+        for impl in impls:
+            if impl.impl_id == args.baseline:
+                filtered_impls.append(impl)
+                continue
+
+            if impl.impl_id in KNOWN_SINGLE_THREAD_IMPLS:
+                multicore_scope_exclusions.append(
+                    {
+                        "impl_id": impl.impl_id,
+                        "reason": "known_single_thread_impl",
+                    }
+                )
+                continue
+
+            probe = probe_impl_threads(
+                repo_root=repo_root,
+                env=env,
+                impl=impl,
+                dataset_sha=dataset_sha,
+                cpu_affinity=cpu_affinity,
+                nice=args.nice,
+                timeout_s=args.timeout_sec,
+            )
+            multicore_scope_probes[impl.impl_id] = probe
+            if not bool(probe.get("ok", False)):
+                reason = str(probe.get("reason", "probe_failed"))
+                multicore_scope_exclusions.append(
+                    {
+                        "impl_id": impl.impl_id,
+                        "reason": reason,
+                        "probe": probe,
+                    }
+                )
+                warn(f"{impl.impl_id}: excluded from scalable-only scope ({reason})", warnings)
+                continue
+
+            max_threads_probe = probe.get("max_threads")
+            if not bool(probe.get("scalable", False)):
+                multicore_scope_exclusions.append(
+                    {
+                        "impl_id": impl.impl_id,
+                        "reason": f"probe_max_threads={max_threads_probe}",
+                        "probe": probe,
+                    }
+                )
+                continue
+
+            filtered_impls.append(impl)
+            expected_scalable_impls.add(impl.impl_id)
+            scalable_count += 1
+
+        impls = filtered_impls
+        if multicore_scope_exclusions:
+            print(
+                "[SCOPE] Excluded impls: "
+                + ", ".join(f"{e.get('impl_id')}({e.get('reason')})" for e in multicore_scope_exclusions)
+            )
+        if scalable_count == 0:
+            print(
+                "[FAIL] run-mode multi-core with --multicore-scope scalable-only found no scalable implementation",
+                file=sys.stderr,
+            )
+            return 1
+
     if not impls:
         raise SystemExit("no runnable implementation available after preflight checks")
 
@@ -977,11 +1316,18 @@ def main() -> int:
 
         if java_selected:
             eff = list(java_resolution.get("effective_opts", []))
-            add_check(
-                java_opts_are_stable(eff),
-                "java:stable-opts",
-                "effective=" + json.dumps(eff),
-            )
+            if run_mode == "multi-core":
+                add_check(
+                    "-XX:ActiveProcessorCount=1" not in set(eff),
+                    "java:multi-core-opts",
+                    "effective=" + json.dumps(eff),
+                )
+            else:
+                add_check(
+                    java_opts_are_stable(eff),
+                    "java:stable-opts",
+                    "effective=" + json.dumps(eff),
+                )
 
         c_info = build_info_by_lang.get("c", {})
         if c_info:
@@ -1052,8 +1398,13 @@ def main() -> int:
             all_equal = all(math.isclose(c, base, rel_tol=REL_TOL, abs_tol=ABS_TOL) for c in checksums[1:])
             add_check(all_equal, "self-check:checksum-consistency", f"count={len(checksums)}")
 
+        print("[DRY-RUN] " + mode_banner(run_mode, multicore_scope))
         print("[DRY-RUN] preflight checks passed")
         print("[DRY-RUN] runnable implementations: " + ", ".join(i.impl_id for i in impls))
+        if run_mode == "multi-core":
+            print(f"[DRY-RUN] multicore scope: {multicore_scope}")
+            if multicore_scope_exclusions:
+                print("[DRY-RUN] excluded impls: " + ", ".join(f"{e.get('impl_id')}({e.get('reason')})" for e in multicore_scope_exclusions))
         if java_selected:
             print(
                 "[DRY-RUN] java opts requested="
@@ -1243,8 +1594,46 @@ def main() -> int:
             if impl.language == "java" and args.warmup < 5 and args.runs <= 5:
                 warn("java warmup/runs low; JIT/GC stability may be poor", warnings)
             if impl.language == "java":
-                if not java_opts_are_stable(java_resolution.get("effective_opts", [])):
-                    raise ValueError("java effective options are not stable for benchmark profile")
+                if run_mode == "multi-core":
+                    if "-XX:ActiveProcessorCount=1" in set(java_resolution.get("effective_opts", [])):
+                        warn("java effective options include ActiveProcessorCount=1 in multi-core mode", warnings)
+                else:
+                    if not java_opts_are_stable(java_resolution.get("effective_opts", [])):
+                        raise ValueError("java effective options are not stable for benchmark profile")
+
+            if run_mode == "single-core":
+                runtime_meta = meta_line.get("runtime") if isinstance(meta_line.get("runtime"), dict) else {}
+                if impl.language == "go":
+                    gomax = runtime_meta.get("gomaxprocs")
+                    if gomax is not None and int(gomax) != 1:
+                        warn(
+                            f"{impl.impl_id}: runtime gomaxprocs={gomax} but single-core mode expects 1",
+                            warnings,
+                        )
+                if impl.impl_id == "rust-par":
+                    rayon_env = runtime_meta.get("rayon_num_threads_env")
+                    if rayon_env is not None and int(rayon_env) != 1:
+                        warn(
+                            f"{impl.impl_id}: rayon_num_threads_env={rayon_env} but single-core mode expects 1",
+                            warnings,
+                        )
+
+            if run_mode == "multi-core" and configured_threads is not None:
+                runtime_meta = meta_line.get("runtime") if isinstance(meta_line.get("runtime"), dict) else {}
+                if impl.language == "go":
+                    gomax = runtime_meta.get("gomaxprocs")
+                    if gomax is not None and int(gomax) != configured_threads:
+                        warn(
+                            f"{impl.impl_id}: runtime gomaxprocs={gomax} differs from configured T={configured_threads}",
+                            warnings,
+                        )
+                if impl.impl_id == "rust-par":
+                    rayon_env = runtime_meta.get("rayon_num_threads_env")
+                    if rayon_env is not None and int(rayon_env) != configured_threads:
+                        warn(
+                            f"{impl.impl_id}: rayon_num_threads_env={rayon_env} differs from configured T={configured_threads}",
+                            warnings,
+                        )
 
         except Exception as exc:
             critical_errors.append({"impl_id": impl.impl_id, "error": f"meta verification failed: {exc}"})
@@ -1330,6 +1719,9 @@ def main() -> int:
                 "language": impl.language,
                 "requested_version": impl.requested_version,
                 "variant": impl.variant,
+                "run_mode": run_mode,
+                "configured_threads": configured_threads,
+                "multicore_scope": multicore_scope if run_mode == "multi-core" else "",
                 "build_profile": args.profile if impl.language in ("c", "cpp") else "",
                 "affinity_observed": timed.get("affinity_observed"),
                 "runner_wall_ns": timed.get("runner_wall_ns"),
@@ -1383,6 +1775,18 @@ def main() -> int:
                         f"{impl.impl_id}: single-thread enforcement violated; continuing remaining impls and failing at end",
                         warnings,
                     )
+        elif run_mode == "multi-core" and timed.get("max_threads") and int(timed["max_threads"]) <= 1:
+            if multicore_scope == "scalable-only":
+                if impl.impl_id in expected_scalable_impls:
+                    warn(
+                        f"{impl.impl_id}: expected scalable in multi-core scope but observed max_threads={timed.get('max_threads')}",
+                        warnings,
+                    )
+            else:
+                warn(
+                    f"{impl.impl_id}: multi-core mode but observed max_threads={timed.get('max_threads')}",
+                    warnings,
+                )
         elif timed.get("max_threads") and int(timed["max_threads"]) > 1:
             warn(f"{impl.impl_id}: observed max_threads={timed.get('max_threads')}", warnings)
 
@@ -1421,6 +1825,9 @@ def main() -> int:
             "language": impl.language,
             "requested_version": impl.requested_version,
             "variant": impl.variant,
+            "run_mode": run_mode,
+            "configured_threads": configured_threads,
+            "multicore_scope": multicore_scope if run_mode == "multi-core" else "",
             "meta": meta_line,
             "runs": len(run_ids),
             "median_wall_ns": median(wall_vals),
@@ -1518,6 +1925,9 @@ def main() -> int:
         "language",
         "requested_version",
         "variant",
+        "run_mode",
+        "configured_threads",
+        "multicore_scope",
         "build_profile",
         "affinity_observed",
         "runner_wall_ns",
@@ -1536,6 +1946,16 @@ def main() -> int:
     tool_versions = collect_tool_versions()
 
     verifications = {
+        "run_mode_guardrails": {
+            "status": "pass",
+            "run_mode": run_mode,
+            "multicore_scope": multicore_scope if run_mode == "multi-core" else "n/a",
+            "cpu_affinity": cpu_affinity,
+            "cpu_set_effective": cpu_affinity,
+            "affinity_cpu_count": affinity_count,
+            "enforce_single_thread": args.enforce_single_thread,
+            "configured_threads": configured_threads,
+        },
         "dataset_lock": {"status": "pass", **lock_info},
         "dataset_sha": {"status": "pass", "sha256": dataset_sha, "E_sha256": e_sha, "A_sha256": a_sha},
         "parameter_match": {"status": "fail" if any("meta verification failed" in e["error"] for e in critical_errors) else "pass"},
@@ -1572,6 +1992,12 @@ def main() -> int:
             "enabled": bool(args.stability_enable),
             "mode": args.stability_mode,
         },
+        "multicore_scope_filter": {
+            "status": "pass",
+            "run_mode": run_mode,
+            "scope": multicore_scope if run_mode == "multi-core" else "n/a",
+            "excluded_count": len(multicore_scope_exclusions),
+        },
     }
 
     summary = {
@@ -1589,14 +2015,19 @@ def main() -> int:
             "lock": lock_info,
         },
         "params": {
+            "run_mode": run_mode,
+            "multicore_scope": multicore_scope if run_mode == "multi-core" else "n/a",
             "warmup": args.warmup,
             "runs": args.runs,
             "repeat": args.repeat,
             "build_profile": args.profile,
             "cpu_affinity": cpu_affinity,
+            "cpu_set_effective": cpu_affinity,
+            "configured_threads": configured_threads,
             "nice": args.nice,
             "disable_python": bool(args.disable_python),
             "variants_filter": args.variants,
+            "baseline_forced_added": baseline_forced_added,
             "enforce_single_thread": args.enforce_single_thread,
             "java_opts_requested": java_resolution.get("requested_opts", []),
             "java_opts_effective": java_resolution.get("effective_opts", []),
@@ -1637,6 +2068,20 @@ def main() -> int:
             "effective": thread_env_effective,
             "injected": env_injected,
         },
+        "mode": {
+            "id": run_mode,
+            "label": mode_banner(run_mode, multicore_scope),
+            "configured_threads": configured_threads,
+            "multicore_scope": multicore_scope if run_mode == "multi-core" else "n/a",
+            "cpu_set_effective": cpu_affinity,
+        },
+        "multicore_scope": {
+            "active": bool(run_mode == "multi-core" and multicore_scope == "scalable-only"),
+            "scope": multicore_scope if run_mode == "multi-core" else "n/a",
+            "excluded_impls": multicore_scope_exclusions,
+            "probe_by_impl": multicore_scope_probes,
+            "expected_scalable_impls": sorted(expected_scalable_impls),
+        },
         "build_info_by_language": build_info_by_lang,
         "versions": tool_versions,
         "baseline_impl_id": baseline_id,
@@ -1649,6 +2094,7 @@ def main() -> int:
 
     summary_path.write_text(json.dumps(summary, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
+    print(f"\n{mode_banner(run_mode, multicore_scope)}")
     print("\n=== Summary (median wall, speedup vs baseline) ===")
     if impl_summaries:
         print(f"Baseline: {baseline_id}")

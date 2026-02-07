@@ -44,28 +44,57 @@ python3 data/generate_data.py \
 
 Le script ecrit `data/metadata.json`, `data/E.f64`, `data/A.f64`.
 
-## Lancer tous les tests
+## Lancer les benchmarks (2 modes separes)
 
-Commande de reference :
+Le projet fournit 3 scripts :
+- `run_single_core.sh` : run de reference comparable (single-core)
+- `run_multi_core.sh` : run de debit/scalabilite (multi-core)
+- `bench_three_mode` : lance les 2 runs a la suite
+
+### 1) Single-core (baseline comparative)
 
 ```bash
-python runner/run_all.py \
-  --metadata data/metadata.json \
-  --warmup 5 --runs 30 --repeat 50 \
-  --stability-enable --stability-mode wait --stability-timeout-sec 60 \
-  --cpu-util-max 20 --disk-io-mbps-max 5 --mem-available-min-mb 2048 \
-  --enforce-single-thread --cpu-affinity 2 \
-  --profile portable \
-  --impls c-naive,cpp-naive,rust-naive,go-naive,java-naive,python-naive,python-numpy
+./run_single_core.sh 2 data/metadata.json
 ```
 
-Profil compilateur C/C++ :
-- `--profile portable` : `-O3` (sans `-march=native`)
-- `--profile native` : `-O3 -march=native -mtune=native`
+- `2` = coeur CPU fixe (affinite mono-core)
+- baseline par defaut : `python-naive`
+- profil C/C++ : `portable`
 
 Sorties :
-- `results/results.csv`
-- `results/summary.json`
+- `results/results_single_core.csv`
+- `results/summary_single_core.json`
+
+### 2) Multi-core (throughput / scalabilite)
+
+```bash
+./run_multi_core.sh 8 data/metadata.json
+```
+
+- `8` = nombre de threads runtime (`OMP`, `BLAS`, `Go`, `Rayon`, etc.)
+- argument optionnel 3 = cpu-set multi-core (defaut: `0-(T-1)`, ex `0-7`)
+- baseline par defaut : `python-naive`
+- profil C/C++ : `native`
+
+Sorties :
+- `results/results_multi_core.csv`
+- `results/summary_multi_core.json`
+- `results/results_multi_core_scalable.csv`
+- `results/summary_multi_core_scalable.json`
+
+### 3) Lancer les 2 d'un coup
+
+```bash
+./bench_three_mode 2 8 data/metadata.json
+```
+
+Parametres :
+- argument 1 : coeur single-core
+- argument 2 : nombre de threads multi-core
+- argument 3 : chemin metadata
+- argument 4 (optionnel) : cpu-set multi-core (ex: `0-7`)
+
+Chaque script preserve l'historique : si un fichier de sortie existe deja, il est renomme avec un suffixe timestamp.
 
 ## Java: options JVM robustes
 
