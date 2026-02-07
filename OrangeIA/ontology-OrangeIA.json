@@ -1,0 +1,3958 @@
+{
+  "id": "6970af981b4a370fc2bf62b0",
+  "name": "6970af981b4a370fc2bf62b0",
+  "source": "/tmp/ontology/chunks_files/chunks_2d62c847-8beb-4958-9037-beadc756accd.pdf",
+  "root_labels": [
+    {
+      "id": "096884cc-f416-4497-837e-8e41fab0f24f",
+      "name": "Stratégie",
+      "level": null,
+      "weight": null,
+      "children": [
+        {
+          "id": "a3f0ac2e-0013-4c62-a50d-f26e4ae19011",
+          "name": "Conseil stratégique et transformation",
+          "level": null,
+          "weight": null,
+          "children": [
+            {
+              "id": "c9b96f17-adae-4b9a-b60f-ec3d29ad20c6",
+              "name": "Conseil stratégique IA",
+              "level": null,
+              "weight": 12,
+              "children": []
+            },
+            {
+              "id": "125b6508-06cd-4d8f-8673-6d4485bc17be",
+              "name": "Conseil en IA",
+              "level": null,
+              "weight": 8,
+              "children": []
+            },
+            {
+              "id": "ee699d83-84c1-4cca-8c5e-5d006f6997c1",
+              "name": "Conseil stratégique",
+              "level": null,
+              "weight": 4,
+              "children": []
+            },
+            {
+              "id": "8f7925d5-c554-4f08-888d-3ce25b47c81a",
+              "name": "Conseil aux dirigeants",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "8f945f91-031c-4343-96a2-cb62b840695e",
+              "name": "Conseil en management",
+              "level": null,
+              "weight": 4,
+              "children": []
+            },
+            {
+              "id": "21ea7ba2-597c-41e5-b457-b068481ffc69",
+              "name": "Conseil en intelligence client",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "c9500f7f-ef27-4ab7-8950-aaa90bda34b0",
+              "name": "Conseil stratégique IA et transformation",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "166b8b2e-207e-4925-a3f2-2009b5308937",
+              "name": "Co-innovation et alignement stratégique",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "80413528-fe0c-48a1-89f5-1b189e5aee38",
+              "name": "Développement stratégique",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "1c07793c-8f62-4557-8f07-78cc8d2be16b",
+              "name": "Stratégie IA orientée valeur",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "923fc43e-5770-4799-9d11-713455d0a45e",
+              "name": "Définition stratégie IA",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "83d9d9c8-4a26-4d56-b4f4-f37b2bb8fe64",
+              "name": "Définition de roadmaps IA",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "d8f65d8a-c3fb-4350-b09c-3a9ce7784f0b",
+              "name": "Élaboration de roadmaps IA",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "c919fc87-d1b3-4c03-ae77-36d2ed729b4b",
+              "name": "Définition des priorités et roadmap",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "3791221e-a2a0-4cfc-8f2e-433a4b2f9da4",
+              "name": "Définition des objectifs IA",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "d3fc15a5-8ff5-4797-b030-8af461aa6305",
+              "name": "Définition d'objectifs business",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "052e58d5-0692-4c5a-b3b0-935e22834092",
+              "name": "Stratégie data & souveraineté",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "b30ae50f-dccb-4319-b365-3305208cbef3",
+              "name": "Stratégie data et gouvernance",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "94dd9439-a7a3-4621-9605-eb31a10a11a4",
+              "name": "Transformation digitale",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "02305e1a-b29b-473b-b457-e926fa9a5908",
+              "name": "Transformation numérique",
+              "level": null,
+              "weight": 4,
+              "children": []
+            },
+            {
+              "id": "5585652c-a482-46b9-8660-4663c5aab121",
+              "name": "Transformation d'entreprise",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "ec82b46a-b469-4fa5-a5c1-46f572f64297",
+              "name": "Transformation organisationnelle",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "53f9b35d-9445-4cd5-a347-2fcf93c35f78",
+              "name": "Transformation technologique",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "e3f87138-f35c-4193-93b0-c082dd52e832",
+              "name": "Planification IA partagée",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "20fa703e-6761-4fcf-b0de-2660cab143fb",
+              "name": "Planification investissements data",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "524d5aec-c3b0-4f46-886c-e482c7a84a33",
+              "name": "Déploiement stratégique",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "e95a2f0b-6ab4-487a-84a0-5925f8abdf16",
+              "name": "Positionnement concurrentiel",
+              "level": null,
+              "weight": 4,
+              "children": []
+            },
+            {
+              "id": "a52120dc-cc09-49c1-bd79-0cabcbb70188",
+              "name": "Positionnement d'entreprise",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "720f9a77-4b09-4b3b-9cf2-82ce65d7e941",
+              "name": "Positionnement de marché",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "6d5998a0-2261-4dc0-b280-35a2f52abb9e",
+              "name": "Positionnement différenciant",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "ca2d35d6-7e6d-4aa6-b568-97ce98cb38b4",
+              "name": "Positionnement GenAI fiable",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "d678f990-3eff-4968-a440-b7aa93a080fb",
+              "name": "Vision IA à long terme",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "e8a64493-6b7f-4311-8291-ce9424fc144f",
+              "name": "Création de valeur durable",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "bc1dfdcf-044b-4860-be99-8d00f2b81e06",
+              "name": "Chaîne de valeur IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "4fce172f-0389-46b2-baf1-18e0765ac4a5",
+              "name": "Modèle intégré différenciant",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "7acc3e95-3b1f-47d4-b0ef-e805adb0a217",
+              "name": "Orientation technologique",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "961e9bb5-1c2b-4055-8d98-5b12547b3fc1",
+              "name": "Orientation IA C-level",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "4f0f2280-62f1-4b3a-b9ae-9ac43f8b80f5",
+              "name": "Analyse du marché IA",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "5dc0ca77-a5d2-46a4-aa8c-6a116f349d53",
+              "name": "Analyse concurrentielle IA",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "cb5582aa-c659-40e0-9a36-87d90d295858",
+              "name": "Veille technologique exécutive",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "a0e7e738-a0de-449d-90f0-2b9a74dfc0cc",
+              "name": "Veille concurrentielle stratégique",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "63523a99-912f-4d89-bf50-5105a1026e6f",
+              "name": "Veille et expérimentation IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "3939a645-54c5-4c27-bb05-94b6010634a3",
+              "name": "Reconnaissance par analystes",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "3ebbabf6-dfce-4585-a2bc-45115a2e5479",
+              "name": "Reconnaissance sectorielle",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "2bcf79e0-9b80-4915-8389-17fd491f7b0a",
+              "name": "Reconnaissance en IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "a8829186-b41f-43ef-b185-8fbebd9b9c4b",
+              "name": "Investissements stratégiques",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "81aedace-1894-494b-8ce6-ecbe623b2238",
+              "name": "Partenariats stratégiques",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "4358639c-0cec-427a-a16d-70ecea1bafcb",
+              "name": "Partenariats technologiques",
+              "level": null,
+              "weight": 4,
+              "children": []
+            },
+            {
+              "id": "925a0ffc-9034-49b8-a02a-3150cebc8274",
+              "name": "Partenariat de confiance",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "98befd9f-4a7f-436e-85d5-b8354be4c270",
+              "name": "Partenariat long terme",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "1d257f8c-4dc8-4d9a-9078-f2dc766791e3",
+              "name": "Partenariat de bout en bout",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "c9e64d89-200f-4980-8c95-b2eb5203f8f0",
+              "name": "Co-innovation IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "1354a528-a5c4-4867-a530-06f5f6178a62",
+              "name": "Co-innovation et écosystème",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "2336b5c2-a3bf-4e62-95c3-dcd6c222272e",
+              "name": "Co-création d'offres innovantes",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "9f204b78-8044-469d-a74d-a83fe09790a3",
+              "name": "Collaboration en recherche",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "fda891e3-7206-42f1-9f75-20a09b640e9b",
+              "name": "Lancement d'offre technologique",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "ea905b87-4edf-4923-b8bd-cf1a554cbe25",
+              "name": "Approche end-to-end",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "4b728df3-ccd8-4634-8b32-e31ac27ee28d",
+              "name": "Approche unifiée souveraine",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "67dd1d15-5aa5-4810-b3bd-d17fee603361",
+              "name": "Offre IA pour entreprises",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "1223c0c2-9e21-4d3b-bd60-8d0adac48e99",
+              "name": "Offre IA intégrée",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "a2508019-00b0-47ac-b25e-613c1d096a93",
+              "name": "Offres GenAI de confiance",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "4ec10bf3-8fec-42f9-bcec-1ce778c12e9d",
+              "name": "Offre GenAI plug-and-play",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "81bfbb49-9da6-4c13-a723-805e8b01a5b0",
+              "name": "Solutions GenAI pour entreprises",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "8c39446a-5e39-493f-96b0-040afc089efe",
+              "name": "Solution GenAI Live Intelligence",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "8387e395-4644-4000-815b-0c8db6271a84",
+              "name": "Démocratisation de l’IA générative",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "a850bfa5-46bc-41df-adc0-53e6fa456226",
+              "name": "Adaptation offres IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "9e4d11b0-f71e-4c51-b078-49b3b9f986d3",
+              "name": "Adaptation des offres souveraines",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "94dc1f4a-abda-40df-9ce0-c4bf60873b07",
+              "name": "Adaptation rapide au marché",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "0c70cf39-9765-4653-8af5-f66ffd3a32a9",
+              "name": "Différenciation sectorielle",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "369edb25-d294-4e24-bf23-f19f121bc089",
+              "name": "Développement de référentiels sectoriels",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "a37f11a2-4c6b-4a3d-8e93-f5f506bd0e60",
+              "name": "Gestion de partenaires multiples",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "e3e545bc-fdc0-46a4-8104-d7559a1d3bd5",
+              "name": "Gestion multi-cloud",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "335ba7a7-0b72-4bfd-99ab-bd07d4ed728f",
+              "name": "Gestion des priorités",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "0a310fd7-f431-416c-93ca-3a5bc19dd901",
+              "name": "Gestion des SLA et transfert de compétences",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "188c89b3-5a58-4ea0-8a67-476109b908cc",
+              "name": "Gestion du cycle de vie",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "667d3fc6-40cf-4543-847b-34449783d591",
+              "name": "Gestion de backlog",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "c463f2b3-f41a-43c1-b84c-a909bca259d8",
+              "name": "Gestion de programmes d'acculturation",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "d4570b3c-bb49-4abc-b013-7b98e5bc9ab2",
+              "name": "Gestion d’équipes augmentées",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "5f9a25b6-894e-422d-893c-4b772f4fbeb6",
+              "name": "Gestion des risques",
+              "level": null,
+              "weight": 13,
+              "children": []
+            },
+            {
+              "id": "b90cb206-523c-46e6-b37f-1fef344924f1",
+              "name": "Gestion des POC IA",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "f824ba4e-b137-44fb-8f8f-9a5679a1d90b",
+              "name": "Gestion de projets IA",
+              "level": null,
+              "weight": 8,
+              "children": []
+            },
+            {
+              "id": "fb6e2fec-3cfb-4992-85d5-396cbdf047fd",
+              "name": "Gestion de projets data",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "d38d3a7c-daed-47d1-bd65-021eceb40152",
+              "name": "Gestion de projet IT",
+              "level": null,
+              "weight": 4,
+              "children": []
+            },
+            {
+              "id": "97953562-da51-4ab8-8c98-f2a44ac78001",
+              "name": "Gestion de services critiques",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "8e81759c-f08c-496d-ad82-7fbf0d59097c",
+              "name": "Gestion d'infrastructures critiques",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "c0d40df2-d485-409e-9dab-986ecdd0e2c5",
+              "name": "Gestion des accès numériques",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "7a70b406-a09a-4a90-b0b3-89809c5ffb97",
+              "name": "Gestion des niveaux de service",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "d59f6d8b-f6a6-4c43-9cef-dfd06655025c",
+              "name": "Gestion du mix de modèles",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "d48709f8-8971-42ca-9f9e-16962eada731",
+              "name": "Gestion de la confiance",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "b90cb206-523c-46e6-b37f-1fef344924f1",
+              "name": "Gestion des POC IA",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "d48709f8-8971-42ca-9f9e-16962eada731",
+              "name": "Gestion de la confiance",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "5f9a25b6-894e-422d-893c-4b772f4fbeb6",
+              "name": "Gestion des risques",
+              "level": null,
+              "weight": 13,
+              "children": []
+            },
+            {
+              "id": "335ba7a7-0b72-4bfd-99ab-bd07d4ed728f",
+              "name": "Gestion des priorités",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "0a310fd7-f431-416c-93ca-3a5bc19dd901",
+              "name": "Gestion des SLA et transfert de compétences",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "188c89b3-5a58-4ea0-8a67-476109b908cc",
+              "name": "Gestion du cycle de vie",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "667d3fc6-40cf-4543-847b-34449783d591",
+              "name": "Gestion de backlog",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "c463f2b3-f41a-43c1-b84c-a909bca259d8",
+              "name": "Gestion de programmes d'acculturation",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "d4570b3c-bb49-4abc-b013-7b98e5bc9ab2",
+              "name": "Gestion d’équipes augmentées",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "e3e545bc-fdc0-46a4-8104-d7559a1d3bd5",
+              "name": "Gestion multi-cloud",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "97953562-da51-4ab8-8c98-f2a44ac78001",
+              "name": "Gestion de services critiques",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "8e81759c-f08c-496d-ad82-7fbf0d59097c",
+              "name": "Gestion d'infrastructures critiques",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "c0d40df2-d485-409e-9dab-986ecdd0e2c5",
+              "name": "Gestion des accès numériques",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "7a70b406-a09a-4a90-b0b3-89809c5ffb97",
+              "name": "Gestion des niveaux de service",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "d59f6d8b-f6a6-4c43-9cef-dfd06655025c",
+              "name": "Gestion du mix de modèles",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "d48709f8-8971-42ca-9f9e-16962eada731",
+              "name": "Gestion de la confiance",
+              "level": null,
+              "weight": 3,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "fb2adea7-5cd1-4490-9e5d-e1a5130ee054",
+          "name": "Gouvernance, conformité et éthique",
+          "level": null,
+          "weight": null,
+          "children": [
+            {
+              "id": "e30f4d98-e435-46cc-aed2-bdda251d41e4",
+              "name": "Gouvernance IA",
+              "level": null,
+              "weight": 8,
+              "children": []
+            },
+            {
+              "id": "16fff19c-84fa-47af-a9ed-01ca6c8443ce",
+              "name": "Gouvernance de l'IA",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "2fe6dd5a-0243-4162-aab1-9040ff1b525b",
+              "name": "Gouvernance éthique IA",
+              "level": null,
+              "weight": 6,
+              "children": []
+            },
+            {
+              "id": "0e0761a7-fa9c-4c5c-bf28-2d1b9eec919f",
+              "name": "Gouvernance éthique de l’IA",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "63513375-b184-4f75-989d-7e4193e05975",
+              "name": "Gouvernance partagée",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "96700ac3-ccf0-40c2-8201-588200403456",
+              "name": "Conformité juridique IA",
+              "level": null,
+              "weight": 11,
+              "children": []
+            },
+            {
+              "id": "e5ee6eef-1f5a-4469-92c3-e90b4c2a3f8c",
+              "name": "Conformité IA ISO/IEC 42001",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "071cc369-5109-4570-948e-4a0b303b52be",
+              "name": "Conformité numérique",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "26768078-b5eb-4139-9278-c182fb2d919f",
+              "name": "Conformité RGPD",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "03c3f25e-97f3-41fe-acfd-8b2e9614c24a",
+              "name": "Conformité européenne",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "47230907-966d-4442-af83-ae1e276ef91f",
+              "name": "Préparation à la conformité ISO",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "8238e260-f917-40e1-a092-5ec74a8240f7",
+              "name": "Préparation à la certification IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "7777135b-e5a0-41b7-8e69-20c9384f5539",
+              "name": "Veille réglementaire et technologique",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "84822a0c-c225-4fb8-80ad-170981110c0a",
+              "name": "Souveraineté numérique",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "df884858-1fa5-45d4-8da6-a9d623f29217",
+              "name": "Extension IA souveraine",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "e3eaba90-5ecf-4090-ac87-4979f035f47b",
+              "name": "Alternative IA maîtrisée",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "52143b77-4abc-4540-ae5e-c08fd8a92725",
+              "name": "Sécurité informatique",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "9a000ff4-63a0-4e35-9b7b-03ddc04b7192",
+              "name": "Sécurité des solutions",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "597da265-c2ea-4aaf-8a96-1fe68ed1c273",
+              "name": "Sécurité des plateformes cloud",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "fb76fb0f-de6b-4820-ade8-555925e8a90b",
+              "name": "Protection des données cloud",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "94afb1db-09a5-4618-b643-482711098b97",
+              "name": "Hébergement sécurisé des données",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "f046d44d-0b2d-4ac8-9206-d982c0332297",
+              "name": "Hébergement sécurisé d'IA",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "d2b0ff53-e34b-4ad5-813e-a3fb0b1b6c88",
+              "name": "Cloud sécurisé IA",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "cb682387-3891-42d9-83e4-854fa609d44d",
+              "name": "Intégration sécurité RGPD",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "e5ee6eef-1f5a-4469-92c3-e90b4c2a3f8c",
+              "name": "Conformité IA ISO/IEC 42001",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "8d4f87fe-166a-4cc5-8844-d990f8371cc6",
+              "name": "Adaptation réglementaire et client",
+              "level": null,
+              "weight": 1,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "596f42ff-fb85-4b87-b9c6-c5bf7f66db7a",
+          "name": "Analyse, diagnostic et évaluation",
+          "level": null,
+          "weight": null,
+          "children": [
+            {
+              "id": "0159a11e-703c-46c3-897c-fa1be5ee417e",
+              "name": "Évaluation de cas d'usage",
+              "level": null,
+              "weight": 4,
+              "children": []
+            },
+            {
+              "id": "87a0c7d2-4a3e-47df-9131-41845d0140dd",
+              "name": "Évaluation maturité IA",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "f8b712af-75d9-40e1-b703-3f76000de0c8",
+              "name": "Évaluation de projet",
+              "level": null,
+              "weight": 5,
+              "children": []
+            },
+            {
+              "id": "dd7b13fe-61e5-4f74-b6ce-fc6a28970ecf",
+              "name": "Évaluation qualité des données",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "bfdd3a96-f234-421f-b73c-44118d3f1c34",
+              "name": "Évaluation de l’adoption et satisfaction",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "5d722d25-5ee1-4bbe-aaf2-38e7ed4fbd42",
+              "name": "Analyse des besoins IA",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "a382d85d-0b0f-4b97-89c4-df6a82404db7",
+              "name": "Analyse sectorielle client",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "48a4aa83-bded-4313-847e-f6daa6f8548c",
+              "name": "Analyse des attentes clients",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "b85ba593-d3de-4143-982a-838bdda6ea91",
+              "name": "Analyse d’adoption des outils",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "f72be978-ead4-4bbc-913c-dbc2ee1a28d1",
+              "name": "Analyse d’impact IA métiers",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "cfd4842d-8a12-4dfc-9c32-3048dbe78e22",
+              "name": "Analyse d'impact",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "0d82f1dc-8961-402c-93cc-8e2c389a05e6",
+              "name": "Analyse de risques IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "5be566ff-53f8-43df-9b44-03f1751c5ec8",
+              "name": "Cartographie des opportunités IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "086f01fb-99fb-4e26-a460-757f721b5394",
+              "name": "Diagnostic organisationnel",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "991a57fa-bb4f-45f3-b2ab-4510dfe7cd51",
+              "name": "Inventaire des données",
+              "level": null,
+              "weight": 6,
+              "children": []
+            },
+            {
+              "id": "cd760f89-d92f-4933-98c9-cc2db0a8fdfe",
+              "name": "Suivi de l'adoption de l'IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "39161fc3-a18d-4f6b-ac26-8a94c6942402",
+              "name": "Analyse des processus",
+              "level": null,
+              "weight": 5,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "649f7ac7-8b56-4b06-a5f3-7378a9f4eb4d",
+          "name": "Organisation et pilotage",
+          "level": null,
+          "weight": null,
+          "children": [
+            {
+              "id": "94876708-b252-492b-b7d3-84a141e99234",
+              "name": "Organisation des activités",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "f41268ad-740e-4f97-bd9d-6f72a6b278e1",
+              "name": "Structuration des idées",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "91a6a9ce-f04a-46d4-8acf-45c6bae80151",
+              "name": "Coordination transversale",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "84cfa556-47e7-4740-8ba8-c1c66848d149",
+              "name": "Pilotage transformation IA",
+              "level": null,
+              "weight": 11,
+              "children": []
+            },
+            {
+              "id": "417144f3-c31b-4aa1-a453-312877f8a4ec",
+              "name": "Pilotage de programme IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "209dd550-4cd4-4acb-afca-90966771d110",
+              "name": "Optimisation des coûts",
+              "level": null,
+              "weight": 7,
+              "children": []
+            },
+            {
+              "id": "1d3f4f7e-0cbc-4479-8200-bbf722fc4476",
+              "name": "Optimisation de production",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "49c5f5aa-84f9-4bc0-b980-9719ce0207c7",
+              "name": "Optimisation qualité par IA",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "6b9a8662-f4b6-420c-b1bb-a25a209b3973",
+              "name": "Optimisation expérience client IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "e0dbfd28-0cae-4be5-bcc2-3e97c0722d5c",
+              "name": "Optimisation IA des services",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "a6f40e67-cecb-41f6-bb10-b8839c098161",
+              "name": "Optimisation et cybersécurité",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "72fe5bfb-9d58-4625-af0c-d31660cd6b97",
+              "name": "Optimisation Cloud et Data",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "9c0b91e7-b3b4-47cf-8d8f-9a39ec6c20d5",
+              "name": "Optimisation GPUaaS",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "428857cd-e93e-4fc1-a420-e278bd620ab8",
+              "name": "Optimisation continue",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "600d2dab-1037-4960-bd2c-43ca18fd9242",
+              "name": "Optimisation du développement",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "3ff53214-dac2-47ed-8d82-21c7d4dbbc4b",
+              "name": "Optimisation supply chain",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "5f43b701-e139-478f-b153-0877bf6baa43",
+              "name": "Choix technologique optimal",
+              "level": null,
+              "weight": 1,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "0563a844-38b7-4b87-8efe-60b2f7b0de21",
+      "name": "Solutions",
+      "level": null,
+      "weight": null,
+      "children": [
+        {
+          "id": "2be9102c-9b4a-48e3-a105-c53baf15b670",
+          "name": "Solutions IA et Data",
+          "level": null,
+          "weight": null,
+          "children": [
+            {
+              "id": "311498fc-9dfc-403d-8d2c-749b8db10cad",
+              "name": "Solutions IA et données",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "0685a92a-557b-4432-9f73-ca27de369d20",
+              "name": "Solutions d'IA souveraine",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "77798550-dcc1-4b40-b93d-6e615d348f56",
+              "name": "Solutions data IA",
+              "level": null,
+              "weight": 4,
+              "children": []
+            },
+            {
+              "id": "c0cd3729-55e1-48bd-885d-f2ca265b6eee",
+              "name": "Solutions IT et Data",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "cba31ae0-2d98-474a-a9e1-206726e0282d",
+              "name": "Solutions cloud hybrides",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "52d4bfad-8261-42e0-babd-deb124b520d8",
+              "name": "Solutions RAG industrielles",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "81bfbb49-9da6-4c13-a723-805e8b01a5b0",
+              "name": "Solutions GenAI pour entreprises",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "fe2f0ad6-4986-4532-9dd5-b54cb70f6c79",
+              "name": "Plateformes IA et Cloud",
+              "level": null,
+              "weight": 5,
+              "children": []
+            },
+            {
+              "id": "291913d1-ad19-4fcf-be54-0f1d1916dc0a",
+              "name": "Plateformes IA cloud",
+              "level": null,
+              "weight": 12,
+              "children": []
+            },
+            {
+              "id": "40758e7f-c144-4ca5-8087-dc2a90009f0d",
+              "name": "Plateformes IA prêtes à l’emploi",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "7ad59477-54ee-4e37-91ed-1470c4d5c46e",
+              "name": "Plateformes GenAI",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "74686993-8faf-448c-887e-750dc3952ae8",
+              "name": "Plateforme GenAI",
+              "level": null,
+              "weight": 5,
+              "children": []
+            },
+            {
+              "id": "10766f43-90fb-4ba9-bcb0-e0da895269da",
+              "name": "Plateforme GPU IA",
+              "level": null,
+              "weight": 8,
+              "children": []
+            },
+            {
+              "id": "e9ea21dc-7087-436c-bd84-5145ee34acbe",
+              "name": "Plateforme de données",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "78d14478-1599-4b7b-90a5-a96cfb56e638",
+              "name": "Plateforme cloud sécurisée",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "f0c02075-848e-46b9-a567-9bf3a7a32d10",
+              "name": "Plateformes cloud souveraines",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "7627f65f-f170-4f9d-ace7-a921a78e919e",
+              "name": "Plateformes technologiques avancées",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "5bbe4bba-e815-45d7-a1a2-3c9aeb8f769f",
+              "name": "Plateformes IA et tableaux de bord",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "f298c039-78cd-4f52-9ff9-10c8bfb65dc9",
+              "name": "Fourniture de plateformes logicielles",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "4b432dbc-0701-4b12-80af-6decf3f03069",
+              "name": "Fourniture d'infrastructures numériques",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "79950f59-db61-446f-a6ff-c166cab4ddbb",
+              "name": "Offres cloud et applicatives",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "8f45870e-3767-41ac-adef-cc2541026b93",
+              "name": "Offre GPU-as-a-Service",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "1223c0c2-9e21-4d3b-bd60-8d0adac48e99",
+              "name": "Offre IA intégrée",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "67dd1d15-5aa5-4810-b3bd-d17fee603361",
+              "name": "Offre IA pour entreprises",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "a2508019-00b0-47ac-b25e-613c1d096a93",
+              "name": "Offres GenAI de confiance",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "4ec10bf3-8fec-42f9-bcec-1ce778c12e9d",
+              "name": "Offre GenAI plug-and-play",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "8c39446a-5e39-493f-96b0-040afc089efe",
+              "name": "Solution GenAI Live Intelligence",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "ce2ab246-b038-405a-a187-2485d90830dd",
+              "name": "Modèle d’abonnement IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "5b3ee896-716e-40dc-b5a4-f0b2f65cefae",
+              "name": "Édition de solutions IA",
+              "level": null,
+              "weight": 8,
+              "children": []
+            },
+            {
+              "id": "8cd8d74e-5cb8-445f-b8d8-28c17665c36e",
+              "name": "Projets d'intelligence artificielle",
+              "level": null,
+              "weight": 8,
+              "children": []
+            },
+            {
+              "id": "d12bef69-1664-4893-a138-688a79163330",
+              "name": "Conception de plateformes data",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "0c0ddab7-6ce1-43f5-9148-18f03b504e46",
+              "name": "Transformation data",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "8045b886-dcfe-4f58-bd3e-cfd964386e66",
+              "name": "Modernisation des architectures data",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "5b1cc905-3a0a-4ec7-9efb-effd2e6544c8",
+              "name": "Plateforme évolutive",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "990cfbea-f451-45d6-9ddd-45bc4df9b691",
+              "name": "Optimisation de la relation client",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "4dad7dfa-f8aa-48b0-95ef-f4756214bb64",
+              "name": "Préparation et intégration de données IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "bfed3478-849b-4511-9899-e8dc3c3949fc",
+              "name": "Opérations IA industrielles",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "ccdece59-d32d-453f-87bd-31738f03d546",
+              "name": "Intégration de l’IA et RSE",
+              "level": null,
+              "weight": 2,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "5f0824e6-78ca-4359-ba5c-14b607cdfe3c",
+          "name": "Développement et intégration IA",
+          "level": null,
+          "weight": null,
+          "children": [
+            {
+              "id": "2769cbcf-8963-4f7b-8603-4b849c811a51",
+              "name": "Développement d’assistants métiers",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "29c519ee-0409-4957-a013-cf457a69a038",
+              "name": "Développement IA sur mesure",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "5abba508-51e8-4192-87bc-3b88a715ff39",
+              "name": "Développement logiciel IA",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "7b6a2885-ad53-49e7-9b2f-cc60269e49c7",
+              "name": "Développement de modèles prédictifs",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "a5edd574-baae-4e84-bc1c-83e3b47b8891",
+              "name": "Développement compétences IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "3891d0d4-3261-4f8f-917d-13cf1c117811",
+              "name": "Développement capital humain IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "369edb25-d294-4e24-bf23-f19f121bc089",
+              "name": "Développement de référentiels sectoriels",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "95f7a48e-31a3-45be-bc8e-cb146a70908b",
+              "name": "Personnalisation de solutions hébergées",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "614f58df-3239-4b33-9460-88d6c5b3a117",
+              "name": "Personnalisation logicielle",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "59402e89-96b6-4b79-8f23-3b17ee8c819c",
+              "name": "Personnalisation client avancée",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "a6efa48d-a6dc-4b5b-9c57-fb178d624f4a",
+              "name": "Personnalisation d'assistants",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "4cacee05-90a2-42a4-aeb3-2c7da61f5f96",
+              "name": "Personnalisation d'outils métiers",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "9f1d49ab-9d5c-4192-916b-9a750a343c67",
+              "name": "Production de solutions digitales",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "c224c727-72f1-49e3-a345-c603498b44dd",
+              "name": "Intégration analytique et IA",
+              "level": null,
+              "weight": 5,
+              "children": []
+            },
+            {
+              "id": "27065cf1-d136-4217-b455-2b8761282ddc",
+              "name": "Intégration de plateformes",
+              "level": null,
+              "weight": 5,
+              "children": []
+            },
+            {
+              "id": "4e891f28-846f-4b1b-94bf-e4b7df6cac77",
+              "name": "Intégration de modèles IA",
+              "level": null,
+              "weight": 4,
+              "children": []
+            },
+            {
+              "id": "f0b52ed6-a823-43d8-870e-e220c7058f66",
+              "name": "Intégration Data & IA",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "87a01ede-4ee1-4cdf-867f-b7eb72131d77",
+              "name": "Intégration de données IA",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "f9e7d900-7977-4e55-b7ec-52291efe4862",
+              "name": "Intégration d'outils IA",
+              "level": null,
+              "weight": 5,
+              "children": []
+            },
+            {
+              "id": "2c12f742-add6-4bfd-b2b1-7582b5a8bb13",
+              "name": "Intégration d'outils d'IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "99788bff-e6b3-4517-95ca-4a7ff4a9df6d",
+              "name": "Intégration applicative",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "44ec518b-1d43-4a10-b25c-b4223a944f3a",
+              "name": "Intégration multi cloud",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "18f9adac-6476-4b4a-8bca-6674e207181f",
+              "name": "Intégration cloud et API",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "a1790d57-2d6e-4b25-b5e5-cd66ac7f4bd9",
+              "name": "Intégration architectures hybrides",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "037d44ed-dfcd-4ead-8c89-2776598dd470",
+              "name": "Intégration multi-plateformes",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "56509ac8-11a8-4cb9-b821-ac63792501d6",
+              "name": "Intégration technologique multi-cloud",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "6ebcce62-1f28-48a5-9d06-ed14318b710a",
+              "name": "Intégration GenAI sécurisée",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "62aee336-e001-4940-ac81-bd848aadc7d6",
+              "name": "Intégration documentaire RAG",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "d571a314-147d-4cba-8c0d-7f4a28e06897",
+              "name": "Intégration GPUaaS",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "6f936628-ec29-48d8-88af-b110fd0daaaa",
+              "name": "Intégration opérationnelle",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "7d4f7377-8180-4d50-95e5-f81041268e41",
+              "name": "Intégration et gouvernance",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "8a702676-45f1-4a3c-8e18-5d9df46d767d",
+              "name": "Accélération projets IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "4be89e9b-ce90-4eca-8592-31a1137f5f7f",
+              "name": "Intégration de solutions IT",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "823e4c7c-eed0-49a0-a6ce-c305517f0115",
+              "name": "Accélération du développement produit",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "e15ad0b3-b6d0-469d-921c-03ca5021df74",
+              "name": "Itération rapide IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "450a6369-7be8-4ccd-a01b-d6d71b40d5dc",
+          "name": "Infrastructure et hébergement IA",
+          "level": null,
+          "weight": null,
+          "children": [
+            {
+              "id": "884c3048-dd39-4271-a62a-05ccc7356952",
+              "name": "Infrastructures IA cloud",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "d68ccf53-d4f9-47d0-b041-1372d7a35924",
+              "name": "Infrastructure IA haute performance",
+              "level": null,
+              "weight": 4,
+              "children": []
+            },
+            {
+              "id": "8abb1d89-9265-4823-9d01-d4d7b8eddf4a",
+              "name": "Infrastructure serveurs haute performance",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "0a18c546-12cc-4378-899e-0fa10c518e0c",
+              "name": "Infrastructure GPUaaS",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "fe6546ef-f9e2-40c8-9190-e618940b74b3",
+              "name": "Infrastructure cloud avancée",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "ffc93437-f3f5-48db-a12d-cb8bd2f2675a",
+              "name": "Infrastructure data sécurisée",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "428b5097-ac34-4222-8662-d5526b6d7182",
+              "name": "Hébergement IA souverain",
+              "level": null,
+              "weight": 9,
+              "children": []
+            },
+            {
+              "id": "42675be4-022c-4ee2-95ba-07d3f716e4c1",
+              "name": "Hébergement de plateformes IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "94afb1db-09a5-4618-b643-482711098b97",
+              "name": "Hébergement sécurisé des données",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "f046d44d-0b2d-4ac8-9206-d982c0332297",
+              "name": "Hébergement sécurisé d'IA",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "34c97a6f-a8b9-435f-a052-8e10822021c0",
+              "name": "Opérateur réseau et cloud",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "3aa648c8-3d4e-41a9-9b75-b7154c8d9d1f",
+              "name": "Opérateur réseau et intégrateur IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "fb1735ba-928d-46d6-95c6-e630511ae5c8",
+              "name": "Services GPU cloud",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "b5961f2e-f82a-46ad-9c52-8edd78ce2ce1",
+              "name": "Location de GPU",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "a727bdb5-3327-4554-82b9-e30596c76d02",
+              "name": "Inférence GPU à grande échelle",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "76e6652c-18b5-4818-b195-d16e9a442c27",
+              "name": "Planification infrastructure IT",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "b3ac69e5-da48-4627-ae24-547987bfe77f",
+              "name": "Optimisation automatisée des ressources",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "00ebd32e-dde5-4c2a-84dd-078557c0e789",
+              "name": "Facturation flexible",
+              "level": null,
+              "weight": 1,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "79a4c8a1-14e3-4846-b3ea-549d6ad9d81f",
+          "name": "Automatisation et optimisation",
+          "level": null,
+          "weight": null,
+          "children": [
+            {
+              "id": "df5a7dd4-9a39-4fe9-b845-626a6adf14dd",
+              "name": "Automatisation de tâches répétitives",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "0a2d5552-318c-415d-b087-b1672689d339",
+              "name": "Automatisation des tâches",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "cad5e430-9047-4779-b6f0-12d11ed8cfb6",
+              "name": "Automatisation par IA",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "f44e43ca-adc4-4510-bcf6-5112bc32f570",
+              "name": "Automatisation documentaire",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "4420cca1-a022-43c4-bc1d-aa795d519e21",
+              "name": "Automatisation de data science",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "9ae6156f-f4e8-4480-a805-764350d066da",
+              "name": "Automatisation MLOps/LLMOps",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "ba56c3dc-370c-41ed-93fb-01eeb3a1ae07",
+              "name": "Industrialisation MLOps & LLMOps",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "03c44bb2-4666-4156-81c4-b9e85dd19448",
+              "name": "Industrialisation des cas d'usage",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "b3d6cc3a-40b7-4fc7-b2e8-b8c020841808",
+              "name": "Industrialisation des POC",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "600d2dab-1037-4960-bd2c-43ca18fd9242",
+              "name": "Optimisation du développement",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "36448d7f-a9d5-4cca-a7bc-7dfa0e87d778",
+              "name": "Optimisation qualité logicielle",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "428857cd-e93e-4fc1-a420-e278bd620ab8",
+              "name": "Optimisation continue",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "e0dbfd28-0cae-4be5-bcc2-3e97c0722d5c",
+              "name": "Optimisation IA des services",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "72fe5bfb-9d58-4625-af0c-d31660cd6b97",
+              "name": "Optimisation Cloud et Data",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "9c0b91e7-b3b4-47cf-8d8f-9a39ec6c20d5",
+              "name": "Optimisation GPUaaS",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "a6f40e67-cecb-41f6-bb10-b8839c098161",
+              "name": "Optimisation et cybersécurité",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "f0ed5e90-5248-4e2f-95e2-76e99c0396fe",
+              "name": "Amélioration de la qualité logicielle",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "6722258c-3ea4-4246-8b10-768c596abe9c",
+              "name": "Amélioration continue",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "983b064f-b15a-47e0-8880-1940bf5985cb",
+              "name": "Autonomisation opérationnelle",
+              "level": null,
+              "weight": 1,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "7b4cfdbd-4cd3-4aa4-b5e4-978485288c68",
+          "name": "Applications et assistants IA",
+          "level": null,
+          "weight": null,
+          "children": [
+            {
+              "id": "c4526708-cfd1-49c8-af1e-76e46de43a6b",
+              "name": "Applications de données d'entreprise",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "236e47b4-9b16-4074-8c67-20694665912c",
+              "name": "Assistants métiers préconfigurés",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "a7c397ab-9583-4e70-b31b-67f6f29fc88e",
+              "name": "Assistants automatisés",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "e6f0eba5-0c86-4fe9-a23a-ea2780a87fe8",
+              "name": "Assistants numériques spécialisés",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "105d1586-9155-4078-af5a-651a87879cd1",
+              "name": "Assistant conversationnel sécurisé",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "a1337281-9f3e-4b4d-9c3e-a2810f8ddf2c",
+              "name": "Assistants IA pour support",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "7986cb20-ba95-4a43-912d-c4a0e77ce866",
+              "name": "Outils IA collaboratifs",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "91fae913-717b-4a52-a82f-4f0686215ac2",
+              "name": "Outils IA pour productivité",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "df919d27-bb54-4138-a2cb-f1324ce0cc85",
+              "name": "Orchestration de LLM",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "c89af9cb-0bfb-4611-a4b6-020de0f3a5dc",
+              "name": "Orchestration multi-LLM",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "4253c320-a7e3-4eaa-8b72-259ad1418d6b",
+              "name": "Configuration d'assistants virtuels",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "8684cfaf-1d66-43e4-9dcb-3ab07db48fe4",
+              "name": "Test d’assistants IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "c653b823-6d9f-4474-983a-575cdadcda98",
+              "name": "Réutilisation de composants",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "841ce9c7-1e04-4e23-9ea0-50ea702fd223",
+              "name": "Mise en production IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "cdb58529-f5ce-4722-a262-df2830a2c795",
+              "name": "Supervision des modèles IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "6e6396ba-9dfe-4005-b06a-e8c5992a2bea",
+              "name": "Mise en œuvre technique",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "39907160-3acc-4aad-83e0-752a09ac91bd",
+              "name": "Mise en situation pratique",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "9e81d0a4-dccb-47fd-9918-29e65f25d654",
+              "name": "Mise en pratique sur cas réels",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "841ce9c7-1e04-4e23-9ea0-50ea702fd223",
+              "name": "Mise en production IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "bb6340a8-2da3-488b-90ae-eff6b9bdfed8",
+              "name": "Déploiement IA et innovation",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "f767c351-97fa-4aa7-8c32-77d5baf59e10",
+              "name": "Déploiement IA à l'échelle",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "4273bee2-d0c4-4df1-9862-8a6c44b5b2a4",
+              "name": "Déploiement IA accéléré",
+              "level": null,
+              "weight": 9,
+              "children": []
+            },
+            {
+              "id": "a0d99436-21de-4450-a29d-985edd21780e",
+              "name": "Déploiement international",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "f5d00ce3-308a-42d5-ad57-ac477051f256",
+              "name": "Déploiement plateformes data",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "81e8b244-dc95-4aba-9b23-ca71249305e1",
+              "name": "Déploiement d'environnements data science",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "9643ba81-17f4-4cde-a92b-acdb10d3a9a8",
+              "name": "Déploiement de solutions technologiques",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "9edaea28-e0cb-49e6-b1d9-ee0ad26eefb1",
+              "name": "Équipes IA pluridisciplinaires",
+              "level": null,
+              "weight": 1,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "19d19052-7e1a-4405-af4c-bedb57d43eff",
+      "name": "Services",
+      "level": null,
+      "weight": null,
+      "children": [
+        {
+          "id": "52b91781-a677-4c00-9fb4-7737e465a046",
+          "name": "Services IA et Data",
+          "level": null,
+          "weight": null,
+          "children": [
+            {
+              "id": "52b91781-a677-4c00-9fb4-7737e465a046",
+              "name": "Services IA et Data",
+              "level": null,
+              "weight": 15,
+              "children": []
+            },
+            {
+              "id": "8dd690ae-63c2-4696-9bdc-3f4da97ec2ba",
+              "name": "Services IA avancés",
+              "level": null,
+              "weight": 4,
+              "children": []
+            },
+            {
+              "id": "1faa120b-e894-4cfd-b9d7-ee8008f43514",
+              "name": "Services IA en Europe",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "7c59194d-8651-47c2-abc3-6dfeb8320261",
+              "name": "Services liés à l'IA",
+              "level": null,
+              "weight": 4,
+              "children": []
+            },
+            {
+              "id": "cb1c22db-503d-441f-bb10-313cb9558a6b",
+              "name": "Services augmentés par IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "d4ad0294-3671-4a01-80c2-f52b81a46910",
+              "name": "Services d'analytique avancée",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "841b8f79-161f-40ba-8b16-976645765f75",
+              "name": "Services managés IT",
+              "level": null,
+              "weight": 7,
+              "children": []
+            },
+            {
+              "id": "1d39218b-a906-45ff-bfc0-46d751d0c436",
+              "name": "Services managés et conseil",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "28ce55ef-cabe-4a3e-b94e-696e4ed8dc62",
+              "name": "Centre de services IA",
+              "level": null,
+              "weight": 9,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "289d1b73-e536-407e-b682-8559864a0b19",
+          "name": "Support, maintenance et accompagnement",
+          "level": null,
+          "weight": null,
+          "children": [
+            {
+              "id": "701ec287-26ab-4e22-bbe0-3d5ff118f557",
+              "name": "Support utilisateurs",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "6e597aeb-5cc6-4a59-93ef-91ac24bf2fc1",
+              "name": "Support à l'adoption IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "0b5180c7-a330-4e55-b5ed-c2f04def728b",
+              "name": "Support au changement",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "8b5e3013-8798-4336-909d-7cf0ab135c31",
+              "name": "Maintenance opérationnelle IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "508bd41e-e8b6-4c37-9d8c-8355e272b0bd",
+              "name": "Gestion du changement",
+              "level": null,
+              "weight": 8,
+              "children": []
+            },
+            {
+              "id": "243cd8e0-a0eb-4523-b8f1-43adab1acb09",
+              "name": "Conduite du changement",
+              "level": null,
+              "weight": 8,
+              "children": []
+            },
+            {
+              "id": "f824ba4e-b137-44fb-8f8f-9a5679a1d90b",
+              "name": "Gestion de projets IA",
+              "level": null,
+              "weight": 8,
+              "children": []
+            },
+            {
+              "id": "fb6e2fec-3cfb-4992-85d5-396cbdf047fd",
+              "name": "Gestion de projets data",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "d38d3a7c-daed-47d1-bd65-021eceb40152",
+              "name": "Gestion de projet IT",
+              "level": null,
+              "weight": 4,
+              "children": []
+            },
+            {
+              "id": "97953562-da51-4ab8-8c98-f2a44ac78001",
+              "name": "Gestion de services critiques",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "8e81759c-f08c-496d-ad82-7fbf0d59097c",
+              "name": "Gestion d'infrastructures critiques",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "c0d40df2-d485-409e-9dab-986ecdd0e2c5",
+              "name": "Gestion des accès numériques",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "7a70b406-a09a-4a90-b0b3-89809c5ffb97",
+              "name": "Gestion des niveaux de service",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "188c89b3-5a58-4ea0-8a67-476109b908cc",
+              "name": "Gestion du cycle de vie",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "667d3fc6-40cf-4543-847b-34449783d591",
+              "name": "Gestion de backlog",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "c463f2b3-f41a-43c1-b84c-a909bca259d8",
+              "name": "Gestion de programmes d'acculturation",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "d4570b3c-bb49-4abc-b013-7b98e5bc9ab2",
+              "name": "Gestion d’équipes augmentées",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "e3e545bc-fdc0-46a4-8104-d7559a1d3bd5",
+              "name": "Gestion multi-cloud",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "97953562-da51-4ab8-8c98-f2a44ac78001",
+              "name": "Gestion de services critiques",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "8e81759c-f08c-496d-ad82-7fbf0d59097c",
+              "name": "Gestion d'infrastructures critiques",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "c0d40df2-d485-409e-9dab-986ecdd0e2c5",
+              "name": "Gestion des accès numériques",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "7a70b406-a09a-4a90-b0b3-89809c5ffb97",
+              "name": "Gestion des niveaux de service",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "d59f6d8b-f6a6-4c43-9cef-dfd06655025c",
+              "name": "Gestion du mix de modèles",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "d48709f8-8971-42ca-9f9e-16962eada731",
+              "name": "Gestion de la confiance",
+              "level": null,
+              "weight": 3,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "27c7c2c7-948a-4c42-8719-bb750a86615a",
+          "name": "Formation et acculturation",
+          "level": null,
+          "weight": null,
+          "children": [
+            {
+              "id": "1d4624e8-bfec-4b28-bc0d-021c032e6587",
+              "name": "Formation IA de confiance",
+              "level": null,
+              "weight": 4,
+              "children": []
+            },
+            {
+              "id": "1ecd468f-391f-4a47-89b2-5edc77a48599",
+              "name": "Formation à l'IA",
+              "level": null,
+              "weight": 4,
+              "children": []
+            },
+            {
+              "id": "f31aa9b9-d231-4e3e-8c9f-30df0d035c32",
+              "name": "Formation managers IA",
+              "level": null,
+              "weight": 6,
+              "children": []
+            },
+            {
+              "id": "61bcc0a1-a048-4bdc-b8b0-478ec595a325",
+              "name": "Formation professionnelle",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "1236a70e-6665-4c38-949d-612a9d4dfe7e",
+              "name": "Formation en entreprise",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "cb8c6179-4f36-4b7d-b3f4-737fb41785f7",
+              "name": "Formation personnalisée",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "73bfa11c-b6df-48b4-afdf-2620a24063bc",
+              "name": "Formation intégrée",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "5314d5bb-715a-42d4-a803-d441666bd9bf",
+              "name": "Formation avancée collaborative",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "cf045321-3e22-4790-a3f6-07e7a7282417",
+              "name": "Formation développeurs et data scientists",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "225c7fd6-446e-465e-82a4-c2e35c5f4a32",
+              "name": "Formation en compétences numériques",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "27c7c2c7-948a-4c42-8719-bb750a86615a",
+              "name": "Formation et acculturation",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "86dd984b-38fd-401e-bf28-af786a54bdad",
+              "name": "Formation à l’autonomie IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "7de2c843-fe23-4db9-addc-b1fdf23a8c8f",
+              "name": "Formations en intelligence artificielle",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "52e35243-481f-4ce4-b89f-c5328789a472",
+              "name": "Formations pratiques internes",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "4c8d5911-991d-4802-819d-3b0a10ec2fbc",
+              "name": "Conception de formations sur-mesure",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "c463f2b3-f41a-43c1-b84c-a909bca259d8",
+              "name": "Gestion de programmes d'acculturation",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "2e5cc2ae-6be9-4827-b46b-8d8cecd16f50",
+              "name": "Montée en compétences internes",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "a5edd574-baae-4e84-bc1c-83e3b47b8891",
+              "name": "Développement compétences IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "3891d0d4-3261-4f8f-917d-13cf1c117811",
+              "name": "Développement capital humain IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "bbd66817-fa1a-4dbf-9ee2-7eaee5f50990",
+              "name": "Pédagogie par la pratique",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "39907160-3acc-4aad-83e0-752a09ac91bd",
+              "name": "Mise en situation pratique",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "9e81d0a4-dccb-47fd-9918-29e65f25d654",
+              "name": "Mise en pratique sur cas réels",
+              "level": null,
+              "weight": 1,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "900d216e-2166-4f7e-9eec-aa4b628f3539",
+          "name": "Analytique, data science et modélisation",
+          "level": null,
+          "weight": null,
+          "children": [
+            {
+              "id": "6769aeb6-6c52-40c9-9308-10b88b1bda9c",
+              "name": "Analyse de données réseau",
+              "level": null,
+              "weight": 8,
+              "children": []
+            },
+            {
+              "id": "682631a2-b649-4e75-875e-b23dc13c7848",
+              "name": "Analyse de mobilité",
+              "level": null,
+              "weight": 6,
+              "children": []
+            },
+            {
+              "id": "3bed121b-958e-4dd4-ad38-fb4fa5a30a2a",
+              "name": "Modélisation prédictive",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "5557dc4e-937a-4d6b-b4a9-df343242415a",
+              "name": "Analyse de flux de population",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "924ecd42-f749-49e3-b5f5-137b3613918b",
+              "name": "Analyse de profils agrégés",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "6592fa53-9a1f-4556-8eaf-8e04941a75a8",
+              "name": "Analyse de fréquentation touristique",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "d1cba7f8-6589-45c2-985f-4aa8b8b20c8b",
+              "name": "Analyse de performance commerciale",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "a382d85d-0b0f-4b97-89c4-df6a82404db7",
+              "name": "Analyse sectorielle client",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "48a4aa83-bded-4313-847e-f6daa6f8548c",
+              "name": "Analyse des attentes clients",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "b85ba593-d3de-4143-982a-838bdda6ea91",
+              "name": "Analyse d’adoption des outils",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "f72be978-ead4-4bbc-913c-dbc2ee1a28d1",
+              "name": "Analyse d’impact IA métiers",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "cfd4842d-8a12-4dfc-9c32-3048dbe78e22",
+              "name": "Analyse d'impact",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "0d82f1dc-8961-402c-93cc-8e2c389a05e6",
+              "name": "Analyse de risques IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "5be566ff-53f8-43df-9b44-03f1751c5ec8",
+              "name": "Cartographie des opportunités IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "086f01fb-99fb-4e26-a460-757f721b5394",
+              "name": "Diagnostic organisationnel",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "991a57fa-bb4f-45f3-b2ab-4510dfe7cd51",
+              "name": "Inventaire des données",
+              "level": null,
+              "weight": 6,
+              "children": []
+            },
+            {
+              "id": "cd760f89-d92f-4933-98c9-cc2db0a8fdfe",
+              "name": "Suivi de l'adoption de l'IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "13be1742-6163-49ec-b93b-cf928d4bd310",
+              "name": "Data science et MLOps",
+              "level": null,
+              "weight": 1,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "3548ddf9-3466-44da-b4bf-b77b8a7e5fab",
+          "name": "Conseil et exploitation IT",
+          "level": null,
+          "weight": null,
+          "children": [
+            {
+              "id": "3548ddf9-3466-44da-b4bf-b77b8a7e5fab",
+              "name": "Conseil et exploitation IT",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "db1fc7d9-590c-4d39-a9f0-280431f3339d",
+              "name": "Conseil en architectures cloud",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "0a781359-4c4d-4f9b-bfdb-5bb0d691cd7e",
+              "name": "Conseil en aménagement urbain",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "21ea7ba2-597c-41e5-b457-b068481ffc69",
+              "name": "Conseil en intelligence client",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "ee699d83-84c1-4cca-8c5e-5d006f6997c1",
+              "name": "Conseil stratégique",
+              "level": null,
+              "weight": 4,
+              "children": []
+            },
+            {
+              "id": "8f7925d5-c554-4f08-888d-3ce25b47c81a",
+              "name": "Conseil aux dirigeants",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "8f945f91-031c-4343-96a2-cb62b840695e",
+              "name": "Conseil en management",
+              "level": null,
+              "weight": 4,
+              "children": []
+            },
+            {
+              "id": "c9500f7f-ef27-4ab7-8950-aaa90bda34b0",
+              "name": "Conseil stratégique IA et transformation",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "125b6508-06cd-4d8f-8673-6d4485bc17be",
+              "name": "Conseil en IA",
+              "level": null,
+              "weight": 8,
+              "children": []
+            },
+            {
+              "id": "c9b96f17-adae-4b9a-b60f-ec3d29ad20c6",
+              "name": "Conseil stratégique IA",
+              "level": null,
+              "weight": 12,
+              "children": []
+            },
+            {
+              "id": "9b12d551-3bc7-48cc-ab3e-df07b3b27d22",
+              "name": "Évaluation fournisseurs IT",
+              "level": null,
+              "weight": 1,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d4f4e914-5ebd-4057-bd3b-e235df98ccdf",
+      "name": "Accompagnement",
+      "level": null,
+      "weight": null,
+      "children": [
+        {
+          "id": "8cce353e-3ab0-4be2-9ad9-63ceb090e05e",
+          "name": "Accompagnement à l'innovation et transformation",
+          "level": null,
+          "weight": null,
+          "children": [
+            {
+              "id": "6bfb5714-eba0-4c2d-b22e-a265853c1241",
+              "name": "Accompagnement stratégique cloud",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "d754eb3c-9ac6-4c0f-ace9-77f9a3bfbddf",
+              "name": "Accompagnement à l'innovation IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "aefd81b7-42fc-4f5a-bf51-3f8568734f59",
+              "name": "Méthodologie d'accompagnement",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "8165f5d4-e12c-4ca6-a558-4fc9eeb2eb6a",
+              "name": "Méthodologie d'approche structurée",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "f41268ad-740e-4f97-bd9d-6f72a6b278e1",
+              "name": "Structuration des idées",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "8d609316-03fb-49dd-befb-26ee6aec98bb",
+              "name": "Ateliers et diagnostic IA",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "39b9cde5-2893-4f01-a33a-d4fc11a7c406",
+              "name": "Ateliers de cadrage IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "ddb8f547-ce76-4a26-9928-0d46226282d2",
+              "name": "Ateliers de priorisation",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "3e3b43b0-fe87-4637-bcc5-ab8d9c7a9b32",
+              "name": "Ateliers d'idéation IA",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "5730ca12-1ab8-488b-a9ab-6c08603a2fb5",
+              "name": "Ateliers d'identification d'irritants",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "7036c920-915f-4249-a33d-6ce8649c10f1",
+              "name": "Ateliers RAG personnalisés",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "b17fa836-fc2c-4644-9640-c9eb876a74bd",
+              "name": "Laboratoire d'innovation IA",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "7c774f12-da98-445d-a215-1e9139e9c118",
+              "name": "Prototypage et tests rapides",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "c9e64d89-200f-4980-8c95-b2eb5203f8f0",
+              "name": "Co-innovation IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "1354a528-a5c4-4867-a530-06f5f6178a62",
+              "name": "Co-innovation et écosystème",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "2336b5c2-a3bf-4e62-95c3-dcd6c222272e",
+              "name": "Co-création d'offres innovantes",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "9f204b78-8044-469d-a74d-a83fe09790a3",
+              "name": "Collaboration en recherche",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "57e1ced5-ebce-44fb-af24-8f9efac049ee",
+              "name": "Partage d'expériences clients",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "925a0ffc-9034-49b8-a02a-3150cebc8274",
+              "name": "Partenariat de confiance",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "98befd9f-4a7f-436e-85d5-b8354be4c270",
+              "name": "Partenariat long terme",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "1d257f8c-4dc8-4d9a-9078-f2dc766791e3",
+              "name": "Partenariat de bout en bout",
+              "level": null,
+              "weight": 3,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "9c10c2d7-59db-496d-848e-f29f128fb4ed",
+          "name": "Transfert, formation et montée en compétences",
+          "level": null,
+          "weight": null,
+          "children": [
+            {
+              "id": "8fb17ea4-003c-4a01-a1df-0b0b625566c8",
+              "name": "Transfert de compétences",
+              "level": null,
+              "weight": 5,
+              "children": []
+            },
+            {
+              "id": "c463f2b3-f41a-43c1-b84c-a909bca259d8",
+              "name": "Gestion de programmes d'acculturation",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "2e5cc2ae-6be9-4827-b46b-8d8cecd16f50",
+              "name": "Montée en compétences internes",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "a5edd574-baae-4e84-bc1c-83e3b47b8891",
+              "name": "Développement compétences IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "3891d0d4-3261-4f8f-917d-13cf1c117811",
+              "name": "Développement capital humain IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "1d4624e8-bfec-4b28-bc0d-021c032e6587",
+              "name": "Formation IA de confiance",
+              "level": null,
+              "weight": 4,
+              "children": []
+            },
+            {
+              "id": "1ecd468f-391f-4a47-89b2-5edc77a48599",
+              "name": "Formation à l'IA",
+              "level": null,
+              "weight": 4,
+              "children": []
+            },
+            {
+              "id": "f31aa9b9-d231-4e3e-8c9f-30df0d035c32",
+              "name": "Formation managers IA",
+              "level": null,
+              "weight": 6,
+              "children": []
+            },
+            {
+              "id": "61bcc0a1-a048-4bdc-b8b0-478ec595a325",
+              "name": "Formation professionnelle",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "1236a70e-6665-4c38-949d-612a9d4dfe7e",
+              "name": "Formation en entreprise",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "cb8c6179-4f36-4b7d-b3f4-737fb41785f7",
+              "name": "Formation personnalisée",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "73bfa11c-b6df-48b4-afdf-2620a24063bc",
+              "name": "Formation intégrée",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "5314d5bb-715a-42d4-a803-d441666bd9bf",
+              "name": "Formation avancée collaborative",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "cf045321-3e22-4790-a3f6-07e7a7282417",
+              "name": "Formation développeurs et data scientists",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "225c7fd6-446e-465e-82a4-c2e35c5f4a32",
+              "name": "Formation en compétences numériques",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "27c7c2c7-948a-4c42-8719-bb750a86615a",
+              "name": "Formation et acculturation",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "86dd984b-38fd-401e-bf28-af786a54bdad",
+              "name": "Formation à l’autonomie IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "7de2c843-fe23-4db9-addc-b1fdf23a8c8f",
+              "name": "Formations en intelligence artificielle",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "52e35243-481f-4ce4-b89f-c5328789a472",
+              "name": "Formations pratiques internes",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "4c8d5911-991d-4802-819d-3b0a10ec2fbc",
+              "name": "Conception de formations sur-mesure",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "bbd66817-fa1a-4dbf-9ee2-7eaee5f50990",
+              "name": "Pédagogie par la pratique",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "39907160-3acc-4aad-83e0-752a09ac91bd",
+              "name": "Mise en situation pratique",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "9e81d0a4-dccb-47fd-9918-29e65f25d654",
+              "name": "Mise en pratique sur cas réels",
+              "level": null,
+              "weight": 1,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "420bf0d7-9f33-4997-a51c-39d31f1faf46",
+          "name": "Adoption, conduite du changement et support",
+          "level": null,
+          "weight": null,
+          "children": [
+            {
+              "id": "226d4e21-5a8b-439c-a8f4-c330fc3bb5a7",
+              "name": "Adoption et support IA",
+              "level": null,
+              "weight": 4,
+              "children": []
+            },
+            {
+              "id": "6e597aeb-5cc6-4a59-93ef-91ac24bf2fc1",
+              "name": "Support à l'adoption IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "701ec287-26ab-4e22-bbe0-3d5ff118f557",
+              "name": "Support utilisateurs",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "0b5180c7-a330-4e55-b5ed-c2f04def728b",
+              "name": "Support au changement",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "508bd41e-e8b6-4c37-9d8c-8355e272b0bd",
+              "name": "Gestion du changement",
+              "level": null,
+              "weight": 8,
+              "children": []
+            },
+            {
+              "id": "243cd8e0-a0eb-4523-b8f1-43adab1acb09",
+              "name": "Conduite du changement",
+              "level": null,
+              "weight": 8,
+              "children": []
+            },
+            {
+              "id": "f824ba4e-b137-44fb-8f8f-9a5679a1d90b",
+              "name": "Gestion de projets IA",
+              "level": null,
+              "weight": 8,
+              "children": []
+            },
+            {
+              "id": "fb6e2fec-3cfb-4992-85d5-396cbdf047fd",
+              "name": "Gestion de projets data",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "d38d3a7c-daed-47d1-bd65-021eceb40152",
+              "name": "Gestion de projet IT",
+              "level": null,
+              "weight": 4,
+              "children": []
+            },
+            {
+              "id": "97953562-da51-4ab8-8c98-f2a44ac78001",
+              "name": "Gestion de services critiques",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "8e81759c-f08c-496d-ad82-7fbf0d59097c",
+              "name": "Gestion d'infrastructures critiques",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "c0d40df2-d485-409e-9dab-986ecdd0e2c5",
+              "name": "Gestion des accès numériques",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "7a70b406-a09a-4a90-b0b3-89809c5ffb97",
+              "name": "Gestion des niveaux de service",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "188c89b3-5a58-4ea0-8a67-476109b908cc",
+              "name": "Gestion du cycle de vie",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "667d3fc6-40cf-4543-847b-34449783d591",
+              "name": "Gestion de backlog",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "c463f2b3-f41a-43c1-b84c-a909bca259d8",
+              "name": "Gestion de programmes d'acculturation",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "d4570b3c-bb49-4abc-b013-7b98e5bc9ab2",
+              "name": "Gestion d’équipes augmentées",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "e3e545bc-fdc0-46a4-8104-d7559a1d3bd5",
+              "name": "Gestion multi-cloud",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "97953562-da51-4ab8-8c98-f2a44ac78001",
+              "name": "Gestion de services critiques",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "8e81759c-f08c-496d-ad82-7fbf0d59097c",
+              "name": "Gestion d'infrastructures critiques",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "c0d40df2-d485-409e-9dab-986ecdd0e2c5",
+              "name": "Gestion des accès numériques",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "7a70b406-a09a-4a90-b0b3-89809c5ffb97",
+              "name": "Gestion des niveaux de service",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "d59f6d8b-f6a6-4c43-9cef-dfd06655025c",
+              "name": "Gestion du mix de modèles",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "d48709f8-8971-42ca-9f9e-16962eada731",
+              "name": "Gestion de la confiance",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "cd760f89-d92f-4933-98c9-cc2db0a8fdfe",
+              "name": "Suivi de l'adoption de l'IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "bfdd3a96-f234-421f-b73c-44118d3f1c34",
+              "name": "Évaluation de l’adoption et satisfaction",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "b85ba593-d3de-4143-982a-838bdda6ea91",
+              "name": "Analyse d’adoption des outils",
+              "level": null,
+              "weight": 1,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "046b20a8-d604-4f91-a4f4-32755affb62b",
+          "name": "Définition et priorisation des cas d'usage",
+          "level": null,
+          "weight": null,
+          "children": [
+            {
+              "id": "5cdf2e9f-829e-4a2c-8780-30b2eb01726e",
+              "name": "Définition cas d'usage IA",
+              "level": null,
+              "weight": 5,
+              "children": []
+            },
+            {
+              "id": "3791221e-a2a0-4cfc-8f2e-433a4b2f9da4",
+              "name": "Définition des objectifs IA",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "d3fc15a5-8ff5-4797-b030-8af461aa6305",
+              "name": "Définition d'objectifs business",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "c919fc87-d1b3-4c03-ae77-36d2ed729b4b",
+              "name": "Définition des priorités et roadmap",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "0159a11e-703c-46c3-897c-fa1be5ee417e",
+              "name": "Évaluation de cas d'usage",
+              "level": null,
+              "weight": 4,
+              "children": []
+            },
+            {
+              "id": "87a0c7d2-4a3e-47df-9131-41845d0140dd",
+              "name": "Évaluation maturité IA",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "f8b712af-75d9-40e1-b703-3f76000de0c8",
+              "name": "Évaluation de projet",
+              "level": null,
+              "weight": 5,
+              "children": []
+            },
+            {
+              "id": "dd7b13fe-61e5-4f74-b6ce-fc6a28970ecf",
+              "name": "Évaluation qualité des données",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "5d722d25-5ee1-4bbe-aaf2-38e7ed4fbd42",
+              "name": "Analyse des besoins IA",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "5be566ff-53f8-43df-9b44-03f1751c5ec8",
+              "name": "Cartographie des opportunités IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "086f01fb-99fb-4e26-a460-757f721b5394",
+              "name": "Diagnostic organisationnel",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "991a57fa-bb4f-45f3-b2ab-4510dfe7cd51",
+              "name": "Inventaire des données",
+              "level": null,
+              "weight": 6,
+              "children": []
+            },
+            {
+              "id": "cd760f89-d92f-4933-98c9-cc2db0a8fdfe",
+              "name": "Suivi de l'adoption de l'IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "ddb8f547-ce76-4a26-9928-0d46226282d2",
+              "name": "Ateliers de priorisation",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "39b9cde5-2893-4f01-a33a-d4fc11a7c406",
+              "name": "Ateliers de cadrage IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "3e3b43b0-fe87-4637-bcc5-ab8d9c7a9b32",
+              "name": "Ateliers d'idéation IA",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "5730ca12-1ab8-488b-a9ab-6c08603a2fb5",
+              "name": "Ateliers d'identification d'irritants",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "08eb954d-85f3-45be-b8c6-0b88c82436de",
+              "name": "Formalisation cas d'usage",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "6bb74f52-6fe1-4e31-8287-7a76c11b49a1",
+              "name": "Priorisation de projets IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "6ca5147e-c43d-48ec-a97b-aa22b6073883",
+              "name": "Évolution des cas d’usage IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "c9210f3c-29d5-4b41-b301-1c96a4be8209",
+              "name": "Conception architectures data",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "16a58103-23c1-462f-85d7-75c5ae5ce794",
+              "name": "Conception d'architecture technique",
+              "level": null,
+              "weight": 1,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "3d5dd8bc-cf12-4adb-9721-b0efc906b34c",
+      "name": "Général",
+      "level": null,
+      "weight": null,
+      "children": [
+        {
+          "id": "54f4c9e0-0764-4db4-a1bf-98cee63f7be0",
+          "name": "Présentation, communication et sensibilisation",
+          "level": null,
+          "weight": null,
+          "children": [
+            {
+              "id": "0de6df2a-d2cf-498b-9317-ca72f390a5e0",
+              "name": "Présentation de l'offre IA",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "82946a63-58ce-43e1-bc18-917db74c74d7",
+              "name": "Présentation des domaines",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "a18fdcc3-14ce-4d2d-96b9-7fa56c9ea144",
+              "name": "Sensibilisation IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "9f0a0576-48d1-499e-8503-6f076f3cf580",
+              "name": "Sensibilisation à l’IA responsable",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "61c3f72f-a6ef-4bd3-a423-8c5acc51cf43",
+              "name": "Communication interne",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "5f13ffc6-6553-4df7-bc2e-1cd342a11217",
+              "name": "Communication d'entreprise",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "13c641c9-47bf-495b-aecc-af1be2633303",
+              "name": "Narratif IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "bff48d95-9a38-47c3-a540-c5444a0662e6",
+              "name": "Séminaires IA exécutifs",
+              "level": null,
+              "weight": 1,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "fae220aa-6256-4a8d-87aa-60697227d9f3",
+          "name": "Organisation, structuration et méthodologie",
+          "level": null,
+          "weight": null,
+          "children": [
+            {
+              "id": "94876708-b252-492b-b7d3-84a141e99234",
+              "name": "Organisation des activités",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "f41268ad-740e-4f97-bd9d-6f72a6b278e1",
+              "name": "Structuration des idées",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "aefd81b7-42fc-4f5a-bf51-3f8568734f59",
+              "name": "Méthodologie d'accompagnement",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "8165f5d4-e12c-4ca6-a558-4fc9eeb2eb6a",
+              "name": "Méthodologie d'approche structurée",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "81273202-fcd2-4db6-8ca2-b26116f7438a",
+              "name": "Onboarding des équipes",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "65971adf-7ca9-46e0-a696-8949281897ee",
+              "name": "Parcours client intégré",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "4fce172f-0389-46b2-baf1-18e0765ac4a5",
+              "name": "Modèle intégré différenciant",
+              "level": null,
+              "weight": 1,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "229c623c-227b-490d-a02f-04b3ba8f37d2",
+          "name": "Veille, innovation et expérimentation",
+          "level": null,
+          "weight": null,
+          "children": [
+            {
+              "id": "cb5582aa-c659-40e0-9a36-87d90d295858",
+              "name": "Veille technologique exécutive",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "a0e7e738-a0de-449d-90f0-2b9a74dfc0cc",
+              "name": "Veille concurrentielle stratégique",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "63523a99-912f-4d89-bf50-5105a1026e6f",
+              "name": "Veille et expérimentation IA",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "8f2a222a-46f5-46a4-a456-c758bca9e3bc",
+              "name": "Innovation technologique",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "b17fa836-fc2c-4644-9640-c9eb876a74bd",
+              "name": "Laboratoire d'innovation IA",
+              "level": null,
+              "weight": 2,
+              "children": []
+            },
+            {
+              "id": "157084fe-a1c9-46cd-89d6-06a96a0cb723",
+              "name": "Démonstrations IA métier",
+              "level": null,
+              "weight": 1,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "1365e333-a91d-4a12-bd13-24862a59fb72",
+          "name": "Autres thématiques transverses",
+          "level": null,
+          "weight": null,
+          "children": [
+            {
+              "id": "e113ebb8-7a76-49f3-8417-1dfabe1967f6",
+              "name": "Collecte de données IoT",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "d48709f8-8971-42ca-9f9e-16962eada731",
+              "name": "Gestion de la confiance",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "5f9a25b6-894e-422d-893c-4b772f4fbeb6",
+              "name": "Gestion des risques",
+              "level": null,
+              "weight": 13,
+              "children": []
+            },
+            {
+              "id": "335ba7a7-0b72-4bfd-99ab-bd07d4ed728f",
+              "name": "Gestion des priorités",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "0a310fd7-f431-416c-93ca-3a5bc19dd901",
+              "name": "Gestion des SLA et transfert de compétences",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "188c89b3-5a58-4ea0-8a67-476109b908cc",
+              "name": "Gestion du cycle de vie",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "667d3fc6-40cf-4543-847b-34449783d591",
+              "name": "Gestion de backlog",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "c463f2b3-f41a-43c1-b84c-a909bca259d8",
+              "name": "Gestion de programmes d'acculturation",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "d4570b3c-bb49-4abc-b013-7b98e5bc9ab2",
+              "name": "Gestion d’équipes augmentées",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "e3e545bc-fdc0-46a4-8104-d7559a1d3bd5",
+              "name": "Gestion multi-cloud",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "97953562-da51-4ab8-8c98-f2a44ac78001",
+              "name": "Gestion de services critiques",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "8e81759c-f08c-496d-ad82-7fbf0d59097c",
+              "name": "Gestion d'infrastructures critiques",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "c0d40df2-d485-409e-9dab-986ecdd0e2c5",
+              "name": "Gestion des accès numériques",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "7a70b406-a09a-4a90-b0b3-89809c5ffb97",
+              "name": "Gestion des niveaux de service",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "d59f6d8b-f6a6-4c43-9cef-dfd06655025c",
+              "name": "Gestion du mix de modèles",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "d48709f8-8971-42ca-9f9e-16962eada731",
+              "name": "Gestion de la confiance",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "b90cb206-523c-46e6-b37f-1fef344924f1",
+              "name": "Gestion des POC IA",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "d48709f8-8971-42ca-9f9e-16962eada731",
+              "name": "Gestion de la confiance",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "5f9a25b6-894e-422d-893c-4b772f4fbeb6",
+              "name": "Gestion des risques",
+              "level": null,
+              "weight": 13,
+              "children": []
+            },
+            {
+              "id": "335ba7a7-0b72-4bfd-99ab-bd07d4ed728f",
+              "name": "Gestion des priorités",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "0a310fd7-f431-416c-93ca-3a5bc19dd901",
+              "name": "Gestion des SLA et transfert de compétences",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "188c89b3-5a58-4ea0-8a67-476109b908cc",
+              "name": "Gestion du cycle de vie",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "667d3fc6-40cf-4543-847b-34449783d591",
+              "name": "Gestion de backlog",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "c463f2b3-f41a-43c1-b84c-a909bca259d8",
+              "name": "Gestion de programmes d'acculturation",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "d4570b3c-bb49-4abc-b013-7b98e5bc9ab2",
+              "name": "Gestion d’équipes augmentées",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "e3e545bc-fdc0-46a4-8104-d7559a1d3bd5",
+              "name": "Gestion multi-cloud",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "97953562-da51-4ab8-8c98-f2a44ac78001",
+              "name": "Gestion de services critiques",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "8e81759c-f08c-496d-ad82-7fbf0d59097c",
+              "name": "Gestion d'infrastructures critiques",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "c0d40df2-d485-409e-9dab-986ecdd0e2c5",
+              "name": "Gestion des accès numériques",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "7a70b406-a09a-4a90-b0b3-89809c5ffb97",
+              "name": "Gestion des niveaux de service",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "d59f6d8b-f6a6-4c43-9cef-dfd06655025c",
+              "name": "Gestion du mix de modèles",
+              "level": null,
+              "weight": 1,
+              "children": []
+            },
+            {
+              "id": "d48709f8-8971-42ca-9f9e-16962eada731",
+              "name": "Gestion de la confiance",
+              "level": null,
+              "weight": 3,
+              "children": []
+            },
+            {
+              "id": "c7188522-c1c7-4f15-a204-f79eaee537a0",
+              "name": "Références clients",
+              "level": null,
+              "weight": 1,
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "flow_run_id": "c7782568-a71e-47e9-a210-d1086cd30ad6",
+  "created_at": "2026-01-21T10:53:15.960071",
+  "depth": 3,
+  "total_concepts": 560
+}
