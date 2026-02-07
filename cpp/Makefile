@@ -14,18 +14,23 @@ empty :=
 space := $(empty) $(empty)
 comma := ,
 BUILD_FLAGS_STR := $(subst $(space),$(comma),$(CXXFLAGS))
-DEFINES = -DBUILD_FLAGS=\"$(BUILD_FLAGS_STR)\" -DBUILD_COMPILER=\"$(CXX)\" -DBUILD_PROFILE=\"$(PROFILE)\"
+DEFINES_COMMON = -DBUILD_FLAGS=\"$(BUILD_FLAGS_STR)\" -DBUILD_COMPILER=\"$(CXX)\" -DBUILD_PROFILE=\"$(PROFILE)\"
+DEFINES_NAIVE = $(DEFINES_COMMON) -DIMPL_ID=\"cpp-naive\"
+DEFINES_SIMD = $(DEFINES_COMMON) -DIMPL_ID=\"cpp-simd-$(PROFILE)\"
 
-TARGET = benchmark_cpp
-SOURCES = benchmark_cpp.cpp cosine.cpp
+TARGET_NAIVE = benchmark_cpp
+TARGET_SIMD = benchmark_cpp_simd
 
-all: $(TARGET)
+all: $(TARGET_NAIVE) $(TARGET_SIMD)
 
-$(TARGET): $(SOURCES)
-	$(CXX) $(CXXFLAGS) $(DEFINES) $(SOURCES) -lm $(LDFLAGS) -o $(TARGET)
+$(TARGET_NAIVE): benchmark_cpp.cpp cosine.cpp
+	$(CXX) $(CXXFLAGS) $(DEFINES_NAIVE) benchmark_cpp.cpp cosine.cpp -lm $(LDFLAGS) -o $(TARGET_NAIVE)
+
+$(TARGET_SIMD): benchmark_cpp_simd.cpp cosine.cpp cosine_simd.cpp
+	$(CXX) $(CXXFLAGS) $(DEFINES_SIMD) benchmark_cpp_simd.cpp cosine.cpp cosine_simd.cpp -lm $(LDFLAGS) -o $(TARGET_SIMD)
 
 clean:
-	rm -f $(TARGET)
+	rm -f $(TARGET_NAIVE) $(TARGET_SIMD)
 
 print-flags:
 	@echo PROFILE=$(PROFILE)

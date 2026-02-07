@@ -14,18 +14,23 @@ empty :=
 space := $(empty) $(empty)
 comma := ,
 BUILD_FLAGS_STR := $(subst $(space),$(comma),$(CFLAGS))
-DEFINES = -DBUILD_FLAGS=\"$(BUILD_FLAGS_STR)\" -DBUILD_COMPILER=\"$(CC)\" -DBUILD_PROFILE=\"$(PROFILE)\"
+DEFINES_COMMON = -DBUILD_FLAGS=\"$(BUILD_FLAGS_STR)\" -DBUILD_COMPILER=\"$(CC)\" -DBUILD_PROFILE=\"$(PROFILE)\"
+DEFINES_SIMD = $(DEFINES_COMMON) -DIMPL_ID=\"c-simd-$(PROFILE)\"
+DEFINES_NAIVE = $(DEFINES_COMMON) -DIMPL_ID=\"c-naive\"
 
-TARGET = benchmark_c
-SOURCES = benchmark_c.c cosine.c
+TARGET_NAIVE = benchmark_c
+TARGET_SIMD = benchmark_c_simd
 
-all: $(TARGET)
+all: $(TARGET_NAIVE) $(TARGET_SIMD)
 
-$(TARGET): $(SOURCES)
-	$(CC) $(CFLAGS) $(DEFINES) $(SOURCES) -lm $(LDFLAGS) -o $(TARGET)
+$(TARGET_NAIVE): benchmark_c.c cosine.c
+	$(CC) $(CFLAGS) $(DEFINES_NAIVE) benchmark_c.c cosine.c -lm $(LDFLAGS) -o $(TARGET_NAIVE)
+
+$(TARGET_SIMD): benchmark_c_simd.c cosine.c cosine_simd.c
+	$(CC) $(CFLAGS) $(DEFINES_SIMD) benchmark_c_simd.c cosine.c cosine_simd.c -lm $(LDFLAGS) -o $(TARGET_SIMD)
 
 clean:
-	rm -f $(TARGET)
+	rm -f $(TARGET_NAIVE) $(TARGET_SIMD)
 
 print-flags:
 	@echo PROFILE=$(PROFILE)

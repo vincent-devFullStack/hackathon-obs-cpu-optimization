@@ -55,7 +55,7 @@ JAVA_STABLE_REQUIRED_OPTS = {
     "-XX:ActiveProcessorCount=1",
     "-XX:+UseSerialGC",
 }
-RUNNER_ENV_KEYS = [*THREAD_ENV_VARS, "GOMAXPROCS"]
+RUNNER_ENV_KEYS = [*THREAD_ENV_VARS, "GOMAXPROCS", "RAYON_NUM_THREADS"]
 
 
 @dataclass
@@ -63,6 +63,7 @@ class Implementation:
     impl_id: str
     language: str
     requested_version: str
+    variant: str
     command: List[str]
 
 
@@ -456,7 +457,8 @@ def make_implementations(
     python_exec: str,
     include_python: bool,
     include_python_numpy: bool,
-    java_opts: List[str],
+    include_python_vectorized: bool,
+    build_profile: str,
 ) -> List[Implementation]:
     common = [
         "--metadata",
@@ -469,36 +471,86 @@ def make_implementations(
         str(repeat),
     ]
 
+    c_simd_impl_id = f"c-simd-{build_profile}"
+    cpp_simd_impl_id = f"cpp-simd-{build_profile}"
+
     impls: List[Implementation] = [
         Implementation(
             impl_id="c-naive",
             language="c",
             requested_version="naive",
+            variant="naive",
             command=[str(repo_root / "c" / "benchmark_c"), *common],
+        ),
+        Implementation(
+            impl_id=c_simd_impl_id,
+            language="c",
+            requested_version="simd",
+            variant="simd",
+            command=[str(repo_root / "c" / "benchmark_c_simd"), *common],
         ),
         Implementation(
             impl_id="cpp-naive",
             language="cpp",
             requested_version="naive",
+            variant="naive",
             command=[str(repo_root / "cpp" / "benchmark_cpp"), *common],
+        ),
+        Implementation(
+            impl_id=cpp_simd_impl_id,
+            language="cpp",
+            requested_version="simd",
+            variant="simd",
+            command=[str(repo_root / "cpp" / "benchmark_cpp_simd"), *common],
         ),
         Implementation(
             impl_id="rust-naive",
             language="rust",
             requested_version="naive",
+            variant="naive",
             command=[str(repo_root / "rust" / "target" / "release" / "cosine_benchmark_rust"), *common],
+        ),
+        Implementation(
+            impl_id="rust-simd",
+            language="rust",
+            requested_version="simd",
+            variant="simd",
+            command=[str(repo_root / "rust" / "target" / "release" / "rust_simd"), *common],
+        ),
+        Implementation(
+            impl_id="rust-par",
+            language="rust",
+            requested_version="par",
+            variant="par",
+            command=[str(repo_root / "rust" / "target" / "release" / "rust_par"), *common],
         ),
         Implementation(
             impl_id="go-naive",
             language="go",
             requested_version="naive",
+            variant="naive",
             command=[str(repo_root / "go" / "benchmark_go"), *common],
+        ),
+        Implementation(
+            impl_id="go-opt",
+            language="go",
+            requested_version="opt",
+            variant="opt",
+            command=[str(repo_root / "go" / "benchmark_go_opt"), *common],
         ),
         Implementation(
             impl_id="java-naive",
             language="java",
             requested_version="naive",
-            command=["java", *java_opts, "-cp", str(repo_root / "java"), "CosineBenchmark", *common],
+            variant="naive",
+            command=["java", "-cp", str(repo_root / "java"), "CosineBenchmark", *common],
+        ),
+        Implementation(
+            impl_id="java-opt",
+            language="java",
+            requested_version="opt",
+            variant="opt",
+            command=["java", "-cp", str(repo_root / "java"), "CosineBenchmarkOpt", *common],
         ),
     ]
 
@@ -509,6 +561,7 @@ def make_implementations(
                 impl_id="python-naive",
                 language="python",
                 requested_version="naive",
+                variant="naive",
                 command=[python_exec, str(repo_root / "python" / "benchmark_python.py"), *common, "--version", "naive"],
             ),
         )
@@ -520,7 +573,20 @@ def make_implementations(
                 impl_id="python-numpy",
                 language="python",
                 requested_version="numpy",
+                variant="blas",
                 command=[python_exec, str(repo_root / "python" / "benchmark_python.py"), *common, "--version", "numpy"],
+            ),
+        )
+
+    if include_python and include_python_vectorized:
+        impls.insert(
+            2,
+            Implementation(
+                impl_id="python-vectorized",
+                language="python",
+                requested_version="vectorized",
+                variant="simd",
+                command=[python_exec, str(repo_root / "python" / "benchmark_python_vectorized.py"), *common],
             ),
         )
 
@@ -534,11 +600,35 @@ def build_for_impls(
     build_profile: str,
 ) -> Tuple[List[Implementation], List[Dict[str, str]], Dict[str, Dict[str, object]]]:
     build_steps = {
-        "c": ("make", ["make", "-B", "-C", str(repo_root / "c"), f"PROFILE={build_profile}"]),
-        "cpp": ("make", ["make", "-B", "-C", str(repo_root / "cpp"), f"PROFILE={build_profile}"]),
-        "rust": ("cargo", ["cargo", "build", "--release", "--manifest-path", str(repo_root / "rust" / "Cargo.toml")]),
-        "go": ("go", ["go", "build", "-o", str(repo_root / "go" / "benchmark_go"), str(repo_root / "go" / "main.go")]),
-        "java": ("javac", ["javac", str(repo_root / "java" / "CosineBenchmark.java")]),
+        "c": (
+            "make",
+            [["make", "-B", "-C", str(repo_root / "c"), f"PROFILE={build_profile}"]],
+        ),
+        "cpp": (
+            "make",
+            [["make", "-B", "-C", str(repo_root / "cpp"), f"PROFILE={build_profile}"]],
+        ),
+        "rust": (
+            "cargo",
+            [["cargo", "build", "--release", "--manifest-path", str(repo_root / "rust" / "Cargo.toml")]],
+        ),
+        "go": (
+            "go",
+            [
+                ["go", "build", "-o", str(repo_root / "go" / "benchmark_go"), str(repo_root / "go" / "main.go")],
+                ["go", "build", "-o", str(repo_root / "go" / "benchmark_go_opt"), str(repo_root / "go" / "main_opt.go")],
+            ],
+        ),
+        "java": (
+            "javac",
+            [
+                [
+                    "javac",
+                    str(repo_root / "java" / "CosineBenchmark.java"),
+                    str(repo_root / "java" / "CosineBenchmarkOpt.java"),
+                ]
+            ],
+        ),
     }
 
     langs = sorted({i.language for i in impls if i.language != "python"})
@@ -549,15 +639,16 @@ def build_for_impls(
     for lang in langs:
         if lang not in build_steps:
             continue
-        tool, cmd = build_steps[lang]
+        tool, cmd_list = build_steps[lang]
         if shutil.which(tool) is None:
             skipped_langs.add(lang)
             skipped.append({"impl_id": f"{lang}-*", "error": f"skipped: required build tool not found ({tool})"})
             continue
-        proc = subprocess.run(cmd, cwd=str(repo_root), env=env)
-        if proc.returncode != 0:
-            raise RuntimeError(f"build failed for {lang}: {' '.join(cmd)}")
-        info: Dict[str, object] = {"tool": tool, "build_command": cmd}
+        for cmd in cmd_list:
+            proc = subprocess.run(cmd, cwd=str(repo_root), env=env)
+            if proc.returncode != 0:
+                raise RuntimeError(f"build failed for {lang}: {' '.join(cmd)}")
+        info: Dict[str, object] = {"tool": tool, "build_commands": cmd_list}
         if lang in ("c", "cpp"):
             info.update(get_make_build_info(repo_root, env, lang, build_profile))
             info["build_profile"] = build_profile
@@ -696,6 +787,7 @@ def main() -> int:
     parser.add_argument("--timeout-sec", type=int, default=None)
     parser.add_argument("--baseline", default="python-naive")
     parser.add_argument("--impls", default="")
+    parser.add_argument("--variants", default="", help="Comma-separated variants filter: naive,simd,par,blas,opt")
     parser.add_argument("--python", default=sys.executable)
     parser.add_argument("--disable-python", action="store_true", help="Disable python implementations")
     parser.add_argument("--no-python-numpy", action="store_true")
@@ -732,13 +824,14 @@ def main() -> int:
         return 1
 
     env = os.environ.copy()
-    thread_env_before = {k: env.get(k) for k in THREAD_ENV_VARS}
+    thread_env_before = {k: env.get(k) for k in RUNNER_ENV_KEYS}
 
     if args.enforce_single_thread:
         for k in THREAD_ENV_VARS:
             env[k] = "1"
         # Go runtime may otherwise schedule work on multiple OS threads.
         env["GOMAXPROCS"] = "1"
+        env["RAYON_NUM_THREADS"] = "1"
     else:
         missing = [k for k in THREAD_ENV_VARS if env.get(k) is None]
         if missing:
@@ -750,8 +843,11 @@ def main() -> int:
             v = env.get(k)
             if v is not None and v != "1":
                 warn(f"{k}={v} (multi-thread runtime may bias comparison)", warnings)
+        rayon_threads = env.get("RAYON_NUM_THREADS")
+        if rayon_threads is not None and rayon_threads != "1":
+            warn(f"RAYON_NUM_THREADS={rayon_threads} (multi-thread runtime may bias comparison)", warnings)
 
-    thread_env_effective = {k: env.get(k) for k in THREAD_ENV_VARS}
+    thread_env_effective = {k: env.get(k) for k in RUNNER_ENV_KEYS}
     env_injected = injected_env_view(os.environ, env)
 
     if cpu_affinity is None:
@@ -769,14 +865,21 @@ def main() -> int:
     }
 
     include_python = not args.disable_python
-    include_python_numpy = include_python and (not args.no_python_numpy)
-    if include_python_numpy:
+    has_np = False
+    np_ver: Optional[str] = None
+    if include_python:
         has_np, np_ver = python_numpy_available(args.python)
-        if not has_np:
-            include_python_numpy = False
-            warn("numpy not available for selected python; python-numpy implementation skipped", warnings)
-        elif np_ver:
+        if has_np and np_ver:
             print(f"[INFO] numpy detected: {np_ver}")
+
+    include_python_numpy = include_python and (not args.no_python_numpy) and has_np
+    include_python_vectorized = include_python and has_np
+
+    if include_python and not has_np:
+        if not args.no_python_numpy:
+            warn("numpy not available for selected python; python-numpy and python-vectorized skipped", warnings)
+        else:
+            warn("numpy not available for selected python; python-vectorized skipped", warnings)
     elif args.disable_python:
         warn("python implementations disabled by --disable-python", warnings)
 
@@ -789,8 +892,17 @@ def main() -> int:
         python_exec=args.python,
         include_python=include_python,
         include_python_numpy=include_python_numpy,
-        java_opts=[],
+        include_python_vectorized=include_python_vectorized,
+        build_profile=args.profile,
     )
+
+    if args.variants.strip():
+        wanted_variants = {x.strip() for x in args.variants.split(",") if x.strip()}
+        known_variants = {"naive", "simd", "par", "blas", "opt"}
+        unknown_variants = sorted(v for v in wanted_variants if v not in known_variants)
+        if unknown_variants:
+            raise SystemExit("unknown --variants entries: " + ", ".join(unknown_variants))
+        impls = [i for i in impls if i.variant in wanted_variants]
 
     if args.impls.strip():
         wanted = {x.strip() for x in args.impls.split(",") if x.strip()}
@@ -809,12 +921,13 @@ def main() -> int:
         effective_java_opts = list(java_resolution.get("effective_opts", []))
         for impl in impls:
             if impl.language == "java":
+                class_name = impl.command[3] if len(impl.command) >= 4 else "CosineBenchmark"
                 impl.command = [
                     "java",
                     *effective_java_opts,
                     "-cp",
                     str(repo_root / "java"),
-                    "CosineBenchmark",
+                    class_name,
                     "--metadata",
                     str(metadata_path),
                     "--warmup",
@@ -857,6 +970,10 @@ def main() -> int:
             if go_selected:
                 ok = env.get("GOMAXPROCS") == "1"
                 add_check(ok, "go:GOMAXPROCS", f"value={env.get('GOMAXPROCS')} expected=1")
+            rust_par_selected = any(i.impl_id == "rust-par" for i in impls)
+            if rust_par_selected:
+                ok = env.get("RAYON_NUM_THREADS") == "1"
+                add_check(ok, "rust:RAYON_NUM_THREADS", f"value={env.get('RAYON_NUM_THREADS')} expected=1")
 
         if java_selected:
             eff = list(java_resolution.get("effective_opts", []))
@@ -916,6 +1033,11 @@ def main() -> int:
                 rt = obj.get("runtime") if isinstance(obj.get("runtime"), dict) else {}
                 gomax = int(rt.get("gomaxprocs", -1)) if rt and rt.get("gomaxprocs") is not None else -1
                 add_check(gomax == 1, "go:runtime-gomaxprocs", f"value={gomax} expected=1")
+
+            if impl.impl_id == "rust-par" and args.enforce_single_thread:
+                rt = obj.get("runtime") if isinstance(obj.get("runtime"), dict) else {}
+                rayon_env = int(rt.get("rayon_num_threads_env", -1)) if rt and rt.get("rayon_num_threads_env") is not None else -1
+                add_check(rayon_env == 1, "rust-par:runtime-rayon-num-threads", f"value={rayon_env} expected=1")
 
             if impl.language == "rust":
                 rt = obj.get("runtime") if isinstance(obj.get("runtime"), dict) else {}
@@ -1207,6 +1329,7 @@ def main() -> int:
                 "repeat": args.repeat,
                 "language": impl.language,
                 "requested_version": impl.requested_version,
+                "variant": impl.variant,
                 "build_profile": args.profile if impl.language in ("c", "cpp") else "",
                 "affinity_observed": timed.get("affinity_observed"),
                 "runner_wall_ns": timed.get("runner_wall_ns"),
@@ -1297,6 +1420,7 @@ def main() -> int:
             "impl_id": impl.impl_id,
             "language": impl.language,
             "requested_version": impl.requested_version,
+            "variant": impl.variant,
             "meta": meta_line,
             "runs": len(run_ids),
             "median_wall_ns": median(wall_vals),
@@ -1393,6 +1517,7 @@ def main() -> int:
         "repeat",
         "language",
         "requested_version",
+        "variant",
         "build_profile",
         "affinity_observed",
         "runner_wall_ns",
@@ -1471,6 +1596,7 @@ def main() -> int:
             "cpu_affinity": cpu_affinity,
             "nice": args.nice,
             "disable_python": bool(args.disable_python),
+            "variants_filter": args.variants,
             "enforce_single_thread": args.enforce_single_thread,
             "java_opts_requested": java_resolution.get("requested_opts", []),
             "java_opts_effective": java_resolution.get("effective_opts", []),
