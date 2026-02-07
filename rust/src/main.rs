@@ -360,18 +360,20 @@ fn main() {
     if self_check {
         let checksum = cosine_all_pairs_checksum(&dataset);
         println!(
-            "{{\"type\":\"self_check\",\"impl\":\"rust-naive\",\"ok\":true,\"N\":{},\"M\":{},\"D\":{},\"dataset_sha256\":\"{}\",\"checksum\":{}}}",
+            "{{\"type\":\"self_check\",\"impl\":\"rust-naive\",\"ok\":true,\"N\":{},\"M\":{},\"D\":{},\"dataset_sha256\":\"{}\",\"checksum\":{},\"runtime\":{{\"debug_assertions\":{},\"panic_abort\":{}}}}}",
             dataset.n,
             dataset.m,
             dataset.d,
             expected_dataset_sha,
-            checksum
+            checksum,
+            cfg!(debug_assertions),
+            cfg!(panic = "abort")
         );
         return;
     }
 
     println!(
-        "{{\"type\":\"meta\",\"impl\":\"rust-naive\",\"N\":{},\"M\":{},\"D\":{},\"repeat\":{},\"warmup\":{},\"runs\":{},\"dataset_sha256\":\"{}\",\"build_flags\":\"\",\"runtime\":{{\"rust_pkg_version\":\"{}\",\"warmup_executed\":{}}}}}",
+        "{{\"type\":\"meta\",\"impl\":\"rust-naive\",\"N\":{},\"M\":{},\"D\":{},\"repeat\":{},\"warmup\":{},\"runs\":{},\"dataset_sha256\":\"{}\",\"build_flags\":\"\",\"runtime\":{{\"rust_pkg_version\":\"{}\",\"warmup_executed\":{},\"debug_assertions\":{},\"panic_abort\":{}}}}}",
         dataset.n,
         dataset.m,
         dataset.d,
@@ -380,7 +382,9 @@ fn main() {
         runs,
         expected_dataset_sha,
         env!("CARGO_PKG_VERSION"),
-        warmup
+        warmup,
+        cfg!(debug_assertions),
+        cfg!(panic = "abort")
     );
 
     for _ in 0..warmup {

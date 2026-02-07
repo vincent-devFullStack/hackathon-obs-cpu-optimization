@@ -1,5 +1,60 @@
 {
   "baseline_impl_id": "python-naive",
+  "build_info_by_language": {
+    "c": {
+      "CFLAGS": "-O3 -std=c11 -Wall -Wextra -pedantic",
+      "PROFILE": "portable",
+      "build_command": [
+        "make",
+        "-B",
+        "-C",
+        "/home/vincent/delivery/Hackathon/hackathon-obs-cpu-optimization/c",
+        "PROFILE=portable"
+      ],
+      "build_profile": "portable",
+      "tool": "make"
+    },
+    "cpp": {
+      "CXXFLAGS": "-O3 -std=c++17 -Wall -Wextra -pedantic",
+      "PROFILE": "portable",
+      "build_command": [
+        "make",
+        "-B",
+        "-C",
+        "/home/vincent/delivery/Hackathon/hackathon-obs-cpu-optimization/cpp",
+        "PROFILE=portable"
+      ],
+      "build_profile": "portable",
+      "tool": "make"
+    },
+    "go": {
+      "build_command": [
+        "go",
+        "build",
+        "-o",
+        "/home/vincent/delivery/Hackathon/hackathon-obs-cpu-optimization/go/benchmark_go",
+        "/home/vincent/delivery/Hackathon/hackathon-obs-cpu-optimization/go/main.go"
+      ],
+      "tool": "go"
+    },
+    "java": {
+      "build_command": [
+        "javac",
+        "/home/vincent/delivery/Hackathon/hackathon-obs-cpu-optimization/java/CosineBenchmark.java"
+      ],
+      "tool": "javac"
+    },
+    "rust": {
+      "build_command": [
+        "cargo",
+        "build",
+        "--release",
+        "--manifest-path",
+        "/home/vincent/delivery/Hackathon/hackathon-obs-cpu-optimization/rust/Cargo.toml"
+      ],
+      "tool": "cargo"
+    }
+  },
   "critical_errors": [],
   "dataset": {
     "A_sha256": "4d5f67f04809dcf919d3b33ac619511bac510343a41fd8698ad709ee184533e3",
@@ -17,17 +72,39 @@
       "path": "/home/vincent/delivery/Hackathon/hackathon-obs-cpu-optimization/results/dataset.lock"
     }
   },
-  "generated_at_utc": "2026-02-07T19:04:52.619923+00:00",
+  "generated_at_utc": "2026-02-07T21:00:27.601436+00:00",
   "implementations": [
     {
       "baseline": false,
+      "build_info": {
+        "CFLAGS": "-O3 -std=c11 -Wall -Wextra -pedantic",
+        "PROFILE": "portable",
+        "build_command": [
+          "make",
+          "-B",
+          "-C",
+          "/home/vincent/delivery/Hackathon/hackathon-obs-cpu-optimization/c",
+          "PROFILE=portable"
+        ],
+        "build_profile": "portable",
+        "tool": "make"
+      },
       "checksum_max": 1118578.5257543656,
       "checksum_min": 1118578.5257543656,
+      "command_executed": "taskset -c 2 /home/vincent/delivery/Hackathon/hackathon-obs-cpu-optimization/c/benchmark_c --metadata /home/vincent/delivery/Hackathon/hackathon-obs-cpu-optimization/data/metadata.json --warmup 5 --runs 30 --repeat 50 --expected-dataset-sha 8ee23e64581a0e8d8d35ae64e2ccb71a2f3bb4f1cc517a99fdf151e8bb353ff3",
+      "env_injected": {
+        "GOMAXPROCS": "1",
+        "MKL_NUM_THREADS": "1",
+        "NUMEXPR_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "VECLIB_MAXIMUM_THREADS": "1"
+      },
       "impl_id": "c-naive",
       "language": "c",
       "median_checksum": 1118578.5257543656,
-      "median_cpu_ns": 1876343.0,
-      "median_wall_ns": 1762176.5,
+      "median_cpu_ns": 2509387.0,
+      "median_wall_ns": 2417369.0,
       "meta": {
         "D": 96,
         "M": 15,
@@ -38,6 +115,7 @@
         "repeat": 50,
         "runs": 30,
         "runtime": {
+          "build_profile": "portable",
           "compiler": "cc",
           "compiler_version": "13.3.0",
           "warmup_executed": 5
@@ -56,39 +134,39 @@
                 "available": true,
                 "limit": 20.0,
                 "pass": true,
-                "value": 10.581755807837284
+                "value": 11.26886879056155
               },
               "cpu_util_variance": {
                 "available": true,
                 "limit": 50.0,
                 "pass": true,
-                "value": 0.33291141108757155
+                "value": 0.10764911985535411
               },
               "disk_io": {
                 "available": true,
                 "limit": 5.0,
                 "pass": true,
-                "value": 0.006497020411150696
+                "value": 0.0032473891074736804
               },
               "load1": {
                 "available": true,
                 "limit": 6.6,
                 "pass": true,
-                "value": 3.9269230769230767
+                "value": 3.667692307692308
               },
               "memory": {
                 "available": true,
                 "limit_mb": 2048.0,
                 "limit_percent": 15.0,
                 "pass": true,
-                "value_mb": 14947.87890625,
-                "value_percent": 94.9152655881355
+                "value_mb": 14946.77734375,
+                "value_percent": 94.90827094375115
               },
               "run_queue": {
                 "available": true,
                 "limit": 6.6,
                 "pass": true,
-                "value": 3.4615384615384617
+                "value": 3.0
               },
               "swap": {
                 "available": true,
@@ -100,23 +178,23 @@
             "metrics": {
               "cpu_count": 22,
               "cpu_freq_avg_khz": null,
-              "cpu_util_avg": 10.581755807837284,
-              "cpu_util_max": 11.58088235294118,
-              "cpu_util_variance": 0.33291141108757155,
-              "disk_io_mbps_avg": 0.006497020411150696,
-              "disk_io_mbps_max": 0.05457854757435247,
-              "interrupts_per_sec_avg": 34493.03756675839,
-              "load1_avg": 3.9269230769230767,
-              "load1_max": 4.1,
-              "mem_available_mb_min": 14947.87890625,
-              "mem_available_percent_min": 94.9152655881355,
-              "run_queue_avg": 3.4615384615384617,
+              "cpu_util_avg": 11.26886879056155,
+              "cpu_util_max": 12.05151793928243,
+              "cpu_util_variance": 0.10764911985535411,
+              "disk_io_mbps_avg": 0.0032473891074736804,
+              "disk_io_mbps_max": 0.03896866928968416,
+              "interrupts_per_sec_avg": 32154.30294374448,
+              "load1_avg": 3.667692307692308,
+              "load1_max": 3.9,
+              "mem_available_mb_min": 14946.77734375,
+              "mem_available_percent_min": 94.90827094375115,
+              "run_queue_avg": 3.0,
               "run_queue_max": 5.0,
               "sample_count": 13,
               "swap_activity": 0.0,
               "swap_in": 0.0,
               "swap_out": 0.0,
-              "window_sec": 6.013027345001319
+              "window_sec": 6.014460169000813
             },
             "stable": true,
             "unavailable_metrics": []
@@ -131,39 +209,39 @@
               "available": true,
               "limit": 20.0,
               "pass": true,
-              "value": 10.581755807837284
+              "value": 11.26886879056155
             },
             "cpu_util_variance": {
               "available": true,
               "limit": 50.0,
               "pass": true,
-              "value": 0.33291141108757155
+              "value": 0.10764911985535411
             },
             "disk_io": {
               "available": true,
               "limit": 5.0,
               "pass": true,
-              "value": 0.006497020411150696
+              "value": 0.0032473891074736804
             },
             "load1": {
               "available": true,
               "limit": 6.6,
               "pass": true,
-              "value": 3.9269230769230767
+              "value": 3.667692307692308
             },
             "memory": {
               "available": true,
               "limit_mb": 2048.0,
               "limit_percent": 15.0,
               "pass": true,
-              "value_mb": 14947.87890625,
-              "value_percent": 94.9152655881355
+              "value_mb": 14946.77734375,
+              "value_percent": 94.90827094375115
             },
             "run_queue": {
               "available": true,
               "limit": 6.6,
               "pass": true,
-              "value": 3.4615384615384617
+              "value": 3.0
             },
             "swap": {
               "available": true,
@@ -175,23 +253,23 @@
           "metrics": {
             "cpu_count": 22,
             "cpu_freq_avg_khz": null,
-            "cpu_util_avg": 10.581755807837284,
-            "cpu_util_max": 11.58088235294118,
-            "cpu_util_variance": 0.33291141108757155,
-            "disk_io_mbps_avg": 0.006497020411150696,
-            "disk_io_mbps_max": 0.05457854757435247,
-            "interrupts_per_sec_avg": 34493.03756675839,
-            "load1_avg": 3.9269230769230767,
-            "load1_max": 4.1,
-            "mem_available_mb_min": 14947.87890625,
-            "mem_available_percent_min": 94.9152655881355,
-            "run_queue_avg": 3.4615384615384617,
+            "cpu_util_avg": 11.26886879056155,
+            "cpu_util_max": 12.05151793928243,
+            "cpu_util_variance": 0.10764911985535411,
+            "disk_io_mbps_avg": 0.0032473891074736804,
+            "disk_io_mbps_max": 0.03896866928968416,
+            "interrupts_per_sec_avg": 32154.30294374448,
+            "load1_avg": 3.667692307692308,
+            "load1_max": 3.9,
+            "mem_available_mb_min": 14946.77734375,
+            "mem_available_percent_min": 94.90827094375115,
+            "run_queue_avg": 3.0,
             "run_queue_max": 5.0,
             "sample_count": 13,
             "swap_activity": 0.0,
             "swap_in": 0.0,
             "swap_out": 0.0,
-            "window_sec": 6.013027345001319
+            "window_sec": 6.014460169000813
           },
           "stable": true,
           "unavailable_metrics": []
@@ -199,33 +277,55 @@
         "mode": "wait",
         "stable": true,
         "timed_out": false,
-        "waited_sec": 6.014088259998971
+        "waited_sec": 6.015478329998587
       },
       "process_metrics": {
         "affinity_observed": "2",
         "cpu_migrations": null,
-        "ctx_involuntary": 8,
-        "ctx_voluntary": 5,
+        "ctx_involuntary": 7,
+        "ctx_voluntary": 4,
         "major_faults": 0,
         "max_rss_kb": 3520,
         "max_threads": 1,
-        "minor_faults": 512
+        "minor_faults": 527
       },
       "requested_version": "naive",
-      "runner_cpu_ns": 2799999999,
-      "runner_wall_ns": 2632206998,
+      "runner_cpu_ns": 3899999999,
+      "runner_wall_ns": 3762753345,
       "runs": 30,
-      "speedup_vs_baseline_wall": 118.7722824586527
+      "speedup_vs_baseline_wall": 104.20580598162714
     },
     {
       "baseline": false,
+      "build_info": {
+        "CXXFLAGS": "-O3 -std=c++17 -Wall -Wextra -pedantic",
+        "PROFILE": "portable",
+        "build_command": [
+          "make",
+          "-B",
+          "-C",
+          "/home/vincent/delivery/Hackathon/hackathon-obs-cpu-optimization/cpp",
+          "PROFILE=portable"
+        ],
+        "build_profile": "portable",
+        "tool": "make"
+      },
       "checksum_max": 1118578.5257543656,
       "checksum_min": 1118578.5257543656,
+      "command_executed": "taskset -c 2 /home/vincent/delivery/Hackathon/hackathon-obs-cpu-optimization/cpp/benchmark_cpp --metadata /home/vincent/delivery/Hackathon/hackathon-obs-cpu-optimization/data/metadata.json --warmup 5 --runs 30 --repeat 50 --expected-dataset-sha 8ee23e64581a0e8d8d35ae64e2ccb71a2f3bb4f1cc517a99fdf151e8bb353ff3",
+      "env_injected": {
+        "GOMAXPROCS": "1",
+        "MKL_NUM_THREADS": "1",
+        "NUMEXPR_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "VECLIB_MAXIMUM_THREADS": "1"
+      },
       "impl_id": "cpp-naive",
       "language": "cpp",
       "median_checksum": 1118578.5257543656,
-      "median_cpu_ns": 1734042.0,
-      "median_wall_ns": 1670467.5,
+      "median_cpu_ns": 2534970.0,
+      "median_wall_ns": 2496689.5,
       "meta": {
         "D": 96,
         "M": 15,
@@ -236,6 +336,7 @@
         "repeat": 50,
         "runs": 30,
         "runtime": {
+          "build_profile": "portable",
           "compiler": "g++",
           "compiler_version": "13.3.0",
           "warmup_executed": 5
@@ -254,39 +355,39 @@
                 "available": true,
                 "limit": 20.0,
                 "pass": true,
-                "value": 8.667048151781076
+                "value": 11.631346194745902
               },
               "cpu_util_variance": {
                 "available": true,
                 "limit": 50.0,
                 "pass": true,
-                "value": 1.2137019611882518
+                "value": 0.2832092573211278
               },
               "disk_io": {
                 "available": true,
                 "limit": 5.0,
                 "pass": true,
-                "value": 0.0
+                "value": 0.0019480373381654712
               },
               "load1": {
                 "available": true,
                 "limit": 6.6,
                 "pass": true,
-                "value": 3.800769230769231
+                "value": 3.433846153846154
               },
               "memory": {
                 "available": true,
                 "limit_mb": 2048.0,
                 "limit_percent": 15.0,
                 "pass": true,
-                "value_mb": 14946.72265625,
-                "value_percent": 94.90792369190228
+                "value_mb": 14946.4140625,
+                "value_percent": 94.90596419932653
               },
               "run_queue": {
                 "available": true,
                 "limit": 6.6,
                 "pass": true,
-                "value": 2.076923076923077
+                "value": 3.923076923076923
               },
               "swap": {
                 "available": true,
@@ -298,23 +399,23 @@
             "metrics": {
               "cpu_count": 22,
               "cpu_freq_avg_khz": null,
-              "cpu_util_avg": 8.667048151781076,
-              "cpu_util_max": 10.313075506445667,
-              "cpu_util_variance": 1.2137019611882518,
-              "disk_io_mbps_avg": 0.0,
-              "disk_io_mbps_max": 0.0,
-              "interrupts_per_sec_avg": 29354.158447668728,
-              "load1_avg": 3.800769230769231,
-              "load1_max": 3.87,
-              "mem_available_mb_min": 14946.72265625,
-              "mem_available_percent_min": 94.90792369190228,
-              "run_queue_avg": 2.076923076923077,
-              "run_queue_max": 4.0,
+              "cpu_util_avg": 11.631346194745902,
+              "cpu_util_max": 12.94439380127621,
+              "cpu_util_variance": 0.2832092573211278,
+              "disk_io_mbps_avg": 0.0019480373381654712,
+              "disk_io_mbps_max": 0.023376448057985656,
+              "interrupts_per_sec_avg": 29712.92794180172,
+              "load1_avg": 3.433846153846154,
+              "load1_max": 3.54,
+              "mem_available_mb_min": 14946.4140625,
+              "mem_available_percent_min": 94.90596419932653,
+              "run_queue_avg": 3.923076923076923,
+              "run_queue_max": 6.0,
               "sample_count": 13,
               "swap_activity": 0.0,
               "swap_in": 0.0,
               "swap_out": 0.0,
-              "window_sec": 6.011556052002561
+              "window_sec": 6.0148670749986195
             },
             "stable": true,
             "unavailable_metrics": []
@@ -329,39 +430,39 @@
               "available": true,
               "limit": 20.0,
               "pass": true,
-              "value": 8.667048151781076
+              "value": 11.631346194745902
             },
             "cpu_util_variance": {
               "available": true,
               "limit": 50.0,
               "pass": true,
-              "value": 1.2137019611882518
+              "value": 0.2832092573211278
             },
             "disk_io": {
               "available": true,
               "limit": 5.0,
               "pass": true,
-              "value": 0.0
+              "value": 0.0019480373381654712
             },
             "load1": {
               "available": true,
               "limit": 6.6,
               "pass": true,
-              "value": 3.800769230769231
+              "value": 3.433846153846154
             },
             "memory": {
               "available": true,
               "limit_mb": 2048.0,
               "limit_percent": 15.0,
               "pass": true,
-              "value_mb": 14946.72265625,
-              "value_percent": 94.90792369190228
+              "value_mb": 14946.4140625,
+              "value_percent": 94.90596419932653
             },
             "run_queue": {
               "available": true,
               "limit": 6.6,
               "pass": true,
-              "value": 2.076923076923077
+              "value": 3.923076923076923
             },
             "swap": {
               "available": true,
@@ -373,23 +474,23 @@
           "metrics": {
             "cpu_count": 22,
             "cpu_freq_avg_khz": null,
-            "cpu_util_avg": 8.667048151781076,
-            "cpu_util_max": 10.313075506445667,
-            "cpu_util_variance": 1.2137019611882518,
-            "disk_io_mbps_avg": 0.0,
-            "disk_io_mbps_max": 0.0,
-            "interrupts_per_sec_avg": 29354.158447668728,
-            "load1_avg": 3.800769230769231,
-            "load1_max": 3.87,
-            "mem_available_mb_min": 14946.72265625,
-            "mem_available_percent_min": 94.90792369190228,
-            "run_queue_avg": 2.076923076923077,
-            "run_queue_max": 4.0,
+            "cpu_util_avg": 11.631346194745902,
+            "cpu_util_max": 12.94439380127621,
+            "cpu_util_variance": 0.2832092573211278,
+            "disk_io_mbps_avg": 0.0019480373381654712,
+            "disk_io_mbps_max": 0.023376448057985656,
+            "interrupts_per_sec_avg": 29712.92794180172,
+            "load1_avg": 3.433846153846154,
+            "load1_max": 3.54,
+            "mem_available_mb_min": 14946.4140625,
+            "mem_available_percent_min": 94.90596419932653,
+            "run_queue_avg": 3.923076923076923,
+            "run_queue_max": 6.0,
             "sample_count": 13,
             "swap_activity": 0.0,
             "swap_in": 0.0,
             "swap_out": 0.0,
-            "window_sec": 6.011556052002561
+            "window_sec": 6.0148670749986195
           },
           "stable": true,
           "unavailable_metrics": []
@@ -397,33 +498,52 @@
         "mode": "wait",
         "stable": true,
         "timed_out": false,
-        "waited_sec": 6.013071770001261
+        "waited_sec": 6.016587532001722
       },
       "process_metrics": {
         "affinity_observed": "2",
         "cpu_migrations": null,
-        "ctx_involuntary": 3,
+        "ctx_involuntary": 8,
         "ctx_voluntary": 5,
         "major_faults": 0,
         "max_rss_kb": 5104,
         "max_threads": 1,
-        "minor_faults": 571
+        "minor_faults": 561
       },
       "requested_version": "naive",
-      "runner_cpu_ns": 2600000000,
-      "runner_wall_ns": 2505310025,
+      "runner_cpu_ns": 3879999999,
+      "runner_wall_ns": 3850500572,
       "runs": 30,
-      "speedup_vs_baseline_wall": 125.29290453121656
+      "speedup_vs_baseline_wall": 100.8951593700378
     },
     {
       "baseline": false,
+      "build_info": {
+        "build_command": [
+          "go",
+          "build",
+          "-o",
+          "/home/vincent/delivery/Hackathon/hackathon-obs-cpu-optimization/go/benchmark_go",
+          "/home/vincent/delivery/Hackathon/hackathon-obs-cpu-optimization/go/main.go"
+        ],
+        "tool": "go"
+      },
       "checksum_max": 1118578.5257543656,
       "checksum_min": 1118578.5257543656,
+      "command_executed": "taskset -c 2 /home/vincent/delivery/Hackathon/hackathon-obs-cpu-optimization/go/benchmark_go --metadata /home/vincent/delivery/Hackathon/hackathon-obs-cpu-optimization/data/metadata.json --warmup 5 --runs 30 --repeat 50 --expected-dataset-sha 8ee23e64581a0e8d8d35ae64e2ccb71a2f3bb4f1cc517a99fdf151e8bb353ff3",
+      "env_injected": {
+        "GOMAXPROCS": "1",
+        "MKL_NUM_THREADS": "1",
+        "NUMEXPR_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "VECLIB_MAXIMUM_THREADS": "1"
+      },
       "impl_id": "go-naive",
       "language": "go",
       "median_checksum": 1118578.5257543656,
-      "median_cpu_ns": 4446870.0,
-      "median_wall_ns": 4280368.0,
+      "median_cpu_ns": 6611830.0,
+      "median_wall_ns": 6360006.0,
       "meta": {
         "D": 96,
         "M": 15,
@@ -437,7 +557,9 @@
           "go_version": "go1.22.2",
           "goarch": "amd64",
           "gomaxprocs": 1,
+          "gomaxprocs_env": "1",
           "goos": "linux",
+          "num_cpu": 1,
           "warmup_executed": 5
         },
         "type": "meta",
@@ -454,39 +576,39 @@
                 "available": true,
                 "limit": 20.0,
                 "pass": true,
-                "value": 8.308126895136105
+                "value": 11.393748490425935
               },
               "cpu_util_variance": {
                 "available": true,
                 "limit": 50.0,
                 "pass": true,
-                "value": 1.4692160527239744
+                "value": 0.21641223937182047
               },
               "disk_io": {
                 "available": true,
                 "limit": 5.0,
                 "pass": true,
-                "value": 0.001950167282689701
+                "value": 0.0
               },
               "load1": {
                 "available": true,
                 "limit": 6.6,
                 "pass": true,
-                "value": 3.7653846153846158
+                "value": 3.338461538461538
               },
               "memory": {
                 "available": true,
                 "limit_mb": 2048.0,
                 "limit_percent": 15.0,
                 "pass": true,
-                "value_mb": 14946.2265625,
-                "value_percent": 94.90477362155899
+                "value_mb": 14948.0625,
+                "value_percent": 94.91643136219955
               },
               "run_queue": {
                 "available": true,
                 "limit": 6.6,
                 "pass": true,
-                "value": 2.076923076923077
+                "value": 3.0
               },
               "swap": {
                 "available": true,
@@ -498,23 +620,23 @@
             "metrics": {
               "cpu_count": 22,
               "cpu_freq_avg_khz": null,
-              "cpu_util_avg": 8.308126895136105,
-              "cpu_util_max": 10.341643582640813,
-              "cpu_util_variance": 1.4692160527239744,
-              "disk_io_mbps_avg": 0.001950167282689701,
-              "disk_io_mbps_max": 0.02340200739227641,
-              "interrupts_per_sec_avg": 29303.51238902892,
-              "load1_avg": 3.7653846153846158,
-              "load1_max": 3.89,
-              "mem_available_mb_min": 14946.2265625,
-              "mem_available_percent_min": 94.90477362155899,
-              "run_queue_avg": 2.076923076923077,
+              "cpu_util_avg": 11.393748490425935,
+              "cpu_util_max": 12.3400365630713,
+              "cpu_util_variance": 0.21641223937182047,
+              "disk_io_mbps_avg": 0.0,
+              "disk_io_mbps_max": 0.0,
+              "interrupts_per_sec_avg": 26937.36294229989,
+              "load1_avg": 3.338461538461538,
+              "load1_max": 3.35,
+              "mem_available_mb_min": 14948.0625,
+              "mem_available_percent_min": 94.91643136219955,
+              "run_queue_avg": 3.0,
               "run_queue_max": 4.0,
               "sample_count": 13,
               "swap_activity": 0.0,
               "swap_in": 0.0,
               "swap_out": 0.0,
-              "window_sec": 6.010960135001369
+              "window_sec": 6.017793604998587
             },
             "stable": true,
             "unavailable_metrics": []
@@ -529,39 +651,39 @@
               "available": true,
               "limit": 20.0,
               "pass": true,
-              "value": 8.308126895136105
+              "value": 11.393748490425935
             },
             "cpu_util_variance": {
               "available": true,
               "limit": 50.0,
               "pass": true,
-              "value": 1.4692160527239744
+              "value": 0.21641223937182047
             },
             "disk_io": {
               "available": true,
               "limit": 5.0,
               "pass": true,
-              "value": 0.001950167282689701
+              "value": 0.0
             },
             "load1": {
               "available": true,
               "limit": 6.6,
               "pass": true,
-              "value": 3.7653846153846158
+              "value": 3.338461538461538
             },
             "memory": {
               "available": true,
               "limit_mb": 2048.0,
               "limit_percent": 15.0,
               "pass": true,
-              "value_mb": 14946.2265625,
-              "value_percent": 94.90477362155899
+              "value_mb": 14948.0625,
+              "value_percent": 94.91643136219955
             },
             "run_queue": {
               "available": true,
               "limit": 6.6,
               "pass": true,
-              "value": 2.076923076923077
+              "value": 3.0
             },
             "swap": {
               "available": true,
@@ -573,23 +695,23 @@
           "metrics": {
             "cpu_count": 22,
             "cpu_freq_avg_khz": null,
-            "cpu_util_avg": 8.308126895136105,
-            "cpu_util_max": 10.341643582640813,
-            "cpu_util_variance": 1.4692160527239744,
-            "disk_io_mbps_avg": 0.001950167282689701,
-            "disk_io_mbps_max": 0.02340200739227641,
-            "interrupts_per_sec_avg": 29303.51238902892,
-            "load1_avg": 3.7653846153846158,
-            "load1_max": 3.89,
-            "mem_available_mb_min": 14946.2265625,
-            "mem_available_percent_min": 94.90477362155899,
-            "run_queue_avg": 2.076923076923077,
+            "cpu_util_avg": 11.393748490425935,
+            "cpu_util_max": 12.3400365630713,
+            "cpu_util_variance": 0.21641223937182047,
+            "disk_io_mbps_avg": 0.0,
+            "disk_io_mbps_max": 0.0,
+            "interrupts_per_sec_avg": 26937.36294229989,
+            "load1_avg": 3.338461538461538,
+            "load1_max": 3.35,
+            "mem_available_mb_min": 14948.0625,
+            "mem_available_percent_min": 94.91643136219955,
+            "run_queue_avg": 3.0,
             "run_queue_max": 4.0,
             "sample_count": 13,
             "swap_activity": 0.0,
             "swap_in": 0.0,
             "swap_out": 0.0,
-            "window_sec": 6.010960135001369
+            "window_sec": 6.017793604998587
           },
           "stable": true,
           "unavailable_metrics": []
@@ -597,33 +719,49 @@
         "mode": "wait",
         "stable": true,
         "timed_out": false,
-        "waited_sec": 6.0119666820028215
+        "waited_sec": 6.0191725449985825
       },
       "process_metrics": {
         "affinity_observed": "2",
         "cpu_migrations": null,
-        "ctx_involuntary": 687,
-        "ctx_voluntary": 2,
+        "ctx_involuntary": 1043,
+        "ctx_voluntary": 3,
         "major_faults": 0,
         "max_rss_kb": 6336,
         "max_threads": 3,
-        "minor_faults": 1379
+        "minor_faults": 1394
       },
       "requested_version": "naive",
-      "runner_cpu_ns": 6540000000,
-      "runner_wall_ns": 6277681468,
+      "runner_cpu_ns": 10060000000,
+      "runner_wall_ns": 9700234879,
       "runs": 30,
-      "speedup_vs_baseline_wall": 48.89713337731709
+      "speedup_vs_baseline_wall": 39.607491722492085
     },
     {
       "baseline": false,
+      "build_info": {
+        "build_command": [
+          "javac",
+          "/home/vincent/delivery/Hackathon/hackathon-obs-cpu-optimization/java/CosineBenchmark.java"
+        ],
+        "tool": "javac"
+      },
       "checksum_max": 1118578.5257543656,
       "checksum_min": 1118578.5257543656,
+      "command_executed": "taskset -c 2 java -Xms2g -Xmx2g -XX:ActiveProcessorCount=1 -XX:+UseSerialGC -XX:ParallelGCThreads=1 -cp /home/vincent/delivery/Hackathon/hackathon-obs-cpu-optimization/java CosineBenchmark --metadata /home/vincent/delivery/Hackathon/hackathon-obs-cpu-optimization/data/metadata.json --warmup 5 --runs 30 --repeat 50 --expected-dataset-sha 8ee23e64581a0e8d8d35ae64e2ccb71a2f3bb4f1cc517a99fdf151e8bb353ff3",
+      "env_injected": {
+        "GOMAXPROCS": "1",
+        "MKL_NUM_THREADS": "1",
+        "NUMEXPR_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "VECLIB_MAXIMUM_THREADS": "1"
+      },
       "impl_id": "java-naive",
       "language": "java",
       "median_checksum": 1118578.5257543656,
-      "median_cpu_ns": 2000000.0,
-      "median_wall_ns": 1888510.5,
+      "median_cpu_ns": 2800000.0,
+      "median_wall_ns": 2574956.5,
       "meta": {
         "D": 96,
         "M": 15,
@@ -660,39 +798,39 @@
                 "available": true,
                 "limit": 20.0,
                 "pass": true,
-                "value": 10.227206788717096
+                "value": 11.313183380403657
               },
               "cpu_util_variance": {
                 "available": true,
                 "limit": 50.0,
                 "pass": true,
-                "value": 0.9771723610619105
+                "value": 0.15729422456335418
               },
               "disk_io": {
                 "available": true,
                 "limit": 5.0,
                 "pass": true,
-                "value": 0.0
+                "value": 0.01944657734647796
               },
               "load1": {
                 "available": true,
                 "limit": 6.6,
                 "pass": true,
-                "value": 3.9553846153846157
+                "value": 3.2607692307692306
               },
               "memory": {
                 "available": true,
                 "limit_mb": 2048.0,
                 "limit_percent": 15.0,
                 "pass": true,
-                "value_mb": 14947.24609375,
-                "value_percent": 94.91124738817003
+                "value_mb": 14948.6640625,
+                "value_percent": 94.9202511325371
               },
               "run_queue": {
                 "available": true,
                 "limit": 6.6,
                 "pass": true,
-                "value": 3.3846153846153846
+                "value": 3.3076923076923075
               },
               "swap": {
                 "available": true,
@@ -704,23 +842,23 @@
             "metrics": {
               "cpu_count": 22,
               "cpu_freq_avg_khz": null,
-              "cpu_util_avg": 10.227206788717096,
-              "cpu_util_max": 11.54201292705448,
-              "cpu_util_variance": 0.9771723610619105,
-              "disk_io_mbps_avg": 0.0,
-              "disk_io_mbps_max": 0.0,
-              "interrupts_per_sec_avg": 30078.148150745896,
-              "load1_avg": 3.9553846153846157,
-              "load1_max": 4.06,
-              "mem_available_mb_min": 14947.24609375,
-              "mem_available_percent_min": 94.91124738817003,
-              "run_queue_avg": 3.3846153846153846,
-              "run_queue_max": 5.0,
+              "cpu_util_avg": 11.313183380403657,
+              "cpu_util_max": 11.959521619135238,
+              "cpu_util_variance": 0.15729422456335418,
+              "disk_io_mbps_avg": 0.01944657734647796,
+              "disk_io_mbps_max": 0.2333589281577355,
+              "interrupts_per_sec_avg": 20777.429509595797,
+              "load1_avg": 3.2607692307692306,
+              "load1_max": 3.27,
+              "mem_available_mb_min": 14948.6640625,
+              "mem_available_percent_min": 94.9202511325371,
+              "run_queue_avg": 3.3076923076923075,
+              "run_queue_max": 6.0,
               "sample_count": 13,
               "swap_activity": 0.0,
               "swap_in": 0.0,
               "swap_out": 0.0,
-              "window_sec": 6.014978170998802
+              "window_sec": 6.01970549500038
             },
             "stable": true,
             "unavailable_metrics": []
@@ -735,39 +873,39 @@
               "available": true,
               "limit": 20.0,
               "pass": true,
-              "value": 10.227206788717096
+              "value": 11.313183380403657
             },
             "cpu_util_variance": {
               "available": true,
               "limit": 50.0,
               "pass": true,
-              "value": 0.9771723610619105
+              "value": 0.15729422456335418
             },
             "disk_io": {
               "available": true,
               "limit": 5.0,
               "pass": true,
-              "value": 0.0
+              "value": 0.01944657734647796
             },
             "load1": {
               "available": true,
               "limit": 6.6,
               "pass": true,
-              "value": 3.9553846153846157
+              "value": 3.2607692307692306
             },
             "memory": {
               "available": true,
               "limit_mb": 2048.0,
               "limit_percent": 15.0,
               "pass": true,
-              "value_mb": 14947.24609375,
-              "value_percent": 94.91124738817003
+              "value_mb": 14948.6640625,
+              "value_percent": 94.9202511325371
             },
             "run_queue": {
               "available": true,
               "limit": 6.6,
               "pass": true,
-              "value": 3.3846153846153846
+              "value": 3.3076923076923075
             },
             "swap": {
               "available": true,
@@ -779,23 +917,23 @@
           "metrics": {
             "cpu_count": 22,
             "cpu_freq_avg_khz": null,
-            "cpu_util_avg": 10.227206788717096,
-            "cpu_util_max": 11.54201292705448,
-            "cpu_util_variance": 0.9771723610619105,
-            "disk_io_mbps_avg": 0.0,
-            "disk_io_mbps_max": 0.0,
-            "interrupts_per_sec_avg": 30078.148150745896,
-            "load1_avg": 3.9553846153846157,
-            "load1_max": 4.06,
-            "mem_available_mb_min": 14947.24609375,
-            "mem_available_percent_min": 94.91124738817003,
-            "run_queue_avg": 3.3846153846153846,
-            "run_queue_max": 5.0,
+            "cpu_util_avg": 11.313183380403657,
+            "cpu_util_max": 11.959521619135238,
+            "cpu_util_variance": 0.15729422456335418,
+            "disk_io_mbps_avg": 0.01944657734647796,
+            "disk_io_mbps_max": 0.2333589281577355,
+            "interrupts_per_sec_avg": 20777.429509595797,
+            "load1_avg": 3.2607692307692306,
+            "load1_max": 3.27,
+            "mem_available_mb_min": 14948.6640625,
+            "mem_available_percent_min": 94.9202511325371,
+            "run_queue_avg": 3.3076923076923075,
+            "run_queue_max": 6.0,
             "sample_count": 13,
             "swap_activity": 0.0,
             "swap_in": 0.0,
             "swap_out": 0.0,
-            "window_sec": 6.014978170998802
+            "window_sec": 6.01970549500038
           },
           "stable": true,
           "unavailable_metrics": []
@@ -803,7 +941,7 @@
         "mode": "wait",
         "stable": true,
         "timed_out": false,
-        "waited_sec": 6.01606576300037
+        "waited_sec": 6.020997094001359
       },
       "process_metrics": {
         "affinity_observed": "2",
@@ -811,25 +949,35 @@
         "ctx_involuntary": 0,
         "ctx_voluntary": 3,
         "major_faults": 0,
-        "max_rss_kb": 62888,
+        "max_rss_kb": 62704,
         "max_threads": 13,
-        "minor_faults": 10492
+        "minor_faults": 10504
       },
       "requested_version": "naive",
-      "runner_cpu_ns": 3609999999,
-      "runner_wall_ns": 3488232949,
+      "runner_cpu_ns": 5400000000,
+      "runner_wall_ns": 5169109144,
       "runs": 30,
-      "speedup_vs_baseline_wall": 110.82687917276606
+      "speedup_vs_baseline_wall": 97.82840409148659
     },
     {
       "baseline": true,
+      "build_info": {},
       "checksum_max": 1118578.5257543656,
       "checksum_min": 1118578.5257543656,
+      "command_executed": "taskset -c 2 /home/vincent/delivery/Hackathon/hackathon-obs-cpu-optimization/.venv/bin/python /home/vincent/delivery/Hackathon/hackathon-obs-cpu-optimization/python/benchmark_python.py --metadata /home/vincent/delivery/Hackathon/hackathon-obs-cpu-optimization/data/metadata.json --warmup 5 --runs 30 --repeat 50 --version naive --expected-dataset-sha 8ee23e64581a0e8d8d35ae64e2ccb71a2f3bb4f1cc517a99fdf151e8bb353ff3",
+      "env_injected": {
+        "GOMAXPROCS": "1",
+        "MKL_NUM_THREADS": "1",
+        "NUMEXPR_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "VECLIB_MAXIMUM_THREADS": "1"
+      },
       "impl_id": "python-naive",
       "language": "python",
       "median_checksum": 1118578.5257543656,
-      "median_cpu_ns": 217026440.5,
-      "median_wall_ns": 209297725.0,
+      "median_cpu_ns": 263346394.0,
+      "median_wall_ns": 251903885.0,
       "meta": {
         "D": 96,
         "M": 15,
@@ -842,7 +990,7 @@
         "runtime": {
           "numpy_available": true,
           "numpy_version": "2.4.2",
-          "pid": 35353,
+          "pid": 42677,
           "python_version": "3.12.3",
           "warmup_executed": 5
         },
@@ -860,39 +1008,39 @@
                 "available": true,
                 "limit": 20.0,
                 "pass": true,
-                "value": 10.166267247099002
+                "value": 11.490946119727118
               },
               "cpu_util_variance": {
                 "available": true,
                 "limit": 50.0,
                 "pass": true,
-                "value": 1.1502174152011584
+                "value": 0.13568295833886332
               },
               "disk_io": {
                 "available": true,
                 "limit": 5.0,
                 "pass": true,
-                "value": 0.04614495151478918
+                "value": 0.010398059505566664
               },
               "load1": {
                 "available": true,
                 "limit": 6.6,
                 "pass": true,
-                "value": 3.427692307692308
+                "value": 3.060769230769231
               },
               "memory": {
                 "available": true,
                 "limit_mb": 2048.0,
                 "limit_percent": 15.0,
                 "pass": true,
-                "value_mb": 14946.22265625,
-                "value_percent": 94.90474881785549
+                "value_mb": 14945.83203125,
+                "value_percent": 94.90226844750643
               },
               "run_queue": {
                 "available": true,
                 "limit": 6.6,
                 "pass": true,
-                "value": 3.076923076923077
+                "value": 3.8461538461538463
               },
               "swap": {
                 "available": true,
@@ -904,23 +1052,23 @@
             "metrics": {
               "cpu_count": 22,
               "cpu_freq_avg_khz": null,
-              "cpu_util_avg": 10.166267247099002,
-              "cpu_util_max": 11.510128913443829,
-              "cpu_util_variance": 1.1502174152011584,
-              "disk_io_mbps_avg": 0.04614495151478918,
-              "disk_io_mbps_max": 0.5381578491211504,
-              "interrupts_per_sec_avg": 30719.133995016833,
-              "load1_avg": 3.427692307692308,
-              "load1_max": 3.52,
-              "mem_available_mb_min": 14946.22265625,
-              "mem_available_percent_min": 94.90474881785549,
-              "run_queue_avg": 3.076923076923077,
+              "cpu_util_avg": 11.490946119727118,
+              "cpu_util_max": 12.121212121212121,
+              "cpu_util_variance": 0.13568295833886332,
+              "disk_io_mbps_avg": 0.010398059505566664,
+              "disk_io_mbps_max": 0.12477671406679998,
+              "interrupts_per_sec_avg": 27839.41438234913,
+              "load1_avg": 3.060769230769231,
+              "load1_max": 3.13,
+              "mem_available_mb_min": 14945.83203125,
+              "mem_available_percent_min": 94.90226844750643,
+              "run_queue_avg": 3.8461538461538463,
               "run_queue_max": 6.0,
               "sample_count": 13,
               "swap_activity": 0.0,
               "swap_in": 0.0,
               "swap_out": 0.0,
-              "window_sec": 6.0141932950027694
+              "window_sec": 6.014208570999472
             },
             "stable": true,
             "unavailable_metrics": []
@@ -935,39 +1083,39 @@
               "available": true,
               "limit": 20.0,
               "pass": true,
-              "value": 10.166267247099002
+              "value": 11.490946119727118
             },
             "cpu_util_variance": {
               "available": true,
               "limit": 50.0,
               "pass": true,
-              "value": 1.1502174152011584
+              "value": 0.13568295833886332
             },
             "disk_io": {
               "available": true,
               "limit": 5.0,
               "pass": true,
-              "value": 0.04614495151478918
+              "value": 0.010398059505566664
             },
             "load1": {
               "available": true,
               "limit": 6.6,
               "pass": true,
-              "value": 3.427692307692308
+              "value": 3.060769230769231
             },
             "memory": {
               "available": true,
               "limit_mb": 2048.0,
               "limit_percent": 15.0,
               "pass": true,
-              "value_mb": 14946.22265625,
-              "value_percent": 94.90474881785549
+              "value_mb": 14945.83203125,
+              "value_percent": 94.90226844750643
             },
             "run_queue": {
               "available": true,
               "limit": 6.6,
               "pass": true,
-              "value": 3.076923076923077
+              "value": 3.8461538461538463
             },
             "swap": {
               "available": true,
@@ -979,23 +1127,23 @@
           "metrics": {
             "cpu_count": 22,
             "cpu_freq_avg_khz": null,
-            "cpu_util_avg": 10.166267247099002,
-            "cpu_util_max": 11.510128913443829,
-            "cpu_util_variance": 1.1502174152011584,
-            "disk_io_mbps_avg": 0.04614495151478918,
-            "disk_io_mbps_max": 0.5381578491211504,
-            "interrupts_per_sec_avg": 30719.133995016833,
-            "load1_avg": 3.427692307692308,
-            "load1_max": 3.52,
-            "mem_available_mb_min": 14946.22265625,
-            "mem_available_percent_min": 94.90474881785549,
-            "run_queue_avg": 3.076923076923077,
+            "cpu_util_avg": 11.490946119727118,
+            "cpu_util_max": 12.121212121212121,
+            "cpu_util_variance": 0.13568295833886332,
+            "disk_io_mbps_avg": 0.010398059505566664,
+            "disk_io_mbps_max": 0.12477671406679998,
+            "interrupts_per_sec_avg": 27839.41438234913,
+            "load1_avg": 3.060769230769231,
+            "load1_max": 3.13,
+            "mem_available_mb_min": 14945.83203125,
+            "mem_available_percent_min": 94.90226844750643,
+            "run_queue_avg": 3.8461538461538463,
             "run_queue_max": 6.0,
             "sample_count": 13,
             "swap_activity": 0.0,
             "swap_in": 0.0,
             "swap_out": 0.0,
-            "window_sec": 6.0141932950027694
+            "window_sec": 6.014208570999472
           },
           "stable": true,
           "unavailable_metrics": []
@@ -1003,33 +1151,43 @@
         "mode": "wait",
         "stable": true,
         "timed_out": false,
-        "waited_sec": 6.015275671998097
+        "waited_sec": 6.015688568997575
       },
       "process_metrics": {
         "affinity_observed": "2",
         "cpu_migrations": null,
-        "ctx_involuntary": 424,
+        "ctx_involuntary": 460,
         "ctx_voluntary": 2,
         "major_faults": 0,
         "max_rss_kb": 47116,
         "max_threads": 1,
-        "minor_faults": 8543
+        "minor_faults": 8544
       },
       "requested_version": "naive",
-      "runner_cpu_ns": 324930000000,
-      "runner_wall_ns": 311909807125,
+      "runner_cpu_ns": 421960000000,
+      "runner_wall_ns": 403522062185,
       "runs": 30,
       "speedup_vs_baseline_wall": 1.0
     },
     {
       "baseline": false,
+      "build_info": {},
       "checksum_max": 1118578.5257543775,
       "checksum_min": 1118578.5257543775,
+      "command_executed": "taskset -c 2 /home/vincent/delivery/Hackathon/hackathon-obs-cpu-optimization/.venv/bin/python /home/vincent/delivery/Hackathon/hackathon-obs-cpu-optimization/python/benchmark_python.py --metadata /home/vincent/delivery/Hackathon/hackathon-obs-cpu-optimization/data/metadata.json --warmup 5 --runs 30 --repeat 50 --version numpy --expected-dataset-sha 8ee23e64581a0e8d8d35ae64e2ccb71a2f3bb4f1cc517a99fdf151e8bb353ff3",
+      "env_injected": {
+        "GOMAXPROCS": "1",
+        "MKL_NUM_THREADS": "1",
+        "NUMEXPR_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "VECLIB_MAXIMUM_THREADS": "1"
+      },
       "impl_id": "python-numpy",
       "language": "python",
       "median_checksum": 1118578.5257543775,
-      "median_cpu_ns": 8419206.0,
-      "median_wall_ns": 8144894.5,
+      "median_cpu_ns": 10324227.5,
+      "median_wall_ns": 10083701.0,
       "meta": {
         "D": 96,
         "M": 15,
@@ -1042,7 +1200,7 @@
         "runtime": {
           "numpy_available": true,
           "numpy_version": "2.4.2",
-          "pid": 35744,
+          "pid": 43039,
           "python_version": "3.12.3",
           "warmup_executed": 5
         },
@@ -1060,13 +1218,13 @@
                 "available": true,
                 "limit": 20.0,
                 "pass": true,
-                "value": 11.145874744346274
+                "value": 11.324277673702388
               },
               "cpu_util_variance": {
                 "available": true,
                 "limit": 50.0,
                 "pass": true,
-                "value": 0.3887166224892072
+                "value": 0.0853000984314901
               },
               "disk_io": {
                 "available": true,
@@ -1078,21 +1236,21 @@
                 "available": true,
                 "limit": 6.6,
                 "pass": true,
-                "value": 4.23
+                "value": 4.2323076923076925
               },
               "memory": {
                 "available": true,
                 "limit_mb": 2048.0,
                 "limit_percent": 15.0,
                 "pass": true,
-                "value_mb": 14945.71484375,
-                "value_percent": 94.90152433640172
+                "value_mb": 14944.91015625,
+                "value_percent": 94.89641477348266
               },
               "run_queue": {
                 "available": true,
                 "limit": 6.6,
                 "pass": true,
-                "value": 3.0
+                "value": 3.4615384615384617
               },
               "swap": {
                 "available": true,
@@ -1104,23 +1262,23 @@
             "metrics": {
               "cpu_count": 22,
               "cpu_freq_avg_khz": null,
-              "cpu_util_avg": 11.145874744346274,
-              "cpu_util_max": 12.283894449499543,
-              "cpu_util_variance": 0.3887166224892072,
+              "cpu_util_avg": 11.324277673702388,
+              "cpu_util_max": 11.764705882352944,
+              "cpu_util_variance": 0.0853000984314901,
               "disk_io_mbps_avg": 0.0,
               "disk_io_mbps_max": 0.0,
-              "interrupts_per_sec_avg": 34417.32271877113,
-              "load1_avg": 4.23,
-              "load1_max": 4.48,
-              "mem_available_mb_min": 14945.71484375,
-              "mem_available_percent_min": 94.90152433640172,
-              "run_queue_avg": 3.0,
+              "interrupts_per_sec_avg": 29679.876857910538,
+              "load1_avg": 4.2323076923076925,
+              "load1_max": 4.3,
+              "mem_available_mb_min": 14944.91015625,
+              "mem_available_percent_min": 94.89641477348266,
+              "run_queue_avg": 3.4615384615384617,
               "run_queue_max": 6.0,
               "sample_count": 13,
               "swap_activity": 0.0,
               "swap_in": 0.0,
               "swap_out": 0.0,
-              "window_sec": 6.012064029000612
+              "window_sec": 6.0154981359992235
             },
             "stable": true,
             "unavailable_metrics": []
@@ -1135,13 +1293,13 @@
               "available": true,
               "limit": 20.0,
               "pass": true,
-              "value": 11.145874744346274
+              "value": 11.324277673702388
             },
             "cpu_util_variance": {
               "available": true,
               "limit": 50.0,
               "pass": true,
-              "value": 0.3887166224892072
+              "value": 0.0853000984314901
             },
             "disk_io": {
               "available": true,
@@ -1153,21 +1311,21 @@
               "available": true,
               "limit": 6.6,
               "pass": true,
-              "value": 4.23
+              "value": 4.2323076923076925
             },
             "memory": {
               "available": true,
               "limit_mb": 2048.0,
               "limit_percent": 15.0,
               "pass": true,
-              "value_mb": 14945.71484375,
-              "value_percent": 94.90152433640172
+              "value_mb": 14944.91015625,
+              "value_percent": 94.89641477348266
             },
             "run_queue": {
               "available": true,
               "limit": 6.6,
               "pass": true,
-              "value": 3.0
+              "value": 3.4615384615384617
             },
             "swap": {
               "available": true,
@@ -1179,23 +1337,23 @@
           "metrics": {
             "cpu_count": 22,
             "cpu_freq_avg_khz": null,
-            "cpu_util_avg": 11.145874744346274,
-            "cpu_util_max": 12.283894449499543,
-            "cpu_util_variance": 0.3887166224892072,
+            "cpu_util_avg": 11.324277673702388,
+            "cpu_util_max": 11.764705882352944,
+            "cpu_util_variance": 0.0853000984314901,
             "disk_io_mbps_avg": 0.0,
             "disk_io_mbps_max": 0.0,
-            "interrupts_per_sec_avg": 34417.32271877113,
-            "load1_avg": 4.23,
-            "load1_max": 4.48,
-            "mem_available_mb_min": 14945.71484375,
-            "mem_available_percent_min": 94.90152433640172,
-            "run_queue_avg": 3.0,
+            "interrupts_per_sec_avg": 29679.876857910538,
+            "load1_avg": 4.2323076923076925,
+            "load1_max": 4.3,
+            "mem_available_mb_min": 14944.91015625,
+            "mem_available_percent_min": 94.89641477348266,
+            "run_queue_avg": 3.4615384615384617,
             "run_queue_max": 6.0,
             "sample_count": 13,
             "swap_activity": 0.0,
             "swap_in": 0.0,
             "swap_out": 0.0,
-            "window_sec": 6.012064029000612
+            "window_sec": 6.0154981359992235
           },
           "stable": true,
           "unavailable_metrics": []
@@ -1203,33 +1361,52 @@
         "mode": "wait",
         "stable": true,
         "timed_out": false,
-        "waited_sec": 6.013178491000872
+        "waited_sec": 6.0173386940005
       },
       "process_metrics": {
         "affinity_observed": "2",
         "cpu_migrations": null,
-        "ctx_involuntary": 26,
+        "ctx_involuntary": 34,
         "ctx_voluntary": 2,
         "major_faults": 0,
-        "max_rss_kb": 48908,
+        "max_rss_kb": 49116,
         "max_threads": 1,
-        "minor_faults": 1101211
+        "minor_faults": 1101227
       },
       "requested_version": "numpy",
-      "runner_cpu_ns": 12920000000,
-      "runner_wall_ns": 12520093074,
+      "runner_cpu_ns": 16269999999,
+      "runner_wall_ns": 15695829546,
       "runs": 30,
-      "speedup_vs_baseline_wall": 25.696800001522426
+      "speedup_vs_baseline_wall": 24.98129258295144
     },
     {
       "baseline": false,
+      "build_info": {
+        "build_command": [
+          "cargo",
+          "build",
+          "--release",
+          "--manifest-path",
+          "/home/vincent/delivery/Hackathon/hackathon-obs-cpu-optimization/rust/Cargo.toml"
+        ],
+        "tool": "cargo"
+      },
       "checksum_max": 1118578.5257543656,
       "checksum_min": 1118578.5257543656,
+      "command_executed": "taskset -c 2 /home/vincent/delivery/Hackathon/hackathon-obs-cpu-optimization/rust/target/release/cosine_benchmark_rust --metadata /home/vincent/delivery/Hackathon/hackathon-obs-cpu-optimization/data/metadata.json --warmup 5 --runs 30 --repeat 50 --expected-dataset-sha 8ee23e64581a0e8d8d35ae64e2ccb71a2f3bb4f1cc517a99fdf151e8bb353ff3",
+      "env_injected": {
+        "GOMAXPROCS": "1",
+        "MKL_NUM_THREADS": "1",
+        "NUMEXPR_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "VECLIB_MAXIMUM_THREADS": "1"
+      },
       "impl_id": "rust-naive",
       "language": "rust",
       "median_checksum": 1118578.5257543656,
-      "median_cpu_ns": 2993051.0,
-      "median_wall_ns": 2900184.0,
+      "median_cpu_ns": 4130561.0,
+      "median_wall_ns": 3737153.0,
       "meta": {
         "D": 96,
         "M": 15,
@@ -1240,6 +1417,8 @@
         "repeat": 50,
         "runs": 30,
         "runtime": {
+          "debug_assertions": false,
+          "panic_abort": true,
           "rust_pkg_version": "0.1.0",
           "warmup_executed": 5
         },
@@ -1257,39 +1436,39 @@
                 "available": true,
                 "limit": 20.0,
                 "pass": true,
-                "value": 8.838498398594885
+                "value": 11.133543290260205
               },
               "cpu_util_variance": {
                 "available": true,
                 "limit": 50.0,
                 "pass": true,
-                "value": 0.9422463123011692
+                "value": 0.13680527941456974
               },
               "disk_io": {
                 "available": true,
                 "limit": 5.0,
                 "pass": true,
-                "value": 0.02078963775580404
+                "value": 0.008443778536526557
               },
               "load1": {
                 "available": true,
                 "limit": 6.6,
                 "pass": true,
-                "value": 3.7261538461538466
+                "value": 3.490769230769231
               },
               "memory": {
                 "available": true,
                 "limit_mb": 2048.0,
                 "limit_percent": 15.0,
                 "pass": true,
-                "value_mb": 14946.30078125,
-                "value_percent": 94.9052448919253
+                "value_mb": 14947.6015625,
+                "value_percent": 94.91350452518766
               },
               "run_queue": {
                 "available": true,
                 "limit": 6.6,
                 "pass": true,
-                "value": 2.076923076923077
+                "value": 3.3076923076923075
               },
               "swap": {
                 "available": true,
@@ -1301,23 +1480,23 @@
             "metrics": {
               "cpu_count": 22,
               "cpu_freq_avg_khz": null,
-              "cpu_util_avg": 8.838498398594885,
-              "cpu_util_max": 10.128913443830568,
-              "cpu_util_variance": 0.9422463123011692,
-              "disk_io_mbps_avg": 0.02078963775580404,
-              "disk_io_mbps_max": 0.24947565306964847,
-              "interrupts_per_sec_avg": 27254.777834241017,
-              "load1_avg": 3.7261538461538466,
-              "load1_max": 3.74,
-              "mem_available_mb_min": 14946.30078125,
-              "mem_available_percent_min": 94.9052448919253,
-              "run_queue_avg": 2.076923076923077,
+              "cpu_util_avg": 11.133543290260205,
+              "cpu_util_max": 11.62361623616236,
+              "cpu_util_variance": 0.13680527941456974,
+              "disk_io_mbps_avg": 0.008443778536526557,
+              "disk_io_mbps_max": 0.054560867935723595,
+              "interrupts_per_sec_avg": 27767.25313035914,
+              "load1_avg": 3.490769230769231,
+              "load1_max": 3.5,
+              "mem_available_mb_min": 14947.6015625,
+              "mem_available_percent_min": 94.91350452518766,
+              "run_queue_avg": 3.3076923076923075,
               "run_queue_max": 5.0,
               "sample_count": 13,
               "swap_activity": 0.0,
               "swap_in": 0.0,
               "swap_out": 0.0,
-              "window_sec": 6.0121662720011955
+              "window_sec": 6.016454779000924
             },
             "stable": true,
             "unavailable_metrics": []
@@ -1332,39 +1511,39 @@
               "available": true,
               "limit": 20.0,
               "pass": true,
-              "value": 8.838498398594885
+              "value": 11.133543290260205
             },
             "cpu_util_variance": {
               "available": true,
               "limit": 50.0,
               "pass": true,
-              "value": 0.9422463123011692
+              "value": 0.13680527941456974
             },
             "disk_io": {
               "available": true,
               "limit": 5.0,
               "pass": true,
-              "value": 0.02078963775580404
+              "value": 0.008443778536526557
             },
             "load1": {
               "available": true,
               "limit": 6.6,
               "pass": true,
-              "value": 3.7261538461538466
+              "value": 3.490769230769231
             },
             "memory": {
               "available": true,
               "limit_mb": 2048.0,
               "limit_percent": 15.0,
               "pass": true,
-              "value_mb": 14946.30078125,
-              "value_percent": 94.9052448919253
+              "value_mb": 14947.6015625,
+              "value_percent": 94.91350452518766
             },
             "run_queue": {
               "available": true,
               "limit": 6.6,
               "pass": true,
-              "value": 2.076923076923077
+              "value": 3.3076923076923075
             },
             "swap": {
               "available": true,
@@ -1376,23 +1555,23 @@
           "metrics": {
             "cpu_count": 22,
             "cpu_freq_avg_khz": null,
-            "cpu_util_avg": 8.838498398594885,
-            "cpu_util_max": 10.128913443830568,
-            "cpu_util_variance": 0.9422463123011692,
-            "disk_io_mbps_avg": 0.02078963775580404,
-            "disk_io_mbps_max": 0.24947565306964847,
-            "interrupts_per_sec_avg": 27254.777834241017,
-            "load1_avg": 3.7261538461538466,
-            "load1_max": 3.74,
-            "mem_available_mb_min": 14946.30078125,
-            "mem_available_percent_min": 94.9052448919253,
-            "run_queue_avg": 2.076923076923077,
+            "cpu_util_avg": 11.133543290260205,
+            "cpu_util_max": 11.62361623616236,
+            "cpu_util_variance": 0.13680527941456974,
+            "disk_io_mbps_avg": 0.008443778536526557,
+            "disk_io_mbps_max": 0.054560867935723595,
+            "interrupts_per_sec_avg": 27767.25313035914,
+            "load1_avg": 3.490769230769231,
+            "load1_max": 3.5,
+            "mem_available_mb_min": 14947.6015625,
+            "mem_available_percent_min": 94.91350452518766,
+            "run_queue_avg": 3.3076923076923075,
             "run_queue_max": 5.0,
             "sample_count": 13,
             "swap_activity": 0.0,
             "swap_in": 0.0,
             "swap_out": 0.0,
-            "window_sec": 6.0121662720011955
+            "window_sec": 6.016454779000924
           },
           "stable": true,
           "unavailable_metrics": []
@@ -1400,23 +1579,23 @@
         "mode": "wait",
         "stable": true,
         "timed_out": false,
-        "waited_sec": 6.013011446997552
+        "waited_sec": 6.017588013000932
       },
       "process_metrics": {
         "affinity_observed": "2",
         "cpu_migrations": null,
-        "ctx_involuntary": 12,
+        "ctx_involuntary": 14,
         "ctx_voluntary": 2,
         "major_faults": 0,
         "max_rss_kb": 4752,
         "max_threads": 1,
-        "minor_faults": 901
+        "minor_faults": 896
       },
       "requested_version": "naive",
-      "runner_cpu_ns": 4529999999,
-      "runner_wall_ns": 4412350438,
+      "runner_cpu_ns": 6319999999,
+      "runner_wall_ns": 5792600142,
       "runs": 30,
-      "speedup_vs_baseline_wall": 72.16705043542065
+      "speedup_vs_baseline_wall": 67.40529087249037
     }
   ],
   "java_control": {
@@ -1455,6 +1634,7 @@
   },
   "metadata_path": "/home/vincent/delivery/Hackathon/hackathon-obs-cpu-optimization/data/metadata.json",
   "params": {
+    "build_profile": "portable",
     "cooldown_sec": 0.0,
     "cpu_affinity": "2",
     "disable_python": false,
@@ -1490,808 +1670,33 @@
                 "available": true,
                 "limit": 20.0,
                 "pass": true,
-                "value": 10.581755807837284
+                "value": 11.26886879056155
               },
               "cpu_util_variance": {
                 "available": true,
                 "limit": 50.0,
                 "pass": true,
-                "value": 0.33291141108757155
+                "value": 0.10764911985535411
               },
               "disk_io": {
                 "available": true,
                 "limit": 5.0,
                 "pass": true,
-                "value": 0.006497020411150696
+                "value": 0.0032473891074736804
               },
               "load1": {
                 "available": true,
                 "limit": 6.6,
                 "pass": true,
-                "value": 3.9269230769230767
+                "value": 3.667692307692308
               },
               "memory": {
                 "available": true,
                 "limit_mb": 2048.0,
                 "limit_percent": 15.0,
                 "pass": true,
-                "value_mb": 14947.87890625,
-                "value_percent": 94.9152655881355
-              },
-              "run_queue": {
-                "available": true,
-                "limit": 6.6,
-                "pass": true,
-                "value": 3.4615384615384617
-              },
-              "swap": {
-                "available": true,
-                "limit": 0.0,
-                "pass": true,
-                "value": 0.0
-              }
-            },
-            "metrics": {
-              "cpu_count": 22,
-              "cpu_freq_avg_khz": null,
-              "cpu_util_avg": 10.581755807837284,
-              "cpu_util_max": 11.58088235294118,
-              "cpu_util_variance": 0.33291141108757155,
-              "disk_io_mbps_avg": 0.006497020411150696,
-              "disk_io_mbps_max": 0.05457854757435247,
-              "interrupts_per_sec_avg": 34493.03756675839,
-              "load1_avg": 3.9269230769230767,
-              "load1_max": 4.1,
-              "mem_available_mb_min": 14947.87890625,
-              "mem_available_percent_min": 94.9152655881355,
-              "run_queue_avg": 3.4615384615384617,
-              "run_queue_max": 5.0,
-              "sample_count": 13,
-              "swap_activity": 0.0,
-              "swap_in": 0.0,
-              "swap_out": 0.0,
-              "window_sec": 6.013027345001319
-            },
-            "stable": true,
-            "unavailable_metrics": []
-          }
-        ],
-        "attempts": 1,
-        "last": {
-          "attempt_id": 1,
-          "blocking_reasons": [],
-          "criteria": {
-            "cpu_util": {
-              "available": true,
-              "limit": 20.0,
-              "pass": true,
-              "value": 10.581755807837284
-            },
-            "cpu_util_variance": {
-              "available": true,
-              "limit": 50.0,
-              "pass": true,
-              "value": 0.33291141108757155
-            },
-            "disk_io": {
-              "available": true,
-              "limit": 5.0,
-              "pass": true,
-              "value": 0.006497020411150696
-            },
-            "load1": {
-              "available": true,
-              "limit": 6.6,
-              "pass": true,
-              "value": 3.9269230769230767
-            },
-            "memory": {
-              "available": true,
-              "limit_mb": 2048.0,
-              "limit_percent": 15.0,
-              "pass": true,
-              "value_mb": 14947.87890625,
-              "value_percent": 94.9152655881355
-            },
-            "run_queue": {
-              "available": true,
-              "limit": 6.6,
-              "pass": true,
-              "value": 3.4615384615384617
-            },
-            "swap": {
-              "available": true,
-              "limit": 0.0,
-              "pass": true,
-              "value": 0.0
-            }
-          },
-          "metrics": {
-            "cpu_count": 22,
-            "cpu_freq_avg_khz": null,
-            "cpu_util_avg": 10.581755807837284,
-            "cpu_util_max": 11.58088235294118,
-            "cpu_util_variance": 0.33291141108757155,
-            "disk_io_mbps_avg": 0.006497020411150696,
-            "disk_io_mbps_max": 0.05457854757435247,
-            "interrupts_per_sec_avg": 34493.03756675839,
-            "load1_avg": 3.9269230769230767,
-            "load1_max": 4.1,
-            "mem_available_mb_min": 14947.87890625,
-            "mem_available_percent_min": 94.9152655881355,
-            "run_queue_avg": 3.4615384615384617,
-            "run_queue_max": 5.0,
-            "sample_count": 13,
-            "swap_activity": 0.0,
-            "swap_in": 0.0,
-            "swap_out": 0.0,
-            "window_sec": 6.013027345001319
-          },
-          "stable": true,
-          "unavailable_metrics": []
-        },
-        "mode": "wait",
-        "stable": true,
-        "timed_out": false,
-        "waited_sec": 6.014088259998971
-      },
-      "cpp-naive": {
-        "attempt_history": [
-          {
-            "attempt_id": 1,
-            "blocking_reasons": [],
-            "criteria": {
-              "cpu_util": {
-                "available": true,
-                "limit": 20.0,
-                "pass": true,
-                "value": 8.667048151781076
-              },
-              "cpu_util_variance": {
-                "available": true,
-                "limit": 50.0,
-                "pass": true,
-                "value": 1.2137019611882518
-              },
-              "disk_io": {
-                "available": true,
-                "limit": 5.0,
-                "pass": true,
-                "value": 0.0
-              },
-              "load1": {
-                "available": true,
-                "limit": 6.6,
-                "pass": true,
-                "value": 3.800769230769231
-              },
-              "memory": {
-                "available": true,
-                "limit_mb": 2048.0,
-                "limit_percent": 15.0,
-                "pass": true,
-                "value_mb": 14946.72265625,
-                "value_percent": 94.90792369190228
-              },
-              "run_queue": {
-                "available": true,
-                "limit": 6.6,
-                "pass": true,
-                "value": 2.076923076923077
-              },
-              "swap": {
-                "available": true,
-                "limit": 0.0,
-                "pass": true,
-                "value": 0.0
-              }
-            },
-            "metrics": {
-              "cpu_count": 22,
-              "cpu_freq_avg_khz": null,
-              "cpu_util_avg": 8.667048151781076,
-              "cpu_util_max": 10.313075506445667,
-              "cpu_util_variance": 1.2137019611882518,
-              "disk_io_mbps_avg": 0.0,
-              "disk_io_mbps_max": 0.0,
-              "interrupts_per_sec_avg": 29354.158447668728,
-              "load1_avg": 3.800769230769231,
-              "load1_max": 3.87,
-              "mem_available_mb_min": 14946.72265625,
-              "mem_available_percent_min": 94.90792369190228,
-              "run_queue_avg": 2.076923076923077,
-              "run_queue_max": 4.0,
-              "sample_count": 13,
-              "swap_activity": 0.0,
-              "swap_in": 0.0,
-              "swap_out": 0.0,
-              "window_sec": 6.011556052002561
-            },
-            "stable": true,
-            "unavailable_metrics": []
-          }
-        ],
-        "attempts": 1,
-        "last": {
-          "attempt_id": 1,
-          "blocking_reasons": [],
-          "criteria": {
-            "cpu_util": {
-              "available": true,
-              "limit": 20.0,
-              "pass": true,
-              "value": 8.667048151781076
-            },
-            "cpu_util_variance": {
-              "available": true,
-              "limit": 50.0,
-              "pass": true,
-              "value": 1.2137019611882518
-            },
-            "disk_io": {
-              "available": true,
-              "limit": 5.0,
-              "pass": true,
-              "value": 0.0
-            },
-            "load1": {
-              "available": true,
-              "limit": 6.6,
-              "pass": true,
-              "value": 3.800769230769231
-            },
-            "memory": {
-              "available": true,
-              "limit_mb": 2048.0,
-              "limit_percent": 15.0,
-              "pass": true,
-              "value_mb": 14946.72265625,
-              "value_percent": 94.90792369190228
-            },
-            "run_queue": {
-              "available": true,
-              "limit": 6.6,
-              "pass": true,
-              "value": 2.076923076923077
-            },
-            "swap": {
-              "available": true,
-              "limit": 0.0,
-              "pass": true,
-              "value": 0.0
-            }
-          },
-          "metrics": {
-            "cpu_count": 22,
-            "cpu_freq_avg_khz": null,
-            "cpu_util_avg": 8.667048151781076,
-            "cpu_util_max": 10.313075506445667,
-            "cpu_util_variance": 1.2137019611882518,
-            "disk_io_mbps_avg": 0.0,
-            "disk_io_mbps_max": 0.0,
-            "interrupts_per_sec_avg": 29354.158447668728,
-            "load1_avg": 3.800769230769231,
-            "load1_max": 3.87,
-            "mem_available_mb_min": 14946.72265625,
-            "mem_available_percent_min": 94.90792369190228,
-            "run_queue_avg": 2.076923076923077,
-            "run_queue_max": 4.0,
-            "sample_count": 13,
-            "swap_activity": 0.0,
-            "swap_in": 0.0,
-            "swap_out": 0.0,
-            "window_sec": 6.011556052002561
-          },
-          "stable": true,
-          "unavailable_metrics": []
-        },
-        "mode": "wait",
-        "stable": true,
-        "timed_out": false,
-        "waited_sec": 6.013071770001261
-      },
-      "go-naive": {
-        "attempt_history": [
-          {
-            "attempt_id": 1,
-            "blocking_reasons": [],
-            "criteria": {
-              "cpu_util": {
-                "available": true,
-                "limit": 20.0,
-                "pass": true,
-                "value": 8.308126895136105
-              },
-              "cpu_util_variance": {
-                "available": true,
-                "limit": 50.0,
-                "pass": true,
-                "value": 1.4692160527239744
-              },
-              "disk_io": {
-                "available": true,
-                "limit": 5.0,
-                "pass": true,
-                "value": 0.001950167282689701
-              },
-              "load1": {
-                "available": true,
-                "limit": 6.6,
-                "pass": true,
-                "value": 3.7653846153846158
-              },
-              "memory": {
-                "available": true,
-                "limit_mb": 2048.0,
-                "limit_percent": 15.0,
-                "pass": true,
-                "value_mb": 14946.2265625,
-                "value_percent": 94.90477362155899
-              },
-              "run_queue": {
-                "available": true,
-                "limit": 6.6,
-                "pass": true,
-                "value": 2.076923076923077
-              },
-              "swap": {
-                "available": true,
-                "limit": 0.0,
-                "pass": true,
-                "value": 0.0
-              }
-            },
-            "metrics": {
-              "cpu_count": 22,
-              "cpu_freq_avg_khz": null,
-              "cpu_util_avg": 8.308126895136105,
-              "cpu_util_max": 10.341643582640813,
-              "cpu_util_variance": 1.4692160527239744,
-              "disk_io_mbps_avg": 0.001950167282689701,
-              "disk_io_mbps_max": 0.02340200739227641,
-              "interrupts_per_sec_avg": 29303.51238902892,
-              "load1_avg": 3.7653846153846158,
-              "load1_max": 3.89,
-              "mem_available_mb_min": 14946.2265625,
-              "mem_available_percent_min": 94.90477362155899,
-              "run_queue_avg": 2.076923076923077,
-              "run_queue_max": 4.0,
-              "sample_count": 13,
-              "swap_activity": 0.0,
-              "swap_in": 0.0,
-              "swap_out": 0.0,
-              "window_sec": 6.010960135001369
-            },
-            "stable": true,
-            "unavailable_metrics": []
-          }
-        ],
-        "attempts": 1,
-        "last": {
-          "attempt_id": 1,
-          "blocking_reasons": [],
-          "criteria": {
-            "cpu_util": {
-              "available": true,
-              "limit": 20.0,
-              "pass": true,
-              "value": 8.308126895136105
-            },
-            "cpu_util_variance": {
-              "available": true,
-              "limit": 50.0,
-              "pass": true,
-              "value": 1.4692160527239744
-            },
-            "disk_io": {
-              "available": true,
-              "limit": 5.0,
-              "pass": true,
-              "value": 0.001950167282689701
-            },
-            "load1": {
-              "available": true,
-              "limit": 6.6,
-              "pass": true,
-              "value": 3.7653846153846158
-            },
-            "memory": {
-              "available": true,
-              "limit_mb": 2048.0,
-              "limit_percent": 15.0,
-              "pass": true,
-              "value_mb": 14946.2265625,
-              "value_percent": 94.90477362155899
-            },
-            "run_queue": {
-              "available": true,
-              "limit": 6.6,
-              "pass": true,
-              "value": 2.076923076923077
-            },
-            "swap": {
-              "available": true,
-              "limit": 0.0,
-              "pass": true,
-              "value": 0.0
-            }
-          },
-          "metrics": {
-            "cpu_count": 22,
-            "cpu_freq_avg_khz": null,
-            "cpu_util_avg": 8.308126895136105,
-            "cpu_util_max": 10.341643582640813,
-            "cpu_util_variance": 1.4692160527239744,
-            "disk_io_mbps_avg": 0.001950167282689701,
-            "disk_io_mbps_max": 0.02340200739227641,
-            "interrupts_per_sec_avg": 29303.51238902892,
-            "load1_avg": 3.7653846153846158,
-            "load1_max": 3.89,
-            "mem_available_mb_min": 14946.2265625,
-            "mem_available_percent_min": 94.90477362155899,
-            "run_queue_avg": 2.076923076923077,
-            "run_queue_max": 4.0,
-            "sample_count": 13,
-            "swap_activity": 0.0,
-            "swap_in": 0.0,
-            "swap_out": 0.0,
-            "window_sec": 6.010960135001369
-          },
-          "stable": true,
-          "unavailable_metrics": []
-        },
-        "mode": "wait",
-        "stable": true,
-        "timed_out": false,
-        "waited_sec": 6.0119666820028215
-      },
-      "java-naive": {
-        "attempt_history": [
-          {
-            "attempt_id": 1,
-            "blocking_reasons": [],
-            "criteria": {
-              "cpu_util": {
-                "available": true,
-                "limit": 20.0,
-                "pass": true,
-                "value": 10.227206788717096
-              },
-              "cpu_util_variance": {
-                "available": true,
-                "limit": 50.0,
-                "pass": true,
-                "value": 0.9771723610619105
-              },
-              "disk_io": {
-                "available": true,
-                "limit": 5.0,
-                "pass": true,
-                "value": 0.0
-              },
-              "load1": {
-                "available": true,
-                "limit": 6.6,
-                "pass": true,
-                "value": 3.9553846153846157
-              },
-              "memory": {
-                "available": true,
-                "limit_mb": 2048.0,
-                "limit_percent": 15.0,
-                "pass": true,
-                "value_mb": 14947.24609375,
-                "value_percent": 94.91124738817003
-              },
-              "run_queue": {
-                "available": true,
-                "limit": 6.6,
-                "pass": true,
-                "value": 3.3846153846153846
-              },
-              "swap": {
-                "available": true,
-                "limit": 0.0,
-                "pass": true,
-                "value": 0.0
-              }
-            },
-            "metrics": {
-              "cpu_count": 22,
-              "cpu_freq_avg_khz": null,
-              "cpu_util_avg": 10.227206788717096,
-              "cpu_util_max": 11.54201292705448,
-              "cpu_util_variance": 0.9771723610619105,
-              "disk_io_mbps_avg": 0.0,
-              "disk_io_mbps_max": 0.0,
-              "interrupts_per_sec_avg": 30078.148150745896,
-              "load1_avg": 3.9553846153846157,
-              "load1_max": 4.06,
-              "mem_available_mb_min": 14947.24609375,
-              "mem_available_percent_min": 94.91124738817003,
-              "run_queue_avg": 3.3846153846153846,
-              "run_queue_max": 5.0,
-              "sample_count": 13,
-              "swap_activity": 0.0,
-              "swap_in": 0.0,
-              "swap_out": 0.0,
-              "window_sec": 6.014978170998802
-            },
-            "stable": true,
-            "unavailable_metrics": []
-          }
-        ],
-        "attempts": 1,
-        "last": {
-          "attempt_id": 1,
-          "blocking_reasons": [],
-          "criteria": {
-            "cpu_util": {
-              "available": true,
-              "limit": 20.0,
-              "pass": true,
-              "value": 10.227206788717096
-            },
-            "cpu_util_variance": {
-              "available": true,
-              "limit": 50.0,
-              "pass": true,
-              "value": 0.9771723610619105
-            },
-            "disk_io": {
-              "available": true,
-              "limit": 5.0,
-              "pass": true,
-              "value": 0.0
-            },
-            "load1": {
-              "available": true,
-              "limit": 6.6,
-              "pass": true,
-              "value": 3.9553846153846157
-            },
-            "memory": {
-              "available": true,
-              "limit_mb": 2048.0,
-              "limit_percent": 15.0,
-              "pass": true,
-              "value_mb": 14947.24609375,
-              "value_percent": 94.91124738817003
-            },
-            "run_queue": {
-              "available": true,
-              "limit": 6.6,
-              "pass": true,
-              "value": 3.3846153846153846
-            },
-            "swap": {
-              "available": true,
-              "limit": 0.0,
-              "pass": true,
-              "value": 0.0
-            }
-          },
-          "metrics": {
-            "cpu_count": 22,
-            "cpu_freq_avg_khz": null,
-            "cpu_util_avg": 10.227206788717096,
-            "cpu_util_max": 11.54201292705448,
-            "cpu_util_variance": 0.9771723610619105,
-            "disk_io_mbps_avg": 0.0,
-            "disk_io_mbps_max": 0.0,
-            "interrupts_per_sec_avg": 30078.148150745896,
-            "load1_avg": 3.9553846153846157,
-            "load1_max": 4.06,
-            "mem_available_mb_min": 14947.24609375,
-            "mem_available_percent_min": 94.91124738817003,
-            "run_queue_avg": 3.3846153846153846,
-            "run_queue_max": 5.0,
-            "sample_count": 13,
-            "swap_activity": 0.0,
-            "swap_in": 0.0,
-            "swap_out": 0.0,
-            "window_sec": 6.014978170998802
-          },
-          "stable": true,
-          "unavailable_metrics": []
-        },
-        "mode": "wait",
-        "stable": true,
-        "timed_out": false,
-        "waited_sec": 6.01606576300037
-      },
-      "python-naive": {
-        "attempt_history": [
-          {
-            "attempt_id": 1,
-            "blocking_reasons": [],
-            "criteria": {
-              "cpu_util": {
-                "available": true,
-                "limit": 20.0,
-                "pass": true,
-                "value": 10.166267247099002
-              },
-              "cpu_util_variance": {
-                "available": true,
-                "limit": 50.0,
-                "pass": true,
-                "value": 1.1502174152011584
-              },
-              "disk_io": {
-                "available": true,
-                "limit": 5.0,
-                "pass": true,
-                "value": 0.04614495151478918
-              },
-              "load1": {
-                "available": true,
-                "limit": 6.6,
-                "pass": true,
-                "value": 3.427692307692308
-              },
-              "memory": {
-                "available": true,
-                "limit_mb": 2048.0,
-                "limit_percent": 15.0,
-                "pass": true,
-                "value_mb": 14946.22265625,
-                "value_percent": 94.90474881785549
-              },
-              "run_queue": {
-                "available": true,
-                "limit": 6.6,
-                "pass": true,
-                "value": 3.076923076923077
-              },
-              "swap": {
-                "available": true,
-                "limit": 0.0,
-                "pass": true,
-                "value": 0.0
-              }
-            },
-            "metrics": {
-              "cpu_count": 22,
-              "cpu_freq_avg_khz": null,
-              "cpu_util_avg": 10.166267247099002,
-              "cpu_util_max": 11.510128913443829,
-              "cpu_util_variance": 1.1502174152011584,
-              "disk_io_mbps_avg": 0.04614495151478918,
-              "disk_io_mbps_max": 0.5381578491211504,
-              "interrupts_per_sec_avg": 30719.133995016833,
-              "load1_avg": 3.427692307692308,
-              "load1_max": 3.52,
-              "mem_available_mb_min": 14946.22265625,
-              "mem_available_percent_min": 94.90474881785549,
-              "run_queue_avg": 3.076923076923077,
-              "run_queue_max": 6.0,
-              "sample_count": 13,
-              "swap_activity": 0.0,
-              "swap_in": 0.0,
-              "swap_out": 0.0,
-              "window_sec": 6.0141932950027694
-            },
-            "stable": true,
-            "unavailable_metrics": []
-          }
-        ],
-        "attempts": 1,
-        "last": {
-          "attempt_id": 1,
-          "blocking_reasons": [],
-          "criteria": {
-            "cpu_util": {
-              "available": true,
-              "limit": 20.0,
-              "pass": true,
-              "value": 10.166267247099002
-            },
-            "cpu_util_variance": {
-              "available": true,
-              "limit": 50.0,
-              "pass": true,
-              "value": 1.1502174152011584
-            },
-            "disk_io": {
-              "available": true,
-              "limit": 5.0,
-              "pass": true,
-              "value": 0.04614495151478918
-            },
-            "load1": {
-              "available": true,
-              "limit": 6.6,
-              "pass": true,
-              "value": 3.427692307692308
-            },
-            "memory": {
-              "available": true,
-              "limit_mb": 2048.0,
-              "limit_percent": 15.0,
-              "pass": true,
-              "value_mb": 14946.22265625,
-              "value_percent": 94.90474881785549
-            },
-            "run_queue": {
-              "available": true,
-              "limit": 6.6,
-              "pass": true,
-              "value": 3.076923076923077
-            },
-            "swap": {
-              "available": true,
-              "limit": 0.0,
-              "pass": true,
-              "value": 0.0
-            }
-          },
-          "metrics": {
-            "cpu_count": 22,
-            "cpu_freq_avg_khz": null,
-            "cpu_util_avg": 10.166267247099002,
-            "cpu_util_max": 11.510128913443829,
-            "cpu_util_variance": 1.1502174152011584,
-            "disk_io_mbps_avg": 0.04614495151478918,
-            "disk_io_mbps_max": 0.5381578491211504,
-            "interrupts_per_sec_avg": 30719.133995016833,
-            "load1_avg": 3.427692307692308,
-            "load1_max": 3.52,
-            "mem_available_mb_min": 14946.22265625,
-            "mem_available_percent_min": 94.90474881785549,
-            "run_queue_avg": 3.076923076923077,
-            "run_queue_max": 6.0,
-            "sample_count": 13,
-            "swap_activity": 0.0,
-            "swap_in": 0.0,
-            "swap_out": 0.0,
-            "window_sec": 6.0141932950027694
-          },
-          "stable": true,
-          "unavailable_metrics": []
-        },
-        "mode": "wait",
-        "stable": true,
-        "timed_out": false,
-        "waited_sec": 6.015275671998097
-      },
-      "python-numpy": {
-        "attempt_history": [
-          {
-            "attempt_id": 1,
-            "blocking_reasons": [],
-            "criteria": {
-              "cpu_util": {
-                "available": true,
-                "limit": 20.0,
-                "pass": true,
-                "value": 11.145874744346274
-              },
-              "cpu_util_variance": {
-                "available": true,
-                "limit": 50.0,
-                "pass": true,
-                "value": 0.3887166224892072
-              },
-              "disk_io": {
-                "available": true,
-                "limit": 5.0,
-                "pass": true,
-                "value": 0.0
-              },
-              "load1": {
-                "available": true,
-                "limit": 6.6,
-                "pass": true,
-                "value": 4.23
-              },
-              "memory": {
-                "available": true,
-                "limit_mb": 2048.0,
-                "limit_percent": 15.0,
-                "pass": true,
-                "value_mb": 14945.71484375,
-                "value_percent": 94.90152433640172
+                "value_mb": 14946.77734375,
+                "value_percent": 94.90827094375115
               },
               "run_queue": {
                 "available": true,
@@ -2309,23 +1714,23 @@
             "metrics": {
               "cpu_count": 22,
               "cpu_freq_avg_khz": null,
-              "cpu_util_avg": 11.145874744346274,
-              "cpu_util_max": 12.283894449499543,
-              "cpu_util_variance": 0.3887166224892072,
-              "disk_io_mbps_avg": 0.0,
-              "disk_io_mbps_max": 0.0,
-              "interrupts_per_sec_avg": 34417.32271877113,
-              "load1_avg": 4.23,
-              "load1_max": 4.48,
-              "mem_available_mb_min": 14945.71484375,
-              "mem_available_percent_min": 94.90152433640172,
+              "cpu_util_avg": 11.26886879056155,
+              "cpu_util_max": 12.05151793928243,
+              "cpu_util_variance": 0.10764911985535411,
+              "disk_io_mbps_avg": 0.0032473891074736804,
+              "disk_io_mbps_max": 0.03896866928968416,
+              "interrupts_per_sec_avg": 32154.30294374448,
+              "load1_avg": 3.667692307692308,
+              "load1_max": 3.9,
+              "mem_available_mb_min": 14946.77734375,
+              "mem_available_percent_min": 94.90827094375115,
               "run_queue_avg": 3.0,
-              "run_queue_max": 6.0,
+              "run_queue_max": 5.0,
               "sample_count": 13,
               "swap_activity": 0.0,
               "swap_in": 0.0,
               "swap_out": 0.0,
-              "window_sec": 6.012064029000612
+              "window_sec": 6.014460169000813
             },
             "stable": true,
             "unavailable_metrics": []
@@ -2340,33 +1745,33 @@
               "available": true,
               "limit": 20.0,
               "pass": true,
-              "value": 11.145874744346274
+              "value": 11.26886879056155
             },
             "cpu_util_variance": {
               "available": true,
               "limit": 50.0,
               "pass": true,
-              "value": 0.3887166224892072
+              "value": 0.10764911985535411
             },
             "disk_io": {
               "available": true,
               "limit": 5.0,
               "pass": true,
-              "value": 0.0
+              "value": 0.0032473891074736804
             },
             "load1": {
               "available": true,
               "limit": 6.6,
               "pass": true,
-              "value": 4.23
+              "value": 3.667692307692308
             },
             "memory": {
               "available": true,
               "limit_mb": 2048.0,
               "limit_percent": 15.0,
               "pass": true,
-              "value_mb": 14945.71484375,
-              "value_percent": 94.90152433640172
+              "value_mb": 14946.77734375,
+              "value_percent": 94.90827094375115
             },
             "run_queue": {
               "available": true,
@@ -2384,23 +1789,23 @@
           "metrics": {
             "cpu_count": 22,
             "cpu_freq_avg_khz": null,
-            "cpu_util_avg": 11.145874744346274,
-            "cpu_util_max": 12.283894449499543,
-            "cpu_util_variance": 0.3887166224892072,
-            "disk_io_mbps_avg": 0.0,
-            "disk_io_mbps_max": 0.0,
-            "interrupts_per_sec_avg": 34417.32271877113,
-            "load1_avg": 4.23,
-            "load1_max": 4.48,
-            "mem_available_mb_min": 14945.71484375,
-            "mem_available_percent_min": 94.90152433640172,
+            "cpu_util_avg": 11.26886879056155,
+            "cpu_util_max": 12.05151793928243,
+            "cpu_util_variance": 0.10764911985535411,
+            "disk_io_mbps_avg": 0.0032473891074736804,
+            "disk_io_mbps_max": 0.03896866928968416,
+            "interrupts_per_sec_avg": 32154.30294374448,
+            "load1_avg": 3.667692307692308,
+            "load1_max": 3.9,
+            "mem_available_mb_min": 14946.77734375,
+            "mem_available_percent_min": 94.90827094375115,
             "run_queue_avg": 3.0,
-            "run_queue_max": 6.0,
+            "run_queue_max": 5.0,
             "sample_count": 13,
             "swap_activity": 0.0,
             "swap_in": 0.0,
             "swap_out": 0.0,
-            "window_sec": 6.012064029000612
+            "window_sec": 6.014460169000813
           },
           "stable": true,
           "unavailable_metrics": []
@@ -2408,9 +1813,9 @@
         "mode": "wait",
         "stable": true,
         "timed_out": false,
-        "waited_sec": 6.013178491000872
+        "waited_sec": 6.015478329998587
       },
-      "rust-naive": {
+      "cpp-naive": {
         "attempt_history": [
           {
             "attempt_id": 1,
@@ -2420,39 +1825,39 @@
                 "available": true,
                 "limit": 20.0,
                 "pass": true,
-                "value": 8.838498398594885
+                "value": 11.631346194745902
               },
               "cpu_util_variance": {
                 "available": true,
                 "limit": 50.0,
                 "pass": true,
-                "value": 0.9422463123011692
+                "value": 0.2832092573211278
               },
               "disk_io": {
                 "available": true,
                 "limit": 5.0,
                 "pass": true,
-                "value": 0.02078963775580404
+                "value": 0.0019480373381654712
               },
               "load1": {
                 "available": true,
                 "limit": 6.6,
                 "pass": true,
-                "value": 3.7261538461538466
+                "value": 3.433846153846154
               },
               "memory": {
                 "available": true,
                 "limit_mb": 2048.0,
                 "limit_percent": 15.0,
                 "pass": true,
-                "value_mb": 14946.30078125,
-                "value_percent": 94.9052448919253
+                "value_mb": 14946.4140625,
+                "value_percent": 94.90596419932653
               },
               "run_queue": {
                 "available": true,
                 "limit": 6.6,
                 "pass": true,
-                "value": 2.076923076923077
+                "value": 3.923076923076923
               },
               "swap": {
                 "available": true,
@@ -2464,23 +1869,23 @@
             "metrics": {
               "cpu_count": 22,
               "cpu_freq_avg_khz": null,
-              "cpu_util_avg": 8.838498398594885,
-              "cpu_util_max": 10.128913443830568,
-              "cpu_util_variance": 0.9422463123011692,
-              "disk_io_mbps_avg": 0.02078963775580404,
-              "disk_io_mbps_max": 0.24947565306964847,
-              "interrupts_per_sec_avg": 27254.777834241017,
-              "load1_avg": 3.7261538461538466,
-              "load1_max": 3.74,
-              "mem_available_mb_min": 14946.30078125,
-              "mem_available_percent_min": 94.9052448919253,
-              "run_queue_avg": 2.076923076923077,
-              "run_queue_max": 5.0,
+              "cpu_util_avg": 11.631346194745902,
+              "cpu_util_max": 12.94439380127621,
+              "cpu_util_variance": 0.2832092573211278,
+              "disk_io_mbps_avg": 0.0019480373381654712,
+              "disk_io_mbps_max": 0.023376448057985656,
+              "interrupts_per_sec_avg": 29712.92794180172,
+              "load1_avg": 3.433846153846154,
+              "load1_max": 3.54,
+              "mem_available_mb_min": 14946.4140625,
+              "mem_available_percent_min": 94.90596419932653,
+              "run_queue_avg": 3.923076923076923,
+              "run_queue_max": 6.0,
               "sample_count": 13,
               "swap_activity": 0.0,
               "swap_in": 0.0,
               "swap_out": 0.0,
-              "window_sec": 6.0121662720011955
+              "window_sec": 6.0148670749986195
             },
             "stable": true,
             "unavailable_metrics": []
@@ -2495,39 +1900,39 @@
               "available": true,
               "limit": 20.0,
               "pass": true,
-              "value": 8.838498398594885
+              "value": 11.631346194745902
             },
             "cpu_util_variance": {
               "available": true,
               "limit": 50.0,
               "pass": true,
-              "value": 0.9422463123011692
+              "value": 0.2832092573211278
             },
             "disk_io": {
               "available": true,
               "limit": 5.0,
               "pass": true,
-              "value": 0.02078963775580404
+              "value": 0.0019480373381654712
             },
             "load1": {
               "available": true,
               "limit": 6.6,
               "pass": true,
-              "value": 3.7261538461538466
+              "value": 3.433846153846154
             },
             "memory": {
               "available": true,
               "limit_mb": 2048.0,
               "limit_percent": 15.0,
               "pass": true,
-              "value_mb": 14946.30078125,
-              "value_percent": 94.9052448919253
+              "value_mb": 14946.4140625,
+              "value_percent": 94.90596419932653
             },
             "run_queue": {
               "available": true,
               "limit": 6.6,
               "pass": true,
-              "value": 2.076923076923077
+              "value": 3.923076923076923
             },
             "swap": {
               "available": true,
@@ -2539,23 +1944,23 @@
           "metrics": {
             "cpu_count": 22,
             "cpu_freq_avg_khz": null,
-            "cpu_util_avg": 8.838498398594885,
-            "cpu_util_max": 10.128913443830568,
-            "cpu_util_variance": 0.9422463123011692,
-            "disk_io_mbps_avg": 0.02078963775580404,
-            "disk_io_mbps_max": 0.24947565306964847,
-            "interrupts_per_sec_avg": 27254.777834241017,
-            "load1_avg": 3.7261538461538466,
-            "load1_max": 3.74,
-            "mem_available_mb_min": 14946.30078125,
-            "mem_available_percent_min": 94.9052448919253,
-            "run_queue_avg": 2.076923076923077,
-            "run_queue_max": 5.0,
+            "cpu_util_avg": 11.631346194745902,
+            "cpu_util_max": 12.94439380127621,
+            "cpu_util_variance": 0.2832092573211278,
+            "disk_io_mbps_avg": 0.0019480373381654712,
+            "disk_io_mbps_max": 0.023376448057985656,
+            "interrupts_per_sec_avg": 29712.92794180172,
+            "load1_avg": 3.433846153846154,
+            "load1_max": 3.54,
+            "mem_available_mb_min": 14946.4140625,
+            "mem_available_percent_min": 94.90596419932653,
+            "run_queue_avg": 3.923076923076923,
+            "run_queue_max": 6.0,
             "sample_count": 13,
             "swap_activity": 0.0,
             "swap_in": 0.0,
             "swap_out": 0.0,
-            "window_sec": 6.0121662720011955
+            "window_sec": 6.0148670749986195
           },
           "stable": true,
           "unavailable_metrics": []
@@ -2563,7 +1968,782 @@
         "mode": "wait",
         "stable": true,
         "timed_out": false,
-        "waited_sec": 6.013011446997552
+        "waited_sec": 6.016587532001722
+      },
+      "go-naive": {
+        "attempt_history": [
+          {
+            "attempt_id": 1,
+            "blocking_reasons": [],
+            "criteria": {
+              "cpu_util": {
+                "available": true,
+                "limit": 20.0,
+                "pass": true,
+                "value": 11.393748490425935
+              },
+              "cpu_util_variance": {
+                "available": true,
+                "limit": 50.0,
+                "pass": true,
+                "value": 0.21641223937182047
+              },
+              "disk_io": {
+                "available": true,
+                "limit": 5.0,
+                "pass": true,
+                "value": 0.0
+              },
+              "load1": {
+                "available": true,
+                "limit": 6.6,
+                "pass": true,
+                "value": 3.338461538461538
+              },
+              "memory": {
+                "available": true,
+                "limit_mb": 2048.0,
+                "limit_percent": 15.0,
+                "pass": true,
+                "value_mb": 14948.0625,
+                "value_percent": 94.91643136219955
+              },
+              "run_queue": {
+                "available": true,
+                "limit": 6.6,
+                "pass": true,
+                "value": 3.0
+              },
+              "swap": {
+                "available": true,
+                "limit": 0.0,
+                "pass": true,
+                "value": 0.0
+              }
+            },
+            "metrics": {
+              "cpu_count": 22,
+              "cpu_freq_avg_khz": null,
+              "cpu_util_avg": 11.393748490425935,
+              "cpu_util_max": 12.3400365630713,
+              "cpu_util_variance": 0.21641223937182047,
+              "disk_io_mbps_avg": 0.0,
+              "disk_io_mbps_max": 0.0,
+              "interrupts_per_sec_avg": 26937.36294229989,
+              "load1_avg": 3.338461538461538,
+              "load1_max": 3.35,
+              "mem_available_mb_min": 14948.0625,
+              "mem_available_percent_min": 94.91643136219955,
+              "run_queue_avg": 3.0,
+              "run_queue_max": 4.0,
+              "sample_count": 13,
+              "swap_activity": 0.0,
+              "swap_in": 0.0,
+              "swap_out": 0.0,
+              "window_sec": 6.017793604998587
+            },
+            "stable": true,
+            "unavailable_metrics": []
+          }
+        ],
+        "attempts": 1,
+        "last": {
+          "attempt_id": 1,
+          "blocking_reasons": [],
+          "criteria": {
+            "cpu_util": {
+              "available": true,
+              "limit": 20.0,
+              "pass": true,
+              "value": 11.393748490425935
+            },
+            "cpu_util_variance": {
+              "available": true,
+              "limit": 50.0,
+              "pass": true,
+              "value": 0.21641223937182047
+            },
+            "disk_io": {
+              "available": true,
+              "limit": 5.0,
+              "pass": true,
+              "value": 0.0
+            },
+            "load1": {
+              "available": true,
+              "limit": 6.6,
+              "pass": true,
+              "value": 3.338461538461538
+            },
+            "memory": {
+              "available": true,
+              "limit_mb": 2048.0,
+              "limit_percent": 15.0,
+              "pass": true,
+              "value_mb": 14948.0625,
+              "value_percent": 94.91643136219955
+            },
+            "run_queue": {
+              "available": true,
+              "limit": 6.6,
+              "pass": true,
+              "value": 3.0
+            },
+            "swap": {
+              "available": true,
+              "limit": 0.0,
+              "pass": true,
+              "value": 0.0
+            }
+          },
+          "metrics": {
+            "cpu_count": 22,
+            "cpu_freq_avg_khz": null,
+            "cpu_util_avg": 11.393748490425935,
+            "cpu_util_max": 12.3400365630713,
+            "cpu_util_variance": 0.21641223937182047,
+            "disk_io_mbps_avg": 0.0,
+            "disk_io_mbps_max": 0.0,
+            "interrupts_per_sec_avg": 26937.36294229989,
+            "load1_avg": 3.338461538461538,
+            "load1_max": 3.35,
+            "mem_available_mb_min": 14948.0625,
+            "mem_available_percent_min": 94.91643136219955,
+            "run_queue_avg": 3.0,
+            "run_queue_max": 4.0,
+            "sample_count": 13,
+            "swap_activity": 0.0,
+            "swap_in": 0.0,
+            "swap_out": 0.0,
+            "window_sec": 6.017793604998587
+          },
+          "stable": true,
+          "unavailable_metrics": []
+        },
+        "mode": "wait",
+        "stable": true,
+        "timed_out": false,
+        "waited_sec": 6.0191725449985825
+      },
+      "java-naive": {
+        "attempt_history": [
+          {
+            "attempt_id": 1,
+            "blocking_reasons": [],
+            "criteria": {
+              "cpu_util": {
+                "available": true,
+                "limit": 20.0,
+                "pass": true,
+                "value": 11.313183380403657
+              },
+              "cpu_util_variance": {
+                "available": true,
+                "limit": 50.0,
+                "pass": true,
+                "value": 0.15729422456335418
+              },
+              "disk_io": {
+                "available": true,
+                "limit": 5.0,
+                "pass": true,
+                "value": 0.01944657734647796
+              },
+              "load1": {
+                "available": true,
+                "limit": 6.6,
+                "pass": true,
+                "value": 3.2607692307692306
+              },
+              "memory": {
+                "available": true,
+                "limit_mb": 2048.0,
+                "limit_percent": 15.0,
+                "pass": true,
+                "value_mb": 14948.6640625,
+                "value_percent": 94.9202511325371
+              },
+              "run_queue": {
+                "available": true,
+                "limit": 6.6,
+                "pass": true,
+                "value": 3.3076923076923075
+              },
+              "swap": {
+                "available": true,
+                "limit": 0.0,
+                "pass": true,
+                "value": 0.0
+              }
+            },
+            "metrics": {
+              "cpu_count": 22,
+              "cpu_freq_avg_khz": null,
+              "cpu_util_avg": 11.313183380403657,
+              "cpu_util_max": 11.959521619135238,
+              "cpu_util_variance": 0.15729422456335418,
+              "disk_io_mbps_avg": 0.01944657734647796,
+              "disk_io_mbps_max": 0.2333589281577355,
+              "interrupts_per_sec_avg": 20777.429509595797,
+              "load1_avg": 3.2607692307692306,
+              "load1_max": 3.27,
+              "mem_available_mb_min": 14948.6640625,
+              "mem_available_percent_min": 94.9202511325371,
+              "run_queue_avg": 3.3076923076923075,
+              "run_queue_max": 6.0,
+              "sample_count": 13,
+              "swap_activity": 0.0,
+              "swap_in": 0.0,
+              "swap_out": 0.0,
+              "window_sec": 6.01970549500038
+            },
+            "stable": true,
+            "unavailable_metrics": []
+          }
+        ],
+        "attempts": 1,
+        "last": {
+          "attempt_id": 1,
+          "blocking_reasons": [],
+          "criteria": {
+            "cpu_util": {
+              "available": true,
+              "limit": 20.0,
+              "pass": true,
+              "value": 11.313183380403657
+            },
+            "cpu_util_variance": {
+              "available": true,
+              "limit": 50.0,
+              "pass": true,
+              "value": 0.15729422456335418
+            },
+            "disk_io": {
+              "available": true,
+              "limit": 5.0,
+              "pass": true,
+              "value": 0.01944657734647796
+            },
+            "load1": {
+              "available": true,
+              "limit": 6.6,
+              "pass": true,
+              "value": 3.2607692307692306
+            },
+            "memory": {
+              "available": true,
+              "limit_mb": 2048.0,
+              "limit_percent": 15.0,
+              "pass": true,
+              "value_mb": 14948.6640625,
+              "value_percent": 94.9202511325371
+            },
+            "run_queue": {
+              "available": true,
+              "limit": 6.6,
+              "pass": true,
+              "value": 3.3076923076923075
+            },
+            "swap": {
+              "available": true,
+              "limit": 0.0,
+              "pass": true,
+              "value": 0.0
+            }
+          },
+          "metrics": {
+            "cpu_count": 22,
+            "cpu_freq_avg_khz": null,
+            "cpu_util_avg": 11.313183380403657,
+            "cpu_util_max": 11.959521619135238,
+            "cpu_util_variance": 0.15729422456335418,
+            "disk_io_mbps_avg": 0.01944657734647796,
+            "disk_io_mbps_max": 0.2333589281577355,
+            "interrupts_per_sec_avg": 20777.429509595797,
+            "load1_avg": 3.2607692307692306,
+            "load1_max": 3.27,
+            "mem_available_mb_min": 14948.6640625,
+            "mem_available_percent_min": 94.9202511325371,
+            "run_queue_avg": 3.3076923076923075,
+            "run_queue_max": 6.0,
+            "sample_count": 13,
+            "swap_activity": 0.0,
+            "swap_in": 0.0,
+            "swap_out": 0.0,
+            "window_sec": 6.01970549500038
+          },
+          "stable": true,
+          "unavailable_metrics": []
+        },
+        "mode": "wait",
+        "stable": true,
+        "timed_out": false,
+        "waited_sec": 6.020997094001359
+      },
+      "python-naive": {
+        "attempt_history": [
+          {
+            "attempt_id": 1,
+            "blocking_reasons": [],
+            "criteria": {
+              "cpu_util": {
+                "available": true,
+                "limit": 20.0,
+                "pass": true,
+                "value": 11.490946119727118
+              },
+              "cpu_util_variance": {
+                "available": true,
+                "limit": 50.0,
+                "pass": true,
+                "value": 0.13568295833886332
+              },
+              "disk_io": {
+                "available": true,
+                "limit": 5.0,
+                "pass": true,
+                "value": 0.010398059505566664
+              },
+              "load1": {
+                "available": true,
+                "limit": 6.6,
+                "pass": true,
+                "value": 3.060769230769231
+              },
+              "memory": {
+                "available": true,
+                "limit_mb": 2048.0,
+                "limit_percent": 15.0,
+                "pass": true,
+                "value_mb": 14945.83203125,
+                "value_percent": 94.90226844750643
+              },
+              "run_queue": {
+                "available": true,
+                "limit": 6.6,
+                "pass": true,
+                "value": 3.8461538461538463
+              },
+              "swap": {
+                "available": true,
+                "limit": 0.0,
+                "pass": true,
+                "value": 0.0
+              }
+            },
+            "metrics": {
+              "cpu_count": 22,
+              "cpu_freq_avg_khz": null,
+              "cpu_util_avg": 11.490946119727118,
+              "cpu_util_max": 12.121212121212121,
+              "cpu_util_variance": 0.13568295833886332,
+              "disk_io_mbps_avg": 0.010398059505566664,
+              "disk_io_mbps_max": 0.12477671406679998,
+              "interrupts_per_sec_avg": 27839.41438234913,
+              "load1_avg": 3.060769230769231,
+              "load1_max": 3.13,
+              "mem_available_mb_min": 14945.83203125,
+              "mem_available_percent_min": 94.90226844750643,
+              "run_queue_avg": 3.8461538461538463,
+              "run_queue_max": 6.0,
+              "sample_count": 13,
+              "swap_activity": 0.0,
+              "swap_in": 0.0,
+              "swap_out": 0.0,
+              "window_sec": 6.014208570999472
+            },
+            "stable": true,
+            "unavailable_metrics": []
+          }
+        ],
+        "attempts": 1,
+        "last": {
+          "attempt_id": 1,
+          "blocking_reasons": [],
+          "criteria": {
+            "cpu_util": {
+              "available": true,
+              "limit": 20.0,
+              "pass": true,
+              "value": 11.490946119727118
+            },
+            "cpu_util_variance": {
+              "available": true,
+              "limit": 50.0,
+              "pass": true,
+              "value": 0.13568295833886332
+            },
+            "disk_io": {
+              "available": true,
+              "limit": 5.0,
+              "pass": true,
+              "value": 0.010398059505566664
+            },
+            "load1": {
+              "available": true,
+              "limit": 6.6,
+              "pass": true,
+              "value": 3.060769230769231
+            },
+            "memory": {
+              "available": true,
+              "limit_mb": 2048.0,
+              "limit_percent": 15.0,
+              "pass": true,
+              "value_mb": 14945.83203125,
+              "value_percent": 94.90226844750643
+            },
+            "run_queue": {
+              "available": true,
+              "limit": 6.6,
+              "pass": true,
+              "value": 3.8461538461538463
+            },
+            "swap": {
+              "available": true,
+              "limit": 0.0,
+              "pass": true,
+              "value": 0.0
+            }
+          },
+          "metrics": {
+            "cpu_count": 22,
+            "cpu_freq_avg_khz": null,
+            "cpu_util_avg": 11.490946119727118,
+            "cpu_util_max": 12.121212121212121,
+            "cpu_util_variance": 0.13568295833886332,
+            "disk_io_mbps_avg": 0.010398059505566664,
+            "disk_io_mbps_max": 0.12477671406679998,
+            "interrupts_per_sec_avg": 27839.41438234913,
+            "load1_avg": 3.060769230769231,
+            "load1_max": 3.13,
+            "mem_available_mb_min": 14945.83203125,
+            "mem_available_percent_min": 94.90226844750643,
+            "run_queue_avg": 3.8461538461538463,
+            "run_queue_max": 6.0,
+            "sample_count": 13,
+            "swap_activity": 0.0,
+            "swap_in": 0.0,
+            "swap_out": 0.0,
+            "window_sec": 6.014208570999472
+          },
+          "stable": true,
+          "unavailable_metrics": []
+        },
+        "mode": "wait",
+        "stable": true,
+        "timed_out": false,
+        "waited_sec": 6.015688568997575
+      },
+      "python-numpy": {
+        "attempt_history": [
+          {
+            "attempt_id": 1,
+            "blocking_reasons": [],
+            "criteria": {
+              "cpu_util": {
+                "available": true,
+                "limit": 20.0,
+                "pass": true,
+                "value": 11.324277673702388
+              },
+              "cpu_util_variance": {
+                "available": true,
+                "limit": 50.0,
+                "pass": true,
+                "value": 0.0853000984314901
+              },
+              "disk_io": {
+                "available": true,
+                "limit": 5.0,
+                "pass": true,
+                "value": 0.0
+              },
+              "load1": {
+                "available": true,
+                "limit": 6.6,
+                "pass": true,
+                "value": 4.2323076923076925
+              },
+              "memory": {
+                "available": true,
+                "limit_mb": 2048.0,
+                "limit_percent": 15.0,
+                "pass": true,
+                "value_mb": 14944.91015625,
+                "value_percent": 94.89641477348266
+              },
+              "run_queue": {
+                "available": true,
+                "limit": 6.6,
+                "pass": true,
+                "value": 3.4615384615384617
+              },
+              "swap": {
+                "available": true,
+                "limit": 0.0,
+                "pass": true,
+                "value": 0.0
+              }
+            },
+            "metrics": {
+              "cpu_count": 22,
+              "cpu_freq_avg_khz": null,
+              "cpu_util_avg": 11.324277673702388,
+              "cpu_util_max": 11.764705882352944,
+              "cpu_util_variance": 0.0853000984314901,
+              "disk_io_mbps_avg": 0.0,
+              "disk_io_mbps_max": 0.0,
+              "interrupts_per_sec_avg": 29679.876857910538,
+              "load1_avg": 4.2323076923076925,
+              "load1_max": 4.3,
+              "mem_available_mb_min": 14944.91015625,
+              "mem_available_percent_min": 94.89641477348266,
+              "run_queue_avg": 3.4615384615384617,
+              "run_queue_max": 6.0,
+              "sample_count": 13,
+              "swap_activity": 0.0,
+              "swap_in": 0.0,
+              "swap_out": 0.0,
+              "window_sec": 6.0154981359992235
+            },
+            "stable": true,
+            "unavailable_metrics": []
+          }
+        ],
+        "attempts": 1,
+        "last": {
+          "attempt_id": 1,
+          "blocking_reasons": [],
+          "criteria": {
+            "cpu_util": {
+              "available": true,
+              "limit": 20.0,
+              "pass": true,
+              "value": 11.324277673702388
+            },
+            "cpu_util_variance": {
+              "available": true,
+              "limit": 50.0,
+              "pass": true,
+              "value": 0.0853000984314901
+            },
+            "disk_io": {
+              "available": true,
+              "limit": 5.0,
+              "pass": true,
+              "value": 0.0
+            },
+            "load1": {
+              "available": true,
+              "limit": 6.6,
+              "pass": true,
+              "value": 4.2323076923076925
+            },
+            "memory": {
+              "available": true,
+              "limit_mb": 2048.0,
+              "limit_percent": 15.0,
+              "pass": true,
+              "value_mb": 14944.91015625,
+              "value_percent": 94.89641477348266
+            },
+            "run_queue": {
+              "available": true,
+              "limit": 6.6,
+              "pass": true,
+              "value": 3.4615384615384617
+            },
+            "swap": {
+              "available": true,
+              "limit": 0.0,
+              "pass": true,
+              "value": 0.0
+            }
+          },
+          "metrics": {
+            "cpu_count": 22,
+            "cpu_freq_avg_khz": null,
+            "cpu_util_avg": 11.324277673702388,
+            "cpu_util_max": 11.764705882352944,
+            "cpu_util_variance": 0.0853000984314901,
+            "disk_io_mbps_avg": 0.0,
+            "disk_io_mbps_max": 0.0,
+            "interrupts_per_sec_avg": 29679.876857910538,
+            "load1_avg": 4.2323076923076925,
+            "load1_max": 4.3,
+            "mem_available_mb_min": 14944.91015625,
+            "mem_available_percent_min": 94.89641477348266,
+            "run_queue_avg": 3.4615384615384617,
+            "run_queue_max": 6.0,
+            "sample_count": 13,
+            "swap_activity": 0.0,
+            "swap_in": 0.0,
+            "swap_out": 0.0,
+            "window_sec": 6.0154981359992235
+          },
+          "stable": true,
+          "unavailable_metrics": []
+        },
+        "mode": "wait",
+        "stable": true,
+        "timed_out": false,
+        "waited_sec": 6.0173386940005
+      },
+      "rust-naive": {
+        "attempt_history": [
+          {
+            "attempt_id": 1,
+            "blocking_reasons": [],
+            "criteria": {
+              "cpu_util": {
+                "available": true,
+                "limit": 20.0,
+                "pass": true,
+                "value": 11.133543290260205
+              },
+              "cpu_util_variance": {
+                "available": true,
+                "limit": 50.0,
+                "pass": true,
+                "value": 0.13680527941456974
+              },
+              "disk_io": {
+                "available": true,
+                "limit": 5.0,
+                "pass": true,
+                "value": 0.008443778536526557
+              },
+              "load1": {
+                "available": true,
+                "limit": 6.6,
+                "pass": true,
+                "value": 3.490769230769231
+              },
+              "memory": {
+                "available": true,
+                "limit_mb": 2048.0,
+                "limit_percent": 15.0,
+                "pass": true,
+                "value_mb": 14947.6015625,
+                "value_percent": 94.91350452518766
+              },
+              "run_queue": {
+                "available": true,
+                "limit": 6.6,
+                "pass": true,
+                "value": 3.3076923076923075
+              },
+              "swap": {
+                "available": true,
+                "limit": 0.0,
+                "pass": true,
+                "value": 0.0
+              }
+            },
+            "metrics": {
+              "cpu_count": 22,
+              "cpu_freq_avg_khz": null,
+              "cpu_util_avg": 11.133543290260205,
+              "cpu_util_max": 11.62361623616236,
+              "cpu_util_variance": 0.13680527941456974,
+              "disk_io_mbps_avg": 0.008443778536526557,
+              "disk_io_mbps_max": 0.054560867935723595,
+              "interrupts_per_sec_avg": 27767.25313035914,
+              "load1_avg": 3.490769230769231,
+              "load1_max": 3.5,
+              "mem_available_mb_min": 14947.6015625,
+              "mem_available_percent_min": 94.91350452518766,
+              "run_queue_avg": 3.3076923076923075,
+              "run_queue_max": 5.0,
+              "sample_count": 13,
+              "swap_activity": 0.0,
+              "swap_in": 0.0,
+              "swap_out": 0.0,
+              "window_sec": 6.016454779000924
+            },
+            "stable": true,
+            "unavailable_metrics": []
+          }
+        ],
+        "attempts": 1,
+        "last": {
+          "attempt_id": 1,
+          "blocking_reasons": [],
+          "criteria": {
+            "cpu_util": {
+              "available": true,
+              "limit": 20.0,
+              "pass": true,
+              "value": 11.133543290260205
+            },
+            "cpu_util_variance": {
+              "available": true,
+              "limit": 50.0,
+              "pass": true,
+              "value": 0.13680527941456974
+            },
+            "disk_io": {
+              "available": true,
+              "limit": 5.0,
+              "pass": true,
+              "value": 0.008443778536526557
+            },
+            "load1": {
+              "available": true,
+              "limit": 6.6,
+              "pass": true,
+              "value": 3.490769230769231
+            },
+            "memory": {
+              "available": true,
+              "limit_mb": 2048.0,
+              "limit_percent": 15.0,
+              "pass": true,
+              "value_mb": 14947.6015625,
+              "value_percent": 94.91350452518766
+            },
+            "run_queue": {
+              "available": true,
+              "limit": 6.6,
+              "pass": true,
+              "value": 3.3076923076923075
+            },
+            "swap": {
+              "available": true,
+              "limit": 0.0,
+              "pass": true,
+              "value": 0.0
+            }
+          },
+          "metrics": {
+            "cpu_count": 22,
+            "cpu_freq_avg_khz": null,
+            "cpu_util_avg": 11.133543290260205,
+            "cpu_util_max": 11.62361623616236,
+            "cpu_util_variance": 0.13680527941456974,
+            "disk_io_mbps_avg": 0.008443778536526557,
+            "disk_io_mbps_max": 0.054560867935723595,
+            "interrupts_per_sec_avg": 27767.25313035914,
+            "load1_avg": 3.490769230769231,
+            "load1_max": 3.5,
+            "mem_available_mb_min": 14947.6015625,
+            "mem_available_percent_min": 94.91350452518766,
+            "run_queue_avg": 3.3076923076923075,
+            "run_queue_max": 5.0,
+            "sample_count": 13,
+            "swap_activity": 0.0,
+            "swap_in": 0.0,
+            "swap_out": 0.0,
+            "window_sec": 6.016454779000924
+          },
+          "stable": true,
+          "unavailable_metrics": []
+        },
+        "mode": "wait",
+        "stable": true,
+        "timed_out": false,
+        "waited_sec": 6.017588013000932
       }
     },
     "sample_interval_sec": 0.5,
@@ -2594,9 +2774,21 @@
       "OMP_NUM_THREADS": "1",
       "OPENBLAS_NUM_THREADS": "1",
       "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "injected": {
+      "GOMAXPROCS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
     }
   },
   "verifications": {
+    "c_cpp_profile": {
+      "profile": "portable",
+      "status": "pass"
+    },
     "checksum_consistency": {
       "abs_tol": 1e-09,
       "rel_tol": 1e-09,
@@ -2618,6 +2810,20 @@
       "sha256": "8ee23e64581a0e8d8d35ae64e2ccb71a2f3bb4f1cc517a99fdf151e8bb353ff3",
       "status": "pass"
     },
+    "go_single_thread": {
+      "enforced": true,
+      "status": "pass"
+    },
+    "java_stability": {
+      "effective_opts": [
+        "-Xms2g",
+        "-Xmx2g",
+        "-XX:ActiveProcessorCount=1",
+        "-XX:+UseSerialGC",
+        "-XX:ParallelGCThreads=1"
+      ],
+      "status": "pass"
+    },
     "output_format": {
       "status": "pass"
     },
@@ -2627,6 +2833,9 @@
     "resource_gating": {
       "enabled": true,
       "mode": "wait",
+      "status": "pass"
+    },
+    "rust_release": {
       "status": "pass"
     },
     "single_thread": {
@@ -2640,12 +2849,12 @@
     "gcc": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
     "go": "go version go1.22.2 linux/amd64",
     "java": "openjdk version \"25.0.2\" 2026-01-20",
+    "javac": null,
     "kernel": "6.6.87.2-microsoft-standard-WSL2",
-    "python": "3.12.3 (main, Jan 22 2026, 20:57:42) [GCC 13.3.0]"
+    "python": "3.12.3 (main, Jan 22 2026, 20:57:42) [GCC 13.3.0]",
+    "rustc": "rustc 1.75.0 (82e1608df 2023-12-21) (built from a source tarball)"
   },
   "warnings": [
-    "c-naive: -march=native absent in build flags (-O3 -std=c11 -Wall -Wextra -pedantic)",
-    "cpp-naive: -march=native absent in build flags (-O3 -std=c++17 -Wall -Wextra -pedantic)",
     "go-naive: runtime helper threads observed under single-thread mode (max_threads=3)",
     "java-naive: runtime helper threads observed under single-thread mode (max_threads=13)"
   ]

@@ -333,12 +333,16 @@ public final class CosineBenchmark {
             double checksum = cosineAllPairsChecksum(ds);
             System.out.println(String.format(
                     Locale.US,
-                    "{\"type\":\"self_check\",\"impl\":\"java-naive\",\"ok\":true,\"N\":%d,\"M\":%d,\"D\":%d,\"dataset_sha256\":\"%s\",\"checksum\":%.17g}",
+                    "{\"type\":\"self_check\",\"impl\":\"java-naive\",\"ok\":true,\"N\":%d,\"M\":%d,\"D\":%d,\"dataset_sha256\":\"%s\",\"checksum\":%.17g,\"runtime\":{\"available_processors\":%d,\"jvm_input_args\":%s,\"java_version\":\"%s\",\"java_vm\":\"%s\"}}",
                     ds.n,
                     ds.m,
                     ds.d,
                     ds.datasetSha256,
-                    checksum
+                    checksum,
+                    availableProcessors,
+                    jsonArrayOfStrings(jvmArgs),
+                    jsonEscape(System.getProperty("java.version", "unknown")),
+                    jsonEscape(System.getProperty("java.vm.name", "unknown"))
             ));
             return;
         }

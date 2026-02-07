@@ -16,6 +16,10 @@
 #define BUILD_COMPILER "cc"
 #endif
 
+#ifndef BUILD_PROFILE
+#define BUILD_PROFILE "unknown"
+#endif
+
 static long long now_wall_ns(void) {
     struct timespec ts;
     clock_gettime(CLOCK_MONOTONIC, &ts);
@@ -119,7 +123,7 @@ int main(int argc, char **argv) {
         return 0;
     }
 
-    printf("{\"type\":\"meta\",\"impl\":\"c-naive\",\"N\":%zu,\"M\":%zu,\"D\":%zu,\"repeat\":%d,\"warmup\":%d,\"runs\":%d,\"dataset_sha256\":\"%s\",\"build_flags\":\"%s\",\"runtime\":{\"compiler\":\"%s\",\"compiler_version\":\"%s\",\"warmup_executed\":%d}}\n",
+    printf("{\"type\":\"meta\",\"impl\":\"c-naive\",\"N\":%zu,\"M\":%zu,\"D\":%zu,\"repeat\":%d,\"warmup\":%d,\"runs\":%d,\"dataset_sha256\":\"%s\",\"build_flags\":\"%s\",\"runtime\":{\"compiler\":\"%s\",\"compiler_version\":\"%s\",\"build_profile\":\"%s\",\"warmup_executed\":%d}}\n",
            ds.N,
            ds.M,
            ds.D,
@@ -130,6 +134,7 @@ int main(int argc, char **argv) {
            BUILD_FLAGS,
            BUILD_COMPILER,
            __VERSION__,
+           BUILD_PROFILE,
            warmup);
     fflush(stdout);
 

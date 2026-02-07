@@ -55,8 +55,13 @@ python runner/run_all.py \
   --stability-enable --stability-mode wait --stability-timeout-sec 60 \
   --cpu-util-max 20 --disk-io-mbps-max 5 --mem-available-min-mb 2048 \
   --enforce-single-thread --cpu-affinity 2 \
+  --profile portable \
   --impls c-naive,cpp-naive,rust-naive,go-naive,java-naive,python-naive,python-numpy
 ```
+
+Profil compilateur C/C++ :
+- `--profile portable` : `-O3` (sans `-march=native`)
+- `--profile native` : `-O3 -march=native -mtune=native`
 
 Sorties :
 - `results/results.csv`

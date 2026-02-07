@@ -30,21 +30,21 @@ type Metadata struct {
 }
 
 type Dataset struct {
-	N            int
-	M            int
-	D            int
-	E            []float64
-	A            []float64
+	N             int
+	M             int
+	D             int
+	E             []float64
+	A             []float64
 	DatasetSHA256 string
 }
 
 type ProcSnapshot struct {
-	Threads       int
-	MaxRssKB      int64
-	CtxVoluntary  int64
+	Threads        int
+	MaxRssKB       int64
+	CtxVoluntary   int64
 	CtxInvoluntary int64
-	MinorFaults   int64
-	MajorFaults   int64
+	MinorFaults    int64
+	MajorFaults    int64
 }
 
 func readMetadata(path string) (*Metadata, error) {
@@ -266,6 +266,12 @@ func main() {
 			"D":              ds.D,
 			"dataset_sha256": ds.DatasetSHA256,
 			"checksum":       checksum,
+			"runtime": map[string]interface{}{
+				"gomaxprocs":     runtime.GOMAXPROCS(0),
+				"gomaxprocs_env": os.Getenv("GOMAXPROCS"),
+				"num_cpu":        runtime.NumCPU(),
+				"go_version":     runtime.Version(),
+			},
 		}
 		_ = enc.Encode(rec)
 		return
@@ -287,6 +293,8 @@ func main() {
 			"goos":            runtime.GOOS,
 			"goarch":          runtime.GOARCH,
 			"gomaxprocs":      runtime.GOMAXPROCS(0),
+			"gomaxprocs_env":  os.Getenv("GOMAXPROCS"),
+			"num_cpu":         runtime.NumCPU(),
 			"warmup_executed": *warmup,
 		},
 	}

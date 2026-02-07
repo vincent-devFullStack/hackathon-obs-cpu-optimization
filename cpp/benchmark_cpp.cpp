@@ -16,6 +16,10 @@
 #define BUILD_COMPILER "c++"
 #endif
 
+#ifndef BUILD_PROFILE
+#define BUILD_PROFILE "unknown"
+#endif
+
 static long long now_wall_ns() {
     struct timespec ts;
     clock_gettime(CLOCK_MONOTONIC, &ts);
@@ -137,6 +141,7 @@ int main(int argc, char **argv) {
               << "\",\"build_flags\":\"" << BUILD_FLAGS
               << "\",\"runtime\":{\"compiler\":\"" << BUILD_COMPILER
               << "\",\"compiler_version\":\"" << __VERSION__
+              << "\",\"build_profile\":\"" << BUILD_PROFILE
               << "\",\"warmup_executed\":" << warmup
               << "}}" << std::endl;
 

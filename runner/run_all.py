@@ -13,6 +13,7 @@ import statistics
 import subprocess
 import sys
 import time
+import tomllib
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -48,6 +49,13 @@ JAVA_PROFILES: Dict[str, List[str]] = {
 # Disallowed JVM flags:
 # -XX:CICompilerCount=1 is known to be invalid on some JVM builds and can fail startup.
 BLOCKED_JAVA_OPTS = {"-XX:CICompilerCount=1"}
+JAVA_STABLE_REQUIRED_OPTS = {
+    "-Xms2g",
+    "-Xmx2g",
+    "-XX:ActiveProcessorCount=1",
+    "-XX:+UseSerialGC",
+}
+RUNNER_ENV_KEYS = [*THREAD_ENV_VARS, "GOMAXPROCS"]
 
 
 @dataclass
@@ -108,9 +116,11 @@ def collect_tool_versions() -> Dict[str, Optional[str]]:
         "kernel": platform.release(),
         "gcc": cmd_line(["gcc", "--version"]),
         "g++": cmd_line(["g++", "--version"]),
+        "javac": cmd_line(["javac", "-version"], stderr=True),
         "java": cmd_line(["java", "-version"], stderr=True),
         "go": cmd_line(["go", "version"]),
         "cargo": cmd_line(["cargo", "--version"]),
+        "rustc": cmd_line(["rustc", "--version"]),
     }
 
 
@@ -175,6 +185,100 @@ def python_numpy_available(python_exec: str) -> Tuple[bool, Optional[str]]:
         return False, None
     version = p.stdout.strip().splitlines()[0] if p.stdout.strip() else None
     return True, version
+
+
+def shell_join(cmd: Sequence[str]) -> str:
+    return " ".join(shlex.quote(x) for x in cmd)
+
+
+def injected_env_view(env_before: Dict[str, str], env_after: Dict[str, str]) -> Dict[str, str]:
+    view: Dict[str, str] = {}
+    for key in RUNNER_ENV_KEYS:
+        before = env_before.get(key)
+        after = env_after.get(key)
+        if after is not None and after != before:
+            view[key] = after
+    return view
+
+
+def java_opts_are_stable(opts: Sequence[str]) -> bool:
+    return JAVA_STABLE_REQUIRED_OPTS.issubset(set(opts))
+
+
+def parse_make_vars(text: str) -> Dict[str, str]:
+    out: Dict[str, str] = {}
+    for raw in text.splitlines():
+        line = raw.strip()
+        if not line or "=" not in line:
+            continue
+        k, v = line.split("=", 1)
+        out[k.strip()] = v.strip()
+    return out
+
+
+def get_make_build_info(repo_root: Path, env: Dict[str, str], lang: str, profile: str) -> Dict[str, str]:
+    if lang == "c":
+        cmd = ["make", "-s", "-C", str(repo_root / "c"), "print-flags", f"PROFILE={profile}"]
+    elif lang == "cpp":
+        cmd = ["make", "-s", "-C", str(repo_root / "cpp"), "print-flags", f"PROFILE={profile}"]
+    else:
+        return {}
+    proc = subprocess.run(cmd, capture_output=True, text=True, env=env)
+    if proc.returncode != 0:
+        raise RuntimeError(f"failed to read {lang} make flags: {tail_lines(proc.stderr, 20)}")
+    return parse_make_vars(proc.stdout)
+
+
+def read_rust_release_profile(cargo_toml_path: Path) -> Dict[str, object]:
+    result = {
+        "available": False,
+        "opt_level": None,
+        "lto": None,
+        "codegen_units": None,
+        "panic": None,
+        "ok": False,
+        "issues": [],
+    }
+    raw = tomllib.loads(cargo_toml_path.read_text(encoding="utf-8"))
+    prof = (((raw.get("profile") or {}).get("release")) or {})
+    if not prof:
+        result["issues"] = ["[profile.release] section missing"]
+        return result
+
+    result["available"] = True
+    result["opt_level"] = prof.get("opt-level")
+    result["lto"] = prof.get("lto")
+    result["codegen_units"] = prof.get("codegen-units")
+    result["panic"] = prof.get("panic")
+
+    issues: List[str] = []
+    if int(prof.get("opt-level", -1)) != 3:
+        issues.append("opt-level must be 3")
+    if not bool(prof.get("lto")):
+        issues.append("lto must be enabled")
+    if int(prof.get("codegen-units", -1)) != 1:
+        issues.append("codegen-units must be 1")
+    if str(prof.get("panic", "")) != "abort":
+        issues.append("panic must be 'abort'")
+    result["issues"] = issues
+    result["ok"] = len(issues) == 0
+    return result
+
+
+def parse_self_check(stdout: str, impl_id: str) -> Dict[str, object]:
+    lines = [ln.strip() for ln in stdout.splitlines() if ln.strip()]
+    if not lines:
+        raise ValueError("empty self-check stdout")
+    obj = json.loads(lines[0])
+    if not isinstance(obj, dict):
+        raise ValueError("self-check output is not JSON object")
+    if obj.get("type") != "self_check":
+        raise ValueError("self-check output type mismatch")
+    if str(obj.get("impl")) != impl_id:
+        raise ValueError(f"self-check impl mismatch: expected {impl_id}, got {obj.get('impl')}")
+    if not bool(obj.get("ok", False)):
+        raise ValueError("self-check reported ok=false")
+    return obj
 
 
 def java_version_probe(java_opts: Sequence[str], env: Dict[str, str]) -> Dict[str, object]:
@@ -272,8 +376,15 @@ def resolve_java_opts(
             }
         )
         if bool(probe.get("ok")):
-            effective = requested
-            profile_used = "requested"
+            if java_opts_are_stable(requested):
+                effective = requested
+                profile_used = "requested"
+            else:
+                fallback_reason = "requested JVM options are valid but non-stable for benchmarking"
+                warn(
+                    "Java JVM opts accepted by JVM but non-stable for benchmark; falling back to strict_single_core",
+                    warnings,
+                )
         else:
             if java_probe_has_unknown_option(str(probe.get("stderr", ""))):
                 fallback_reason = "requested JVM options include unrecognized/unsupported option(s)"
@@ -416,10 +527,15 @@ def make_implementations(
     return impls
 
 
-def build_for_impls(repo_root: Path, env: Dict[str, str], impls: List[Implementation]) -> Tuple[List[Implementation], List[Dict[str, str]]]:
+def build_for_impls(
+    repo_root: Path,
+    env: Dict[str, str],
+    impls: List[Implementation],
+    build_profile: str,
+) -> Tuple[List[Implementation], List[Dict[str, str]], Dict[str, Dict[str, object]]]:
     build_steps = {
-        "c": ("make", ["make", "-C", str(repo_root / "c")]),
-        "cpp": ("make", ["make", "-C", str(repo_root / "cpp")]),
+        "c": ("make", ["make", "-B", "-C", str(repo_root / "c"), f"PROFILE={build_profile}"]),
+        "cpp": ("make", ["make", "-B", "-C", str(repo_root / "cpp"), f"PROFILE={build_profile}"]),
         "rust": ("cargo", ["cargo", "build", "--release", "--manifest-path", str(repo_root / "rust" / "Cargo.toml")]),
         "go": ("go", ["go", "build", "-o", str(repo_root / "go" / "benchmark_go"), str(repo_root / "go" / "main.go")]),
         "java": ("javac", ["javac", str(repo_root / "java" / "CosineBenchmark.java")]),
@@ -428,6 +544,7 @@ def build_for_impls(repo_root: Path, env: Dict[str, str], impls: List[Implementa
     langs = sorted({i.language for i in impls if i.language != "python"})
     skipped: List[Dict[str, str]] = []
     skipped_langs = set()
+    build_info: Dict[str, Dict[str, object]] = {}
 
     for lang in langs:
         if lang not in build_steps:
@@ -440,9 +557,14 @@ def build_for_impls(repo_root: Path, env: Dict[str, str], impls: List[Implementa
         proc = subprocess.run(cmd, cwd=str(repo_root), env=env)
         if proc.returncode != 0:
             raise RuntimeError(f"build failed for {lang}: {' '.join(cmd)}")
+        info: Dict[str, object] = {"tool": tool, "build_command": cmd}
+        if lang in ("c", "cpp"):
+            info.update(get_make_build_info(repo_root, env, lang, build_profile))
+            info["build_profile"] = build_profile
+        build_info[lang] = info
 
     kept = [i for i in impls if i.language not in skipped_langs]
-    return kept, skipped
+    return kept, skipped, build_info
 
 
 def filter_runnable(impls: List[Implementation]) -> Tuple[List[Implementation], List[Dict[str, str]]]:
@@ -568,6 +690,7 @@ def main() -> int:
     parser.add_argument("--gc-between", action="store_true")
 
     parser.add_argument("--skip-build", action="store_true")
+    parser.add_argument("--profile", choices=["portable", "native"], default="portable", help="Compilation profile for C/C++")
     parser.add_argument("--no-perf", action="store_true")
     parser.add_argument("--keep-going", action="store_true")
     parser.add_argument("--timeout-sec", type=int, default=None)
@@ -593,6 +716,7 @@ def main() -> int:
     warnings: List[str] = []
     critical_errors: List[Dict[str, object]] = []
     stability_reports: Dict[str, Dict[str, object]] = {}
+    build_info_by_lang: Dict[str, Dict[str, object]] = {}
 
     metadata_path = Path(args.metadata).resolve()
     try:
@@ -628,6 +752,7 @@ def main() -> int:
                 warn(f"{k}={v} (multi-thread runtime may bias comparison)", warnings)
 
     thread_env_effective = {k: env.get(k) for k in THREAD_ENV_VARS}
+    env_injected = injected_env_view(os.environ, env)
 
     if cpu_affinity is None:
         warn("no CPU affinity set; measurements may be less stable", warnings)
@@ -703,7 +828,7 @@ def main() -> int:
         warn("--java-opts provided but java implementation not selected", warnings)
 
     if not args.skip_build:
-        impls, skipped_build = build_for_impls(repo_root, env, impls)
+        impls, skipped_build, build_info_by_lang = build_for_impls(repo_root, env, impls, args.profile)
         for s in skipped_build:
             warn(f"{s['impl_id']}: {s['error']}", warnings)
 
@@ -715,6 +840,96 @@ def main() -> int:
         raise SystemExit("no runnable implementation available after preflight checks")
 
     if args.dry_run:
+        dry_checks: List[Tuple[bool, str, str]] = []
+        dry_failed = False
+
+        def add_check(ok: bool, name: str, detail: str) -> None:
+            nonlocal dry_failed
+            dry_checks.append((ok, name, detail))
+            if not ok:
+                dry_failed = True
+
+        if args.enforce_single_thread:
+            for key in THREAD_ENV_VARS:
+                ok = env.get(key) == "1"
+                add_check(ok, f"thread-env:{key}", f"value={env.get(key)} expected=1")
+            go_selected = any(i.language == "go" for i in impls)
+            if go_selected:
+                ok = env.get("GOMAXPROCS") == "1"
+                add_check(ok, "go:GOMAXPROCS", f"value={env.get('GOMAXPROCS')} expected=1")
+
+        if java_selected:
+            eff = list(java_resolution.get("effective_opts", []))
+            add_check(
+                java_opts_are_stable(eff),
+                "java:stable-opts",
+                "effective=" + json.dumps(eff),
+            )
+
+        c_info = build_info_by_lang.get("c", {})
+        if c_info:
+            cflags = str(c_info.get("CFLAGS", ""))
+            cprof = str(c_info.get("PROFILE", ""))
+            add_check(("-O3" in cflags) or ("-O2" in cflags), "c:opt-flag", cflags)
+            add_check(cprof == args.profile, "c:profile", f"make={cprof} expected={args.profile}")
+            if args.profile == "native":
+                add_check("-march=native" in cflags, "c:native-flag", cflags)
+            if args.profile == "portable":
+                add_check("-march=native" not in cflags, "c:portable-flag", cflags)
+
+        cpp_info = build_info_by_lang.get("cpp", {})
+        if cpp_info:
+            cxxflags = str(cpp_info.get("CXXFLAGS", ""))
+            cpp_prof = str(cpp_info.get("PROFILE", ""))
+            add_check(("-O3" in cxxflags) or ("-O2" in cxxflags), "cpp:opt-flag", cxxflags)
+            add_check(cpp_prof == args.profile, "cpp:profile", f"make={cpp_prof} expected={args.profile}")
+            if args.profile == "native":
+                add_check("-march=native" in cxxflags, "cpp:native-flag", cxxflags)
+            if args.profile == "portable":
+                add_check("-march=native" not in cxxflags, "cpp:portable-flag", cxxflags)
+
+        rust_selected = any(i.language == "rust" for i in impls)
+        if rust_selected:
+            cargo_prof = read_rust_release_profile(repo_root / "rust" / "Cargo.toml")
+            add_check(bool(cargo_prof.get("ok")), "rust:release-profile", "; ".join(cargo_prof.get("issues", [])) or "ok")
+            rust_impl = next((i for i in impls if i.language == "rust"), None)
+            if rust_impl is not None:
+                add_check("/release/" in rust_impl.command[0], "rust:release-binary-path", rust_impl.command[0])
+
+        dry_self_checks: Dict[str, Dict[str, object]] = {}
+        for impl in impls:
+            sc_cmd = [*impl.command, "--expected-dataset-sha", dataset_sha, "--self-check"]
+            proc = subprocess.run(sc_cmd, cwd=str(repo_root), env=env, capture_output=True, text=True)
+            if proc.returncode != 0:
+                add_check(False, f"{impl.impl_id}:self-check", f"exit={proc.returncode} stderr={tail_lines(proc.stderr, 5)}")
+                continue
+            try:
+                obj = parse_self_check(proc.stdout, impl.impl_id)
+                dry_self_checks[impl.impl_id] = obj
+            except Exception as exc:
+                add_check(False, f"{impl.impl_id}:self-check-parse", str(exc))
+                continue
+            ok_sha = str(obj.get("dataset_sha256")) == dataset_sha
+            add_check(ok_sha, f"{impl.impl_id}:dataset-sha", f"got={obj.get('dataset_sha256')} expected={dataset_sha}")
+
+            if impl.language == "go" and args.enforce_single_thread:
+                rt = obj.get("runtime") if isinstance(obj.get("runtime"), dict) else {}
+                gomax = int(rt.get("gomaxprocs", -1)) if rt and rt.get("gomaxprocs") is not None else -1
+                add_check(gomax == 1, "go:runtime-gomaxprocs", f"value={gomax} expected=1")
+
+            if impl.language == "rust":
+                rt = obj.get("runtime") if isinstance(obj.get("runtime"), dict) else {}
+                dbg = bool(rt.get("debug_assertions", True))
+                abort = bool(rt.get("panic_abort", False))
+                add_check(not dbg, "rust:debug-assertions", f"value={dbg} expected=false")
+                add_check(abort, "rust:panic-abort", f"value={abort} expected=true")
+
+        checksums = [float(v.get("checksum")) for v in dry_self_checks.values() if v.get("checksum") is not None]
+        if checksums:
+            base = checksums[0]
+            all_equal = all(math.isclose(c, base, rel_tol=REL_TOL, abs_tol=ABS_TOL) for c in checksums[1:])
+            add_check(all_equal, "self-check:checksum-consistency", f"count={len(checksums)}")
+
         print("[DRY-RUN] preflight checks passed")
         print("[DRY-RUN] runnable implementations: " + ", ".join(i.impl_id for i in impls))
         if java_selected:
@@ -724,7 +939,10 @@ def main() -> int:
                 + " effective="
                 + json.dumps(java_resolution.get("effective_opts", []))
             )
-        return 0
+        for ok, name, detail in dry_checks:
+            tag = "OK" if ok else "FAIL"
+            print(f"[DRY-RUN][{tag}] {name}: {detail}")
+        return 1 if dry_failed else 0
 
     if args.warmup < 5 and args.runs <= 5:
         warn("warmup < 5 with very low runs may increase noise (notably Java/JIT)", warnings)
@@ -876,11 +1094,35 @@ def main() -> int:
                 flags = str(meta_line.get("build_flags", "")).replace(",", " ")
                 if ("-O2" not in flags) and ("-O3" not in flags):
                     raise ValueError(f"build flags for {impl.impl_id} missing -O2/-O3: {flags}")
-                if "-march=native" not in flags:
-                    warn(f"{impl.impl_id}: -march=native absent in build flags ({flags})", warnings)
+                runtime_meta = meta_line.get("runtime") if isinstance(meta_line.get("runtime"), dict) else {}
+                build_profile_meta = str(runtime_meta.get("build_profile", ""))
+                if build_profile_meta and build_profile_meta != args.profile:
+                    raise ValueError(
+                        f"build profile mismatch for {impl.impl_id}: meta={build_profile_meta}, expected={args.profile}"
+                    )
+                if args.profile == "native" and "-march=native" not in flags:
+                    raise ValueError(f"native profile requested but -march=native missing for {impl.impl_id}: {flags}")
+                if args.profile == "portable" and "-march=native" in flags:
+                    raise ValueError(f"portable profile requested but -march=native present for {impl.impl_id}: {flags}")
+
+            if impl.language == "rust":
+                runtime_meta = meta_line.get("runtime") if isinstance(meta_line.get("runtime"), dict) else {}
+                if bool(runtime_meta.get("debug_assertions", True)):
+                    raise ValueError("rust build has debug_assertions=true; release build required")
+                if not bool(runtime_meta.get("panic_abort", False)):
+                    raise ValueError("rust build has panic_abort=false; expected true for benchmark profile")
+
+            if impl.language == "go" and args.enforce_single_thread:
+                runtime_meta = meta_line.get("runtime") if isinstance(meta_line.get("runtime"), dict) else {}
+                gomax = runtime_meta.get("gomaxprocs")
+                if gomax is None or int(gomax) != 1:
+                    raise ValueError(f"go runtime gomaxprocs must be 1 under enforce-single-thread (got {gomax})")
 
             if impl.language == "java" and args.warmup < 5 and args.runs <= 5:
                 warn("java warmup/runs low; JIT/GC stability may be poor", warnings)
+            if impl.language == "java":
+                if not java_opts_are_stable(java_resolution.get("effective_opts", [])):
+                    raise ValueError("java effective options are not stable for benchmark profile")
 
         except Exception as exc:
             critical_errors.append({"impl_id": impl.impl_id, "error": f"meta verification failed: {exc}"})
@@ -965,10 +1207,13 @@ def main() -> int:
                 "repeat": args.repeat,
                 "language": impl.language,
                 "requested_version": impl.requested_version,
+                "build_profile": args.profile if impl.language in ("c", "cpp") else "",
                 "affinity_observed": timed.get("affinity_observed"),
                 "runner_wall_ns": timed.get("runner_wall_ns"),
                 "runner_cpu_ns": timed.get("runner_cpu_ns"),
                 "process_returncode": timed.get("returncode"),
+                "command_executed": shell_join(timed.get("command", [])) if isinstance(timed.get("command"), list) else "",
+                "env_injected": json.dumps(env_injected, sort_keys=True),
                 "stability_cpu_util_avg": st_metrics.get("cpu_util_avg"),
                 "stability_load1_avg": st_metrics.get("load1_avg"),
                 "stability_io_mbps_avg": st_metrics.get("disk_io_mbps_avg"),
@@ -1059,9 +1304,12 @@ def main() -> int:
             "median_checksum": median(checksum_vals),
             "checksum_min": min(checksum_vals),
             "checksum_max": max(checksum_vals),
+            "command_executed": shell_join(timed.get("command", [])) if isinstance(timed.get("command"), list) else "",
+            "env_injected": dict(env_injected),
             "runner_wall_ns": timed.get("runner_wall_ns"),
             "runner_cpu_ns": timed.get("runner_cpu_ns"),
             "preflight_stability": stability_report,
+            "build_info": build_info_by_lang.get(impl.language, {}),
             "process_metrics": {
                 "max_rss_kb": timed.get("max_rss_kb"),
                 "ctx_voluntary": timed.get("ctx_switches_voluntary"),
@@ -1145,10 +1393,13 @@ def main() -> int:
         "repeat",
         "language",
         "requested_version",
+        "build_profile",
         "affinity_observed",
         "runner_wall_ns",
         "runner_cpu_ns",
         "process_returncode",
+        "command_executed",
+        "env_injected",
     ]
 
     with csv_path.open("w", newline="", encoding="utf-8") as f:
@@ -1173,8 +1424,23 @@ def main() -> int:
             "status": "fail" if any("single-thread enforcement violated" in e["error"] for e in critical_errors) else "pass",
             "enforced": args.enforce_single_thread,
         },
+        "go_single_thread": {
+            "status": "fail" if any("gomaxprocs" in str(e["error"]).lower() for e in critical_errors) else "pass",
+            "enforced": args.enforce_single_thread,
+        },
         "compilation_flags": {
             "status": "fail" if any("build flags" in e["error"] for e in critical_errors) else "pass",
+        },
+        "c_cpp_profile": {
+            "status": "fail" if any("build profile mismatch" in e["error"] or "profile requested" in e["error"] for e in critical_errors) else "pass",
+            "profile": args.profile,
+        },
+        "rust_release": {
+            "status": "fail" if any("rust build has" in str(e["error"]).lower() for e in critical_errors) else "pass",
+        },
+        "java_stability": {
+            "status": "fail" if any("java effective options are not stable" in str(e["error"]).lower() for e in critical_errors) else "pass",
+            "effective_opts": java_resolution.get("effective_opts", []),
         },
         "resource_gating": {
             "status": "fail" if any("resource gating failed" in e["error"] for e in critical_errors) else "pass",
@@ -1201,6 +1467,7 @@ def main() -> int:
             "warmup": args.warmup,
             "runs": args.runs,
             "repeat": args.repeat,
+            "build_profile": args.profile,
             "cpu_affinity": cpu_affinity,
             "nice": args.nice,
             "disable_python": bool(args.disable_python),
@@ -1242,7 +1509,9 @@ def main() -> int:
         "thread_environment": {
             "before": thread_env_before,
             "effective": thread_env_effective,
+            "injected": env_injected,
         },
+        "build_info_by_language": build_info_by_lang,
         "versions": tool_versions,
         "baseline_impl_id": baseline_id,
         "implementations": [impl_summaries[k] for k in sorted(impl_summaries.keys())],
