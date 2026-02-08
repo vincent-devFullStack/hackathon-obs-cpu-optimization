@@ -27,6 +27,8 @@ from metrics_linux import (
     wait_for_stable_system,
 )
 
+WARNINGS_ENABLED = True
+
 ABS_TOL = 1e-9
 REL_TOL = 1e-9
 
@@ -79,6 +81,8 @@ class Implementation:
 
 
 def warn(msg: str, warnings: List[str]) -> None:
+    if not WARNINGS_ENABLED:
+        return
     print(f"[WARN] {msg}", file=sys.stderr)
     warnings.append(msg)
 
@@ -994,6 +998,7 @@ def main() -> int:
     parser.add_argument("--skip-build", action="store_true")
     parser.add_argument("--profile", choices=["portable", "native"], default="portable", help="Compilation profile for C/C++")
     parser.add_argument("--no-perf", action="store_true")
+    parser.add_argument("--quiet-warnings", action="store_true", help="Suppress warning output and warning list")
     parser.add_argument("--keep-going", action="store_true")
     parser.add_argument("--timeout-sec", type=int, default=None)
     parser.add_argument("--baseline", default="python-naive")
@@ -1010,6 +1015,9 @@ def main() -> int:
     parser.add_argument("--summary-json", default=str(repo_root / "results" / "summary.json"))
 
     args = parser.parse_args()
+
+    global WARNINGS_ENABLED
+    WARNINGS_ENABLED = not args.quiet_warnings
 
     cpu_affinity = args.cpu_affinity or args.pin_affinity or args.cpu_set
     run_mode = args.run_mode if args.run_mode else "custom"

@@ -1,0 +1,65 @@
+{
+  "source_summary": "/home/sheep/hackaton/results/summary_multi_core.json",
+  "entries": [
+    {
+      "code_language": "cpp",
+      "implementation": "cpp-simd-native",
+      "speedup_vs_baseline": 281.0623712832793,
+      "cpu_processing_time_ms": 0.3073355,
+      "max_ram_mb": 5.21875,
+      "ram_usage_percent": 0.03324616169828163,
+      "cpu_usage_percent": 99.99170356681557,
+      "cores_used": 1
+    },
+    {
+      "code_language": "c",
+      "implementation": "c-simd-native",
+      "speedup_vs_baseline": 276.79953187255785,
+      "cpu_processing_time_ms": 0.3120675,
+      "max_ram_mb": 3.6015625,
+      "ram_usage_percent": 0.022943833148065612,
+      "cpu_usage_percent": 99.99134877416937,
+      "cores_used": 1
+    },
+    {
+      "code_language": "java",
+      "implementation": "java-opt",
+      "speedup_vs_baseline": 112.98878778604389,
+      "cpu_processing_time_ms": 0.8,
+      "max_ram_mb": 60.52734375,
+      "ram_usage_percent": 0.3855907750859834,
+      "cpu_usage_percent": 104.6342509757144,
+      "cores_used": 20
+    },
+    {
+      "code_language": "python",
+      "implementation": "python-vectorized",
+      "speedup_vs_baseline": 92.92052864734453,
+      "cpu_processing_time_ms": 0.9296155,
+      "max_ram_mb": 35.59765625,
+      "ram_usage_percent": 0.22677565236260516,
+      "cpu_usage_percent": 99.99161013817995,
+      "cores_used": 1
+    },
+    {
+      "code_language": "python",
+      "implementation": "python-numpy",
+      "speedup_vs_baseline": 18.728438800874162,
+      "cpu_processing_time_ms": 4.612132,
+      "max_ram_mb": 49.23828125,
+      "ram_usage_percent": 0.31367355404703584,
+      "cpu_usage_percent": 99.98891091409948,
+      "cores_used": 1
+    },
+    {
+      "code_language": "python",
+      "implementation": "python-naive",
+      "speedup_vs_baseline": 1.0,
+      "cpu_processing_time_ms": 86.3744575,
+      "max_ram_mb": 47.20703125,
+      "ram_usage_percent": 0.3007334312303394,
+      "cpu_usage_percent": 99.98477327967332,
+      "cores_used": 1
+    }
+  ]
+}

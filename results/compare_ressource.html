@@ -1,0 +1,762 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Resource Comparison - Boost vs Eco</title>
+  <style>
+    :root {
+      --bg-1: #f3efe7;
+      --bg-2: #f7f1e1;
+      --ink: #1f1d1a;
+      --muted: #6a6258;
+      --accent-1: #d1542d;
+      --accent-2: #2f6b74;
+      --accent-3: #e1b84f;
+      --card: #fffaf1;
+      --line: #e4d8c6;
+      --shadow: 0 20px 60px rgba(10, 10, 10, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Space Grotesk", "Alegreya Sans", "Noto Sans", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 700px at 10% -10%, #f8e6c3 0%, rgba(248, 230, 195, 0) 60%),
+        radial-gradient(900px 600px at 90% 0%, #dfe9e3 0%, rgba(223, 233, 227, 0) 55%),
+        linear-gradient(180deg, var(--bg-1), var(--bg-2));
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    header {
+      display: grid;
+      gap: 16px;
+      align-items: end;
+    }
+
+    h1 {
+      font-size: clamp(28px, 4vw, 44px);
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+
+    .subhead {
+      color: var(--muted);
+      max-width: 820px;
+      line-height: 1.5;
+    }
+
+    .banner {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border: 1px dashed var(--line);
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 12px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .legend {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+      font-size: 14px;
+    }
+
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .dot.boost { background: var(--accent-1); }
+    .dot.eco { background: var(--accent-2); }
+
+    .section {
+      margin-top: 34px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .section h2 {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: 0.01em;
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 12px;
+      animation: rise 500ms ease both;
+    }
+
+    .compare-card {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      align-items: start;
+    }
+
+    .compare-block {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 10px 12px;
+      background: #fff7ea;
+    }
+
+    .compare-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 16px;
+      letter-spacing: 0.01em;
+    }
+
+    .tag {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+
+    .metrics {
+      display: grid;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .metrics strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .bars {
+      display: grid;
+      gap: 10px;
+    }
+
+    .bar-row {
+      display: grid;
+      gap: 6px;
+    }
+
+    .bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .bar-track {
+      background: #efe6d7;
+      border-radius: 999px;
+      height: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bar {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      border-radius: 999px;
+      opacity: 0.85;
+    }
+
+    .bar.boost { background: var(--accent-1); }
+    .bar.eco { background: var(--accent-2); }
+
+    .radar-wrap {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: 1fr;
+      align-items: center;
+    }
+
+    canvas {
+      width: 100%;
+      height: 240px;
+      background: #fff5e6;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 8px 6px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    th {
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .note {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 700px) {
+      canvas { height: 200px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <h1>Boost vs Eco: Resource Comparison</h1>
+      <div class="subhead">
+        Detailed comparison of implementation performance and resource usage for performance mode (Boost)
+        and economy mode (Eco). Radars use normalized values: higher is better for speedup, lower is better
+        for CPU time, RAM, CPU percent, RAM percent, and cores used.
+      </div>
+      <div class="legend">
+        <span><i class="dot boost"></i> Boost</span>
+        <span><i class="dot eco"></i> Eco</span>
+      </div>
+      <div class="banner" id="banner">Loading data...</div>
+    </header>
+
+    <section class="section" id="overview">
+      <h2>Overview</h2>
+      <div class="grid" id="overviewGrid"></div>
+    </section>
+
+    <section class="section" id="fastest">
+      <h2>Fastest Implementations</h2>
+      <div class="grid" id="fastestGrid"></div>
+    </section>
+
+    <section class="section" id="radars">
+      <h2>Radar Comparisons (Kiviat)</h2>
+      <div class="grid" id="radarGrid"></div>
+    </section>
+
+    <section class="section" id="tableSection">
+      <h2>Raw Values</h2>
+      <div class="card">
+        <table id="dataTable"></table>
+        <div class="note">Sorted by best performance (speedup if available, otherwise lowest CPU time).</div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const FILES = {
+      boost: "ressource_boost.json",
+      eco: "ressource_eco.json",
+    };
+
+    function formatNumber(value, digits = 2) {
+      if (value === null || value === undefined || Number.isNaN(value)) return "n/a";
+      return Number(value).toFixed(digits);
+    }
+
+    function formatInt(value) {
+      if (value === null || value === undefined || Number.isNaN(value)) return "n/a";
+      return String(Math.round(Number(value)));
+    }
+
+    async function loadJSON(path) {
+      const resp = await fetch(path, { cache: "no-store" });
+      if (!resp.ok) throw new Error(`Failed to load ${path}`);
+      return await resp.json();
+    }
+
+    function indexEntries(entries) {
+      const map = new Map();
+      (entries || []).forEach((entry) => {
+        map.set(entry.implementation, entry);
+      });
+      return map;
+    }
+
+    function unionImpls(boostMap, ecoMap) {
+      const all = new Set([...boostMap.keys(), ...ecoMap.keys()]);
+      return Array.from(all);
+    }
+
+    function getSortScore(entry) {
+      if (!entry) return -Infinity;
+      if (entry.speedup_vs_baseline !== null && entry.speedup_vs_baseline !== undefined) {
+        return Number(entry.speedup_vs_baseline);
+      }
+      if (entry.cpu_processing_time_ms) {
+        return 1 / Number(entry.cpu_processing_time_ms);
+      }
+      return -Infinity;
+    }
+
+    function collectMaxima(entries) {
+      const max = {
+        speedup_vs_baseline: 0,
+        cpu_processing_time_ms: 0,
+        max_ram_mb: 0,
+        cpu_usage_percent: 0,
+        ram_usage_percent: 0,
+        cores_used: 0,
+      };
+      entries.forEach((entry) => {
+        if (!entry) return;
+        Object.keys(max).forEach((key) => {
+          const val = Number(entry[key]);
+          if (!Number.isNaN(val)) {
+            max[key] = Math.max(max[key], val);
+          }
+        });
+      });
+      return max;
+    }
+
+    function normalize(entry, maxima) {
+      if (!entry) return null;
+      const safe = (v, max, invert) => {
+        if (!max || max === 0 || v === null || v === undefined) return 0;
+        const ratio = Number(v) / max;
+        const clamped = Math.max(0, Math.min(1, ratio));
+        return invert ? 1 - clamped : clamped;
+      };
+      return {
+        speedup: safe(entry.speedup_vs_baseline, maxima.speedup_vs_baseline, false),
+        cpu_time: safe(entry.cpu_processing_time_ms, maxima.cpu_processing_time_ms, true),
+        max_ram: safe(entry.max_ram_mb, maxima.max_ram_mb, true),
+        cpu_pct: safe(entry.cpu_usage_percent, maxima.cpu_usage_percent, true),
+        ram_pct: safe(entry.ram_usage_percent, maxima.ram_usage_percent, true),
+        cores: safe(entry.cores_used, maxima.cores_used, true),
+      };
+    }
+
+    function drawRadar(canvas, labels, datasets) {
+      const ctx = canvas.getContext("2d");
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = canvas.clientWidth * dpr;
+      canvas.height = canvas.clientHeight * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      const cx = canvas.clientWidth / 2;
+      const cy = canvas.clientHeight / 2;
+      const radius = Math.min(cx, cy) - 18;
+      const steps = 4;
+      const angleStep = (Math.PI * 2) / labels.length;
+
+      ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+      ctx.strokeStyle = "#e4d8c6";
+      ctx.lineWidth = 1;
+
+      for (let s = 1; s <= steps; s += 1) {
+        const r = (radius / steps) * s;
+        ctx.beginPath();
+        labels.forEach((_, i) => {
+          const angle = i * angleStep - Math.PI / 2;
+          const x = cx + Math.cos(angle) * r;
+          const y = cy + Math.sin(angle) * r;
+          if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        });
+        ctx.closePath();
+        ctx.stroke();
+      }
+
+      labels.forEach((label, i) => {
+        const angle = i * angleStep - Math.PI / 2;
+        const x = cx + Math.cos(angle) * (radius + 10);
+        const y = cy + Math.sin(angle) * (radius + 10);
+        ctx.fillStyle = "#6a6258";
+        ctx.font = "12px Space Grotesk, sans-serif";
+        ctx.textAlign = x < cx ? "right" : "left";
+        ctx.textBaseline = y < cy ? "bottom" : "top";
+        ctx.fillText(label, x, y);
+      });
+
+      datasets.forEach((set) => {
+        ctx.beginPath();
+        set.values.forEach((value, i) => {
+          const angle = i * angleStep - Math.PI / 2;
+          const r = radius * value;
+          const x = cx + Math.cos(angle) * r;
+          const y = cy + Math.sin(angle) * r;
+          if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        });
+        ctx.closePath();
+        ctx.fillStyle = set.fill;
+        ctx.strokeStyle = set.color;
+        ctx.lineWidth = 2;
+        ctx.globalAlpha = 0.7;
+        ctx.fill();
+        ctx.globalAlpha = 1;
+        ctx.stroke();
+      });
+    }
+
+    function createOverviewCard(name, boostEntry, ecoEntry, maxSpeedup) {
+      const card = document.createElement("div");
+      card.className = "card";
+      const lang = boostEntry?.code_language || ecoEntry?.code_language || "unknown";
+
+      const speedupBoost = boostEntry?.speedup_vs_baseline;
+      const speedupEco = ecoEntry?.speedup_vs_baseline;
+      const boostPercent = speedupBoost ? (speedupBoost / maxSpeedup) * 100 : 0;
+      const ecoPercent = speedupEco ? (speedupEco / maxSpeedup) * 100 : 0;
+
+      card.innerHTML = `
+        <div class="tag">${lang.toUpperCase()}</div>
+        <h3>${name}</h3>
+        <div class="bars">
+          <div class="bar-row">
+            <div class="bar-label"><span>Speedup</span><span>${formatNumber(speedupBoost, 2)}x / ${formatNumber(speedupEco, 2)}x</span></div>
+            <div class="bar-track">
+              <div class="bar boost" style="width:${boostPercent}%;"></div>
+              <div class="bar eco" style="width:${ecoPercent}%; opacity:0.75;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="metrics">
+          <div><strong>Boost CPU time:</strong> ${formatNumber(boostEntry?.cpu_processing_time_ms, 2)} ms</div>
+          <div><strong>Eco CPU time:</strong> ${formatNumber(ecoEntry?.cpu_processing_time_ms, 2)} ms</div>
+          <div><strong>Boost RAM:</strong> ${formatNumber(boostEntry?.max_ram_mb, 2)} MB</div>
+          <div><strong>Eco RAM:</strong> ${formatNumber(ecoEntry?.max_ram_mb, 2)} MB</div>
+        </div>
+      `;
+      return card;
+    }
+
+    function pickFastest(entries) {
+      if (!entries || entries.length === 0) return null;
+      const sorted = [...entries].sort((a, b) => getSortScore(b) - getSortScore(a));
+      return sorted[0] || null;
+    }
+
+    function createFastestComparison(boostEntry, ecoEntry, maxima) {
+      const card = document.createElement("div");
+      card.className = "card";
+
+      const boostName = boostEntry?.implementation || "n/a";
+      const ecoName = ecoEntry?.implementation || "n/a";
+      const boostLang = boostEntry?.code_language || "n/a";
+      const ecoLang = ecoEntry?.code_language || "n/a";
+
+      card.innerHTML = `
+        <h3>Fastest in Boost vs Eco</h3>
+        <div class="compare-card">
+          <div class="compare-block">
+            <div class="compare-title">Boost fastest</div>
+            <div class="metrics">
+              <div><strong>${boostName}</strong> (${boostLang})</div>
+              <div><strong>Speedup:</strong> ${formatNumber(boostEntry?.speedup_vs_baseline, 2)}x</div>
+              <div><strong>CPU time:</strong> ${formatNumber(boostEntry?.cpu_processing_time_ms, 2)} ms</div>
+              <div><strong>RAM:</strong> ${formatNumber(boostEntry?.max_ram_mb, 2)} MB</div>
+              <div><strong>Cores:</strong> ${formatInt(boostEntry?.cores_used)}</div>
+            </div>
+          </div>
+          <div class="compare-block">
+            <div class="compare-title">Eco fastest</div>
+            <div class="metrics">
+              <div><strong>${ecoName}</strong> (${ecoLang})</div>
+              <div><strong>Speedup:</strong> ${formatNumber(ecoEntry?.speedup_vs_baseline, 2)}x</div>
+              <div><strong>CPU time:</strong> ${formatNumber(ecoEntry?.cpu_processing_time_ms, 2)} ms</div>
+              <div><strong>RAM:</strong> ${formatNumber(ecoEntry?.max_ram_mb, 2)} MB</div>
+              <div><strong>Cores:</strong> ${formatInt(ecoEntry?.cores_used)}</div>
+            </div>
+          </div>
+        </div>
+        <div class="radar-wrap">
+          <canvas></canvas>
+          <div class="note">Normalized radar comparison for the fastest entries.</div>
+        </div>
+      `;
+
+      const labels = [
+        "Speedup",
+        "CPU time",
+        "Max RAM",
+        "CPU %",
+        "RAM %",
+        "Cores",
+      ];
+
+      const boostNorm = normalize(boostEntry, maxima);
+      const ecoNorm = normalize(ecoEntry, maxima);
+      const canvas = card.querySelector("canvas");
+      const datasets = [];
+      if (boostNorm) {
+        datasets.push({
+          label: "Boost",
+          values: [
+            boostNorm.speedup,
+            boostNorm.cpu_time,
+            boostNorm.max_ram,
+            boostNorm.cpu_pct,
+            boostNorm.ram_pct,
+            boostNorm.cores,
+          ],
+          color: "#d1542d",
+          fill: "rgba(209, 84, 45, 0.2)",
+        });
+      }
+      if (ecoNorm) {
+        datasets.push({
+          label: "Eco",
+          values: [
+            ecoNorm.speedup,
+            ecoNorm.cpu_time,
+            ecoNorm.max_ram,
+            ecoNorm.cpu_pct,
+            ecoNorm.ram_pct,
+            ecoNorm.cores,
+          ],
+          color: "#2f6b74",
+          fill: "rgba(47, 107, 116, 0.2)",
+        });
+      }
+
+      const draw = () => {
+        if (canvas.clientWidth === 0 || canvas.clientHeight === 0) return;
+        drawRadar(canvas, labels, datasets);
+      };
+
+      return { card, draw };
+    }
+
+    function createRadarCard(name, boostEntry, ecoEntry, maxima) {
+      const card = document.createElement("div");
+      card.className = "card";
+      const lang = boostEntry?.code_language || ecoEntry?.code_language || "unknown";
+
+      const labels = [
+        "Speedup",
+        "CPU time",
+        "Max RAM",
+        "CPU %",
+        "RAM %",
+        "Cores",
+      ];
+
+      const boostNorm = normalize(boostEntry, maxima);
+      const ecoNorm = normalize(ecoEntry, maxima);
+
+      card.innerHTML = `
+        <div class="tag">${lang.toUpperCase()}</div>
+        <h3>${name}</h3>
+        <div class="radar-wrap">
+          <canvas></canvas>
+          <div class="metrics">
+            <div><strong>Boost speedup:</strong> ${formatNumber(boostEntry?.speedup_vs_baseline, 2)}x</div>
+            <div><strong>Eco speedup:</strong> ${formatNumber(ecoEntry?.speedup_vs_baseline, 2)}x</div>
+            <div><strong>Boost cores:</strong> ${formatInt(boostEntry?.cores_used)}</div>
+            <div><strong>Eco cores:</strong> ${formatInt(ecoEntry?.cores_used)}</div>
+          </div>
+        </div>
+      `;
+
+      const canvas = card.querySelector("canvas");
+      const datasets = [];
+      if (boostNorm) {
+        datasets.push({
+          label: "Boost",
+          values: [
+            boostNorm.speedup,
+            boostNorm.cpu_time,
+            boostNorm.max_ram,
+            boostNorm.cpu_pct,
+            boostNorm.ram_pct,
+            boostNorm.cores,
+          ],
+          color: "#d1542d",
+          fill: "rgba(209, 84, 45, 0.2)",
+        });
+      }
+      if (ecoNorm) {
+        datasets.push({
+          label: "Eco",
+          values: [
+            ecoNorm.speedup,
+            ecoNorm.cpu_time,
+            ecoNorm.max_ram,
+            ecoNorm.cpu_pct,
+            ecoNorm.ram_pct,
+            ecoNorm.cores,
+          ],
+          color: "#2f6b74",
+          fill: "rgba(47, 107, 116, 0.2)",
+        });
+      }
+
+      const draw = () => {
+        if (canvas.clientWidth === 0 || canvas.clientHeight === 0) return;
+        drawRadar(canvas, labels, datasets);
+      };
+
+      return { card, draw };
+    }
+
+    function createTable(impls, boostMap, ecoMap) {
+      const table = document.getElementById("dataTable");
+      const header = `
+        <tr>
+          <th>Implementation</th>
+          <th>Mode</th>
+          <th>Speedup</th>
+          <th>CPU time (ms)</th>
+          <th>Max RAM (MB)</th>
+          <th>CPU %</th>
+          <th>RAM %</th>
+          <th>Cores</th>
+        </tr>
+      `;
+      const rows = [];
+      impls.forEach((impl) => {
+        const boost = boostMap.get(impl);
+        const eco = ecoMap.get(impl);
+        if (boost) {
+          rows.push(`
+            <tr>
+              <td>${impl}</td>
+              <td>Boost</td>
+              <td>${formatNumber(boost.speedup_vs_baseline, 2)}x</td>
+              <td>${formatNumber(boost.cpu_processing_time_ms, 2)}</td>
+              <td>${formatNumber(boost.max_ram_mb, 2)}</td>
+              <td>${formatNumber(boost.cpu_usage_percent, 2)}</td>
+              <td>${formatNumber(boost.ram_usage_percent, 2)}</td>
+              <td>${formatInt(boost.cores_used)}</td>
+            </tr>
+          `);
+        }
+        if (eco) {
+          rows.push(`
+            <tr>
+              <td>${impl}</td>
+              <td>Eco</td>
+              <td>${formatNumber(eco.speedup_vs_baseline, 2)}x</td>
+              <td>${formatNumber(eco.cpu_processing_time_ms, 2)}</td>
+              <td>${formatNumber(eco.max_ram_mb, 2)}</td>
+              <td>${formatNumber(eco.cpu_usage_percent, 2)}</td>
+              <td>${formatNumber(eco.ram_usage_percent, 2)}</td>
+              <td>${formatInt(eco.cores_used)}</td>
+            </tr>
+          `);
+        }
+      });
+      table.innerHTML = header + rows.join("");
+    }
+
+    async function init() {
+      const banner = document.getElementById("banner");
+      let boost = null;
+      let eco = null;
+      try {
+        boost = await loadJSON(FILES.boost);
+      } catch (err) {
+        console.warn(err);
+      }
+      try {
+        eco = await loadJSON(FILES.eco);
+      } catch (err) {
+        console.warn(err);
+      }
+
+      const boostEntries = boost?.entries || [];
+      const ecoEntries = eco?.entries || [];
+      const boostMap = indexEntries(boostEntries);
+      const ecoMap = indexEntries(ecoEntries);
+
+      const allImpls = unionImpls(boostMap, ecoMap);
+      const sortedImpls = allImpls.sort((a, b) => {
+        const boostA = boostMap.get(a) || ecoMap.get(a);
+        const boostB = boostMap.get(b) || ecoMap.get(b);
+        return getSortScore(boostB) - getSortScore(boostA);
+      });
+
+      const maxima = collectMaxima([...boostEntries, ...ecoEntries]);
+      const maxSpeedup = Math.max(maxima.speedup_vs_baseline, 1);
+      const drawQueue = [];
+
+      if (!boostEntries.length || !ecoEntries.length) {
+        banner.textContent = "Missing data: boost or eco entries are empty. Use a local server to load JSON files.";
+      } else {
+        banner.textContent = `Loaded ${boostEntries.length} boost entries and ${ecoEntries.length} eco entries.`;
+      }
+
+      const fastestBoost = pickFastest(boostEntries);
+      const fastestEco = pickFastest(ecoEntries);
+      const fastestGrid = document.getElementById("fastestGrid");
+      if (fastestGrid) {
+        const fastestCard = createFastestComparison(fastestBoost, fastestEco, maxima);
+        fastestGrid.appendChild(fastestCard.card);
+        drawQueue.push(fastestCard.draw);
+      }
+
+      const overviewGrid = document.getElementById("overviewGrid");
+      sortedImpls.forEach((impl) => {
+        overviewGrid.appendChild(
+          createOverviewCard(impl, boostMap.get(impl), ecoMap.get(impl), maxSpeedup)
+        );
+      });
+
+      const radarGrid = document.getElementById("radarGrid");
+      sortedImpls.forEach((impl) => {
+        const radar = createRadarCard(impl, boostMap.get(impl), ecoMap.get(impl), maxima);
+        radarGrid.appendChild(radar.card);
+        drawQueue.push(radar.draw);
+      });
+
+      createTable(sortedImpls, boostMap, ecoMap);
+
+      requestAnimationFrame(() => {
+        drawQueue.forEach((draw) => draw());
+      });
+
+      window.addEventListener("resize", () => {
+        drawQueue.forEach((draw) => draw());
+      });
+    }
+
+    init();
+  </script>
+</body>
+</html>

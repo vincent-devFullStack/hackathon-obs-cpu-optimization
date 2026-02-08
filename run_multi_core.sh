@@ -65,6 +65,7 @@ python3 runner/run_all.py \
   --metadata "$METADATA" \
   --warmup 5 --runs 30 --repeat 50 \
   --profile native \
+  --quiet-warnings \
   --stability-enable --stability-mode wait --stability-timeout-sec 60 \
   --cpu-util-max 20 --disk-io-mbps-max 5 --mem-available-min-mb 2048 \
   --cpu-set "$CPU_SET_MULTI" \
@@ -74,6 +75,10 @@ python3 runner/run_all.py \
   --results-csv "$CSV_OUT" \
   --summary-json "$SUMMARY_OUT"
 
+python3 runner/export_resource_comparison.py \
+  --summary-json "$SUMMARY_OUT" \
+  --output-json "$RESULTS_DIR/comparaison_des_utilisation_des_ressource.json"
+
 echo "[INFO] MODE: multi-core scalable-only (throughput)"
 python3 runner/run_all.py \
   --run-mode multi-core \
@@ -82,6 +87,7 @@ python3 runner/run_all.py \
   --metadata "$METADATA" \
   --warmup 5 --runs 30 --repeat 50 \
   --profile native \
+  --quiet-warnings \
   --stability-enable --stability-mode wait --stability-timeout-sec 60 \
   --cpu-util-max 20 --disk-io-mbps-max 5 --mem-available-min-mb 2048 \
   --cpu-set "$CPU_SET_MULTI" \
